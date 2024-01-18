@@ -1,0 +1,33 @@
+:root {
+
+    /*tema generale sito placeholder da sostituire*/
+	--theme-color: #121212;
+	--higlight-color: #B30000;
+    --text-color: #B30000;
+    --link-color:#B30000;
+    --link-visited-color:#B30000;
+    --link-hover-color:#B30000;
+    --button-color:#B30000;
+    --button-hover-color:#B30000;
+
+    /*temi stanze?*/
+    --stanza1: #B30000;
+    --stanza2: #B30000;
+    --stanza3: #B30000;
+}
+
+
+
+/*css mobile*/
+
+
+
+
+
+
+
+@media screen and (max-width:800em){
+    
+/*modifiche css per desktop*/
+
+}
