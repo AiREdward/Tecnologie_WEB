@@ -1,8 +1,11 @@
 <?php 
-if(!isset($_SESSION)){
-	session_start();
-}
-$template='<a href="#content" class="SRskip" title="salta al contenuto" aria-label="salta al contenuto">Salta al contenuto</a>
+require_once "utilities/ManagerLocalizzazione.php";
+initial_setup();
+
+
+$headertext=GetTesti("header");
+
+$template='<a href="#content" class="SRskip" title="'.$headertext["skip"].'" aria-label="'.$headertext["skip"].'">'.$headertext["skip"].'</a>
 	<header>
             <h1 class="logo"> escaperoom </h1>
             <nav>
@@ -10,7 +13,7 @@ $template='<a href="#content" class="SRskip" title="salta al contenuto" aria-lab
             </nav>
       </header>
       <div class="breadcrumbs">
-      	<p> Ti trovi in: <span id="percorso"><BREADCRUMB/> </span></p>
+      	<p>'.$headertext["breadcrumb"].'<span id="percorso"><BREADCRUMB/> </span></p>
       </div>';
 
 $indirizzi_pagine=[];//nome->Indirizzo
@@ -30,7 +33,7 @@ $accesskeys=[]//nome->key
 $accesskeys["home"]="h";
 
 function genera_header($pagina){
-	global $template, $indirizzi_pagine, $navmenu, $padre_pagina;
+	global $template, $indirizzi_pagine, $navmenu, $padre_pagina,$headertext;
 	$menu='<ul class="navmenu">';
 	foreach ($navmenu as $menuentry) {
       	if ($menuentry != $pagina) {
@@ -40,10 +43,10 @@ function genera_header($pagina){
 			{
 				$menuentry=$_SESSION["user"];
 			} */
-			$menu = $menu . '<li><a class="first_letter_underlined" href="' . $indirizzo . '" accesskey="' . $key . '">' . $menuentry . "</a></li>";
+			$menu = $menu . '<li><a href="' . $indirizzo . '" accesskey="' . $key . '">' . $headertext[$menuentry] . "</a></li>";
 			
         } else {
-            $menu = $menu . '<li class="menu_name first_letter_underlined">' . $menuentry . "</li>";
+            $menu = $menu . '<li class="currentpage">' . $headertext[$menuentry] . "</li>";
         }
     }
 	$menu=$menu.'</ul>';
@@ -51,13 +54,13 @@ function genera_header($pagina){
 	$breadcrumb="";
 	$genitore=null;
 
-    $breadcrumb="<span id=current_page>" . $pagina . "</span>";
+    $breadcrumb="<span id=current_page>" . $headertext[$pagina] . "</span>";
     $genitore = $padre_pagina[$pagina];
 
 	// genera breadcrumb nel formato genitore/figlio/.....		
 	while($genitore&&$genitore!="#"){//verifica il raggiungimento della radice
 		// aggiunge genitore/ a breadrumbs in formato figlio/.....
-		$breadcrumb = '<a href="' . $indirizzi_pagine[$genitore] . '">' . $genitore . "</a> <span aria-hidden='true'> </span>" . $breadcrumb;
+		$breadcrumb = '<a href="' . $indirizzi_pagine[$genitore] . '">' . $headertext[$genitore] . "</a> <span aria-hidden='true'> </span>" . $breadcrumb;
 		$genitore = $padre_pagina[$genitore];
 	}
 	$output= str_replace("<MENU/>",$menu,$template);
