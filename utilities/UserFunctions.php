@@ -13,16 +13,16 @@ function LoginUser($email,$password){
     $connessione1 = new Connection();
     $connOK = $connessione1->apriConnessione();
     if(!$connOK) {
-        return "errore di connessione";
+        return "errore_connessione";
     }
     $username=$connessione1->UserExists($email);
     if(!$username){
         $connessione1->closeDBConnection();
-        return "utente inesistente";
+        return "utente_inesistente";
     }
     if(!$connessione1->CheckLogin($username,$password)){
         $connessione1->closeDBConnection();
-        return "password errata";
+        return "password_errata";
     }
     $_SESSION["user"]=$username;
     $_SESSION["admin"]=$connessione1->CheckUserPriviledge($username)=="ADMIN";
@@ -33,19 +33,19 @@ function logout(){
     $_SESSION["user"]=null;
     $_SESSION["admin"]=false;
 }
-function RegisterUser($username,$email,$password){
+function RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nascita){
     $connessione1 = new Connection();
     $connOK = $connessione1->apriConnessione();
     if(!$connOK) {
-        return "errore di connessione";
+        return "errore_connessione";
     }
     if($connessione1->UserExists($username)||$connessione1->UserExists($email)){
         $connessione1->closeDBConnection();
-        return "mail or username gia in uso";
+        return "mail_username_duplicata";
     }
-    if(!$connessione1->RegisterNewUser($username,$email,$password)){
+    if(!$connessione1->RegisterNewUser($username,$email,$password,$nome,$cognome,$telefono,$nascita)){
         $connessione1->closeDBConnection();
-        return "errore registrazione utente";
+        return "errore_registrazione_utente";
     };
     $connessione1->closeDBConnection();
     return "";

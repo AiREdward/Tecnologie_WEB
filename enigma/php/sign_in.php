@@ -18,7 +18,6 @@
             if($_POST["nome"] && $_POST["cognome"] && ($_POST["telefono"] || $_POST["email"] ) && $_POST["nascita"] && $_POST["username"] && $_POST["password"] && $_POST["conferma"]){
                 return true;
             }else{
-                echo'uno o più campi obbligatori mancanti';
                 return false;
             }
         }

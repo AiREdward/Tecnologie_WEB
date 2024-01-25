@@ -1,10 +1,11 @@
 <?php 
 	require_once "utilities/HeaderPagina.php";
+    $hometext=GetTesti("home");
 ?>
 <!DOCTYPE html>
-<html lang="it">
+<html lang="<?php echo $_SESSION["lang"] ?>">
 <head>
-    <title>Home-FitnessCenter</title>
+    <title></title>
     <meta charset="utf-8"/>
     <meta name="keywords" content="TODO"/>
 

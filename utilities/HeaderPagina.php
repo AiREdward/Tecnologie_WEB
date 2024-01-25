@@ -18,19 +18,24 @@ $template='<a href="#content" class="SRskip" title="'.$headertext["skip"].'" ari
 
 $indirizzi_pagine=[];//nome->Indirizzo
 $indirizzi_pagine["home"]="index.php";
+$indirizzi_pagine["area_utente"]="area_utente.php";
+$indirizzi_pagine["login"]="login.php";
 $indirizzi_pagine["404"]="404.php";
 $indirizzi_pagine["500"]="500.php";
 
 
-$navmenu=["home","prenota"];
+$navmenu=["home","area_utente"];
 
 $padre_pagina=[];//nome->nome genitore
 $padre_pagina["home"]="#";
+$padre_pagina["area_utente"]="home";
+$padre_pagina["login"]="area_utente";
 $padre_pagina["404"]="#";
 $padre_pagina["500"]="#";
 
 $accesskeys=[]//nome->key
 $accesskeys["home"]="h";
+$accesskeys["home"]="u";
 
 function genera_header($pagina){
 	global $template, $indirizzi_pagine, $navmenu, $padre_pagina,$headertext;

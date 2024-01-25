@@ -17,21 +17,6 @@ class Connection{
             return false; //Connessione fallita
     }
 
-    /*
-    public function openDBConnection(){
-        // mysqli_report(MYSQLI_REPORT_ERROR); qui disabilita errori 
-        // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); qui disabilita errori e lancia eccezioni
-        $this->conn = mysqli_connect(Connection::HOST, Connection::USERNAME, Connection::PASS, Connection::DATABASE); //crea una connessione con tutti i dati sopra
-        
-        if(mysqli_connect_errno()){ //se la connessione fallisce
-            return false;  //ritorna false
-        }
-        else{
-            return true; //altrimenti ritorna true
-        }
-    }
-    */
-
     public function closeDBConnection(){
         if($this->conn != null){
             $this->conn->close();
@@ -73,16 +58,20 @@ class Connection{
         $preparedQuery->close();
         return $exist;
     }
-    public function RegisterNewUser($username,$email,$password){
+    public function RegisterNewUser($username,$email,$password,$nome,$cognome,$telefono,$nascita){
         $connection=$this->conn;
-        $query='INSERT INTO user (username, email, password, type)VALUES(?,?,?,?)';
+        $query='INSERT INTO user (username, email, password,nome, cognome,telefono,nascita,type)VALUES(?,?,?,?,?,?,?,?)';
         $preparedQuery = $connection->prepare($query);
         $usertype="BasicUser";
         $preparedQuery->bind_param(
-            'ssss',
+            'ssssssss',
             $username,
             $email,
             $password,
+            $nome,
+            $cognome,
+            $telefono,
+            $nascita,
             $usertype
         );
         $res=$preparedQuery->execute();

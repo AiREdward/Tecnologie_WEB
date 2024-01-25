@@ -23,5 +23,9 @@ function GetTesti($blocco){
         require("localizzazioni/".$lang."/headertext.php");
         return GetHeaderText();
     }
+    if($blocco="login"){
+        require("localizzazioni/".$lang."/logintext.php");
+        return GetLoginText();
+    }
 }
 ?>

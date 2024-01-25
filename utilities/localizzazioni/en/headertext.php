@@ -1,9 +1,10 @@
 <?php
 function GetHeaderText(){
     $Header=[];
-    $Header["skip"]="skip to content"
-    $Header["breadcrumb"]="you are in:"
-    $Header["home"]="home"
+    $Header["skip"]="skip to content";
+    $Header["breadcrumb"]="you are in:";
+    $Header["home"]="home";
+    $Header["area_utente"]="user area";
     return $Header;
 }
 ?>
