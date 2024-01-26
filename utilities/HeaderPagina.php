@@ -1,7 +1,7 @@
 <?php 
 require_once "utilities/ManagerLocalizzazione.php";
-initial_setup();
 
+initial_setup();
 
 $headertext=GetTesti("header");
 
@@ -23,7 +23,6 @@ $indirizzi_pagine["login"]="login.php";
 $indirizzi_pagine["404"]="404.php";
 $indirizzi_pagine["500"]="500.php";
 
-
 $navmenu=["home","area_utente"];
 
 $padre_pagina=[];//nome->nome genitore
@@ -33,17 +32,18 @@ $padre_pagina["login"]="area_utente";
 $padre_pagina["404"]="#";
 $padre_pagina["500"]="#";
 
-$accesskeys=[]//nome->key
+$accesskeys=[]; //nome->key
 $accesskeys["home"]="h";
-$accesskeys["home"]="u";
+$accesskeys["area_utente"]="u";
+$accesskeys["login"]="l";
 
 function genera_header($pagina){
-	global $template, $indirizzi_pagine, $navmenu, $padre_pagina,$headertext;
+	global $template, $indirizzi_pagine, $navmenu, $padre_pagina,$headertext, $accesskeys;
 	$menu='<ul class="navmenu">';
 	foreach ($navmenu as $menuentry) {
       	if ($menuentry != $pagina) {
 			$indirizzo=$indirizzi_pagine[$menuentry];
-            $key=$accesskeys[$menuentry]
+            $key=$accesskeys[$menuentry];
 			/* if($menuentry=="login"&&isset($_SESSION["user"]))
 			{
 				$menuentry=$_SESSION["user"];

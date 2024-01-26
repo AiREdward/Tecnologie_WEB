@@ -1,5 +1,5 @@
 <?php
-function GetHeaderText(){
+function GetHeaderText(): array {
     $Header=[];
     $Header["skip"]="salta al contenuto";
     $Header["breadcrumb"]="Ti trovi in:";

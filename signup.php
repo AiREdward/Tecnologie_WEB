@@ -1,7 +1,7 @@
 <?php
     require_once "utilities/HeaderPagina.php";
     require_once "utilities/UserFunctions.php";
-    require_once "utilities/ImputCleaner.php";
+    require_once "utilities/InputCleaner.php";
 
     $errors="";
     if(all_set()){
@@ -20,16 +20,16 @@
                 {
                     $errors=RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nascita);
                 }else{
-                    $errors="password_invalida"
+                    $errors="password_invalida";
                     //echo'la password non è valida, deve avere almeno 1 carattere maiuscolo, 1 minuscolo, un numero, un simbolo ed almeno 8 caratteri';
                 }
             }
             else{
-                $errors="email_invalida"
+                $errors="email_invalida";
             }
         }
         else{
-            $errors="telefono_invalido"
+            $errors="telefono_invalido";
         }
         $errors=LoginUser($username,$password);
         if($errors==""){
@@ -71,12 +71,12 @@
     <?php
     if($errors!=""){
         $errortext=GetTesti("error");
-        echo "<p class='errormesage'>". $errortext[$errors]."</p>"
+        echo "<p class='errormesage'>". $errortext[$errors]."</p>";
     }
     ?>
 
 
-    <p><?php echo $logintext["prompt_registrarsi"]?> <a href='signin.php'><?php echo $logintext["pulsante_registrazione"]?></a></p>
+    <p><?php echo $logintext["prompt_registrarsi"]?> <a href='signup.php'><?php echo $logintext["pulsante_registrazione"]?></a></p>
 
     <form id="form" action="login.php" method="post">
         <label for="username"><?php echo $logintext["label_username"]?></label>
@@ -86,26 +86,26 @@
         <input type="submit" value="Accedi"><?php echo $logintext["testo_pulsante"]?></input>
     </form>
 
-    <p><?php echo $logintext["prompt_registrarsi"]?><a href='log_in.html'><?php echo $logintext["pulsante_registrazione"]?></a>
+    <p><?php echo $logintext["prompt_registrarsi"]?><a href='login.php'><?php echo $logintext["pulsante_registrazione"]?></a>
 
 
     <form id="form" action="/enigma/php/sign_in.php" method="post">
         <fieldset>
-            <label>Nome</label>
+            <label for="nome">Nome</label>
             <input id="nome" name="nome" type="text" />
-            <label>Cognome</label>
+            <label for="cognome">Cognome</label>
             <input id="cognome" name="cognome" type="text" />
-            <label>Username</label>
+            <label for="username" lang="en">Username</label>
             <input id="username" name="username" type="text" />
-            <label>Telefono</label>
+            <label for="telefono">Telefono</label>
             <span><input id="telefono" name="telefono" type="text"/>
-            <label>Data di Nascita</label>
+            <label for="nascita">Data di Nascita</label>
             <span><input id="nascita" name="nascita" type="date" min="1924-01-01" max="2023-12-31"/>
-            <label>Email</label>
+            <label for="email" lang="en">Email</label>
             <span><input id="email" name="email" type="email" />
-            <label>Password</label>
+            <label for="password" lang="en">Password</label>
             <span><input id="password" name="password" type="password" />
-            <label>Conferma Password</label>
+            <label for="conferma">Conferma Password</label>
             <input id="conferma" name="conferma" type="password" />
             <input type="submit" value="Registrati">
         </fieldset>

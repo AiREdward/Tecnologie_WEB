@@ -22,7 +22,6 @@
 	echo genera_header("home");
 ?>
 
-<div id="content">
+<div id="content"></div>
 
-</id>
 </body>
