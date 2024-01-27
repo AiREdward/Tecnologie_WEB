@@ -98,13 +98,13 @@
             <label for="username" lang="en">Username</label>
             <input id="username" name="username" type="text" />
             <label for="telefono">Telefono</label>
-            <span><input id="telefono" name="telefono" type="text"/>
+            <input id="telefono" name="telefono" type="text"/>
             <label for="nascita">Data di Nascita</label>
-            <span><input id="nascita" name="nascita" type="date" min="1924-01-01" max="2023-12-31"/>
+            <input id="nascita" name="nascita" type="date" min="1924-01-01" max="2023-12-31"/>
             <label for="email" lang="en">Email</label>
-            <span><input id="email" name="email" type="email" />
+            <input id="email" name="email" type="email" />
             <label for="password" lang="en">Password</label>
-            <span><input id="password" name="password" type="password" />
+            <input id="password" name="password" type="password" />
             <label for="conferma">Conferma Password</label>
             <input id="conferma" name="conferma" type="password" />
             <input type="submit" value="Registrati">

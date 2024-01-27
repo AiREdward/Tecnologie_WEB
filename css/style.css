@@ -1,9 +1,10 @@
 :root {
 
     /*tema generale sito placeholder da sostituire*/
-	--theme-color: #121212;
-	--higlight-color: #B30000;
-    --text-color: #B30000;
+	--background-color: #121212;
+    --theme-color: #121212;
+	--higligt-color: #c72d2d;
+    --text-color: #f1f1f1;
     --link-color:#B30000;
     --link-visited-color:#B30000;
     --link-hover-color:#B30000;
@@ -15,19 +16,50 @@
     --stanza2: #B30000;
     --stanza3: #B30000;
 }
-
-
-
-/*css mobile*/
-
-
-
-
-
-
-
-@media screen and (max-width:800em){
+/*css base/ mobile*/
+html {
+	font-size: 100%;
+	font-family: "Arial", sans-serif;
+	background-color: var(--background-color);
+    color: var(--text-color);
+}
+body{
+    width: 100%;
+}
+.SRskip {
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+nav ul{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    list-style: none;
+}
+nav ul li{
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    text-decoration: none;
+}
+nav a{
+    text-decoration: none;
+}
+@media screen and (min-width:50em){
     
 /*modifiche css per desktop*/
-
+    body{
+        max-width: 50em;
+        margin:0 auto;
+    }
+    nav{
+        align-self: flex-end;
+    }
 }

@@ -13,7 +13,7 @@ $template='<a href="#content" class="SRskip" title="'.$headertext["skip"].'" ari
             </nav>
       </header>
       <div class="breadcrumbs">
-      	<p>'.$headertext["breadcrumb"].'<span id="percorso"><BREADCRUMB/> </span></p>
+      	<p>'.$headertext["breadcrumb"].'  <span id="percorso"><BREADCRUMB/> </span></p>
       </div>';
 
 $indirizzi_pagine=[];//nome->Indirizzo
