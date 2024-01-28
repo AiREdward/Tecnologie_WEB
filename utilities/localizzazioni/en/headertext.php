@@ -5,6 +5,7 @@ function GetHeaderText(){
     $Header["breadcrumb"]="you are in:";
     $Header["home"]="home";
     $Header["area_utente"]="user area";
+    $Header["lang_switch"]="go to the italian version";
     return $Header;
 }
 ?>

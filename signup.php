@@ -12,7 +12,7 @@
         $nascita=Clean($_POST["nascita"]);
         $username=Clean($_POST["username"]);
         $password=Clean($_POST["password"]);
-        if(empty($_POST["telefono"]) || preg_match('/^[0-9]{10}$/', $_POST["telefono"]))
+        if(empty($_POST["telefono"]) || preg_match($patternTelefono, $_POST["telefono"]))
         {
             if(empty($_POST["email"]) || filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
             {

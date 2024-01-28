@@ -2,12 +2,12 @@
 
     /*tema generale sito placeholder da sostituire*/
 	--background-color: #121212;
-    --theme-color: #121212;
+    --theme-color: #8b1c1c;
 	--higligt-color: #c72d2d;
-    --text-color: #f1f1f1;
-    --link-color:#B30000;
-    --link-visited-color:#B30000;
-    --link-hover-color:#B30000;
+    --text-color: #f1f1f1d4;
+    --link-color:#c9c9c9;
+    --link-visited-color:#ffd9b0;
+    --link-hover-color:#ffffff;
     --button-color:#B30000;
     --button-hover-color:#B30000;
 
@@ -25,6 +25,16 @@ html {
 }
 body{
     width: 100%;
+    max-width: 100%;
+}
+a{
+    color: var(--link-color);
+}
+a:visited{
+    color: var(--link-visited-color);
+}
+a:hover{
+    color: var(--link-hover-color);
 }
 .SRskip {
 	position: absolute;
@@ -34,9 +44,50 @@ body{
 	clip: rect(1px, 1px, 1px, 1px);
 }
 header{
-    display: flex;
-    flex-direction: row;
+    display: grid;
     width: 100%;
+    grid-template-columns: 10% auto auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "togglenav title title"
+                         "navmenu navmenu navmenu"
+                         "langswitch langswitch langswitch"
+                         "breadcrumbs breadcrumbs breadcrumbs";
+    background-color: var(--theme-color);
+    border-style:outset;
+    border-width: 1px;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+header h1{
+    grid-area:title;
+    /*grid-row: 1;*/
+}
+#togglenav{
+    grid-area:togglenav;
+}
+.breadcrumbs{
+    grid-area:breadcrumbs;
+    /*grid-row: 4;*/
+    background-color: var(--higligt-color);
+    border-style:outset;
+    border-width: 1px;
+    border-radius: 1rem;
+    padding: 0 0.5rem;
+    width: 80%;
+}
+.langswitch{
+    grid-area:langswitch;
+    /*grid-row: 3;*/
+    background-color: var(--higligt-color);
+    border-style:outset;
+    border-width: 1px;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    width:fit-content;
+}
+nav{
+    grid-area:"nav";
+    /*grid-row: 2;*/
 }
 nav ul{
     display: flex;
@@ -49,8 +100,16 @@ nav ul li{
     padding: 0.75rem;
     text-decoration: none;
 }
-nav a{
+header a{
     text-decoration: none;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+fieldset{
+    display: flex;
+    flex-direction: column;
 }
 @media screen and (min-width:50em){
     
@@ -59,7 +118,35 @@ nav a{
         max-width: 50em;
         margin:0 auto;
     }
-    nav{
-        align-self: flex-end;
+    header{
+        display: grid;
+        width: 100%;
+        grid-template-columns: auto auto 40%;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas: "title togglenav navmenu"
+                             "langswitch . ."
+                             "breadcrumbs breadcrumbs breadcrumbs"
+                             ". . .";
     }
+    #togglenav{
+        display: none;
+    }
+    header h1{
+        grid-area:title;
+        /*grid-row: 1;*/
+    }
+    .breadcrumbs{
+        grid-area:breadcrumbs;
+        /*grid-row: 3;*/
+    }
+    .langswitch{
+        grid-area:langswitch;
+        /*grid-row: 2;*/
+    }
+    nav{
+        grid-area:navmenu;
+        /*grid-row: 1;
+        grid-column: 3;*/
+    }
+    .largeform{display: flex; flex-direction: row;}
 }

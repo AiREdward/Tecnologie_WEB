@@ -6,15 +6,18 @@ initial_setup();
 $headertext=GetTesti("header");
 
 $template='<a href="#content" class="SRskip" title="'.$headertext["skip"].'" aria-label="'.$headertext["skip"].'">'.$headertext["skip"].'</a>
+	
 	<header>
-            <h1 class="logo"> escaperoom </h1>
-            <nav>
-                        <MENU/>
-            </nav>
-      </header>
-      <div class="breadcrumbs">
-      	<p>'.$headertext["breadcrumb"].'  <span id="percorso"><BREADCRUMB/> </span></p>
-      </div>';
+		<h1 class="logo"> escaperoom </h1>
+		<button id="togglenav"></button>
+		<nav>
+					<MENU/>
+		</nav>
+		<LANGSWITCH/>
+		<div class="breadcrumbs">
+      		<p>'.$headertext["breadcrumb"].'  <span id="percorso"><BREADCRUMB/> </span></p>
+      	</div>
+    </header>';
 
 $indirizzi_pagine=[];//nome->Indirizzo
 $indirizzi_pagine["home"]="index.php";
@@ -68,8 +71,17 @@ function genera_header($pagina){
 		$breadcrumb = '<a href="' . $indirizzi_pagine[$genitore] . '">' . $headertext[$genitore] . "</a> <span aria-hidden='true'> </span>" . $breadcrumb;
 		$genitore = $padre_pagina[$genitore];
 	}
-	$output= str_replace("<MENU/>",$menu,$template);
+	//$output= str_replace("<MENU/>",$menu,$template);
 	$output= str_replace("<BREADCRUMB/>",$breadcrumb,$output);
+	$langswitch="";
+	if($_SESSION["lang"]=="it"){
+		$langswitch="<a href='".$indirizzi_pagine[$pagina]."?lang=en' class='langswitch'>".$headertext["lang_switch"]."</a>";
+	}
+	if($_SESSION["lang"]=="en"){
+		$langswitch="<a href='".$indirizzi_pagine[$pagina]."?lang=it' class='langswitch'>".$headertext["lang_switch"]."</a>";
+	}
+
+	$output= str_replace("<LANGSWITCH/>",$langswitch,$output);
 	return $output;
 }
 ?>
