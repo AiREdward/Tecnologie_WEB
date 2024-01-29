@@ -1,10 +1,8 @@
 <?php
 function Clean($raw_in){
-    //TO DO clean
-    return $raw_in;
+    return htmlentities(trim($raw_in));
 }
 function Check($raw_in,$regex){
-    //TO DO check
-    return true;
+    return preg_match($regex, $raw_in);
 }
 ?>

@@ -26,7 +26,6 @@ function GetTesti($blocco){
         $_SESSION["lang"]="en";
         $lang="en";
     }
-
     switch($blocco) {
         case "header":
             require_once("localizzazioni/".$lang."/headertext.php");
@@ -34,6 +33,12 @@ function GetTesti($blocco){
         case "login":
             require_once("localizzazioni/".$lang."/logintext.php");
             return GetLoginText();
+        case "home":
+            require_once("localizzazioni/".$lang."/hometext.php");
+            return GetHomeText();
+        case "rooms":
+            require_once("localizzazioni/".$lang."/roomstext.php");
+            return GetroomsText();
         default:
             return null;
     }

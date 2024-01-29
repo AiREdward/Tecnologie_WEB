@@ -19,5 +19,11 @@ create table Prenota (
 	username varchar(32) not null,
 	id_room integer not null,
 	foreign key (username) references Utente(username),
-	foreign key (id_room) references Room(codice)
+	foreign key (id_room) references Room(codice),
+	foreign key (username) references SlotPrenotabili(orario)
 );
+
+create table SlotPrenotabili{
+	id integer not null,
+	orario time not null,
+}
