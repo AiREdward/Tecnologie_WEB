@@ -19,18 +19,23 @@ function initial_setup() {
 
 function GetTesti($blocco){
     global $lingue;
+
     $lang=$_SESSION["lang"];
+
     if(!in_array($lang, $lingue)){
         $_SESSION["lang"]="en";
         $lang="en";
     }
-    if($blocco="header"){
-        require_once("localizzazioni/".$lang."/headertext.php");
-        return GetHeaderText();
-    }
-    if($blocco="login"){
-        require_once("localizzazioni/".$lang."/logintext.php");
-        return GetLoginText();
+
+    switch($blocco) {
+        case "header":
+            require_once("localizzazioni/".$lang."/headertext.php");
+            return GetHeaderText();
+        case "login":
+            require_once("localizzazioni/".$lang."/logintext.php");
+            return GetLoginText();
+        default:
+            return null;
     }
 }
 ?>

@@ -1,11 +1,11 @@
 <?php
-function GetHeaderText(){
+function GetHeaderText() : array {
     $Header=[];
     $Header["skip"]="skip to content";
-    $Header["breadcrumb"]="you are in:";
-    $Header["home"]="home";
-    $Header["area_utente"]="user area";
-    $Header["lang_switch"]="go to the italian version";
+    $Header["breadcrumb"]="You are in:";
+    $Header["home"]="Home";
+    $Header["area_utente"]="User Area";
+    $Header["lang_switch"]="Go to the italian version";
     return $Header;
 }
 ?>

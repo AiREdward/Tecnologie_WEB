@@ -1,11 +1,11 @@
 <?php
-function GetLoginText(){
+function GetLoginText() : array {
     $Login=[];
-    $Login["prompt_registrarsi"]="don't habve an account?";
-    $Login["pulsante_registrazione"]="register now";
+    $Login["prompt_registrarsi"]="Don't have an account?";
+    $Login["pulsante_registrazione"]="Register now";
     $Login["label_username"]="Username";
     $Login["label_password"]="Password";
-    $Login["testo_pulsante"]="sign in";
+    $Login["testo_pulsante"]="Sign in";
     return $Login;
 }
 ?>
