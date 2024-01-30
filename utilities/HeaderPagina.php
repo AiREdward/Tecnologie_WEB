@@ -9,7 +9,7 @@ $header_template='<a href="#content" class="SRskip" title="'.$headertext["skip"]
 	
 	<header>
 		<h1 class="logo"> escaperoom </h1>
-		<button id="togglenav"></button>
+		<button type="button" id="togglenav">'.$headertext["nav_toggle"].'</button>
 		<nav>
 			<MENU/>
 		</nav>
@@ -23,6 +23,7 @@ $indirizzi_pagine=[];//nome->Indirizzo
 $indirizzi_pagine["home"]="index.php";
 $indirizzi_pagine["area_utente"]="area_utente.php";
 $indirizzi_pagine["login"]="login.php";
+$indirizzi_pagine["signup"]="signup.php";
 $indirizzi_pagine["404"]="404.php";
 $indirizzi_pagine["500"]="500.php";
 
@@ -32,18 +33,19 @@ $padre_pagina=[];//nome->nome genitore
 $padre_pagina["home"]="#";
 $padre_pagina["area_utente"]="home";
 $padre_pagina["login"]="area_utente";
+$padre_pagina["signup"]="area_utente";
 $padre_pagina["404"]="#";
 $padre_pagina["500"]="#";
 
 $accesskeys=[]; //nome->key
 $accesskeys["home"]="h";
 $accesskeys["area_utente"]="u";
-$accesskeys["login"]="l";
+//$accesskeys["login"]="l";
 
 function get_menu($pagina): string {
     global $navmenu, $indirizzi_pagine, $headertext, $accesskeys;
 
-    $menu='<ul class="navmenu"> ';
+    $menu='<ul class="navmenu closednav" id="navmenu"> ';
 
     foreach ($navmenu as $menu_entry) {
         if ($menu_entry != $pagina) {

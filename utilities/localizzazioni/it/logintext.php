@@ -5,7 +5,7 @@ function GetLoginText(): array {
     $Login["pulsante_registrazione"]="Registrati adesso";
     $Login["label_username"]="<span lang=en>Username</span>";
     $Login["label_password"]="<span lang=en>Password</span>";
-    $Login["testo_pulsante"]="Sign in";
+    $Login["testo_pulsante"]="Accedi";
     return $Login;
 }
 ?>

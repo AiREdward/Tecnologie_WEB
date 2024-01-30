@@ -10,11 +10,11 @@
     --link-hover-color:#ffffff;
     --button-color:#B30000;
     --button-hover-color:#B30000;
-
+    --border-color:var(--text-color);
     /*temi stanze?*/
-    --stanza1: #B30000;
-    --stanza2: #B30000;
-    --stanza3: #B30000;
+    --stanza1: #320035;
+    --stanza2: #6c1400;
+    --stanza3: #005e67;
 }
 /*css base/ mobile*/
 html {
@@ -24,8 +24,8 @@ html {
     color: var(--text-color);
 }
 body{
-    width: 100%;
-    max-width: 100%;
+    width: 80%;
+    max-width: 80%;
 }
 a{
     color: var(--link-color);
@@ -86,7 +86,7 @@ header h1{
     width:fit-content;
 }
 nav{
-    grid-area:"nav";
+    grid-area:"navmenu";
     /*grid-row: 2;*/
 }
 nav ul{
@@ -94,6 +94,9 @@ nav ul{
     flex-direction: row;
     width: 100%;
     list-style: none;
+}
+.closednav{
+    display: none;
 }
 nav ul li{
     font-size: 1.5rem;
@@ -106,19 +109,46 @@ header a{
 form{
     display: flex;
     flex-direction: column;
+    width: min-content;
+    border: solid 1px;
+    border-color: var(--border-color);
+    border-radius: 1rem;
+    padding: 1rem;
 }
 fieldset{
     display: flex;
     flex-direction: column;
+    width: min-content;
+    border-radius: 1rem;
+}
+input{
+    border-radius: 1rem;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+}
+label{
+    font-size: 1.25rem;
 }
 
 .home_room{
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+#stanza1{
+    background-color: var(--stanza1);
+}
+#stanza2{
+    background-color: var(--stanza2);
+}
+#stanza3{
+    background-color: var(--stanza3);
 }
 .recap{
     background-color: var(--theme-color);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 1rem;
     display: grid;
     grid-template-columns: auto auto;
@@ -134,13 +164,15 @@ fieldset{
 }
 .prenotazione_rapida{
     background-color: var(--higligt-color);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 1rem;
 }
 .room_photo{
     width: 100%;
+    border-radius: 1rem;
 }
 .ambientazione{
+    padding: 1rem;
 }
 @media screen and (min-width:50em){
     
@@ -179,10 +211,15 @@ fieldset{
         /*grid-row: 1;
         grid-column: 3;*/
     }
-    .largeform{display: flex; flex-direction: row;}
+    .largeform{display: flex; 
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: fit-content;
+        padding: 0;
+    }
     .home_room{
         display: grid;
-        grid-template-columns: 60% auto 20%;
+        grid-template-columns: 50% auto 30%;
         grid-template-rows: auto auto auto auto;
         grid-template-areas: "img title   setting"
                              "img recap   setting"
@@ -200,5 +237,11 @@ fieldset{
     }
     .ambientazione{
         grid-area: setting;
+    }
+    .prenotazione_rapida{
+        grid-area: prenota;
+    }
+    .closednav{
+        display:flex;
     }
 }

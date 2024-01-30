@@ -39,6 +39,12 @@ function GetTesti($blocco){
         case "rooms":
             require_once("localizzazioni/".$lang."/roomstext.php");
             return GetroomsText();
+        case "errors":
+            require_once("localizzazioni/".$lang."/errorstext.php");
+            return GetErrorsText();
+        case "signup":
+            require_once("localizzazioni/".$lang."/signuptext.php");
+            return GetSignupText();
         default:
             return null;
     }

@@ -35,8 +35,8 @@
     <div id="content">
         <?php
         if($errors!=""){
-            $errortext=GetTesti("error");
-            echo "<p class='errormesage'>". $errortext[$errors]."</p>";
+            $errorstext=GetTesti("errors");
+            echo "<p class='errormesage'>". $errorstext[$errors]."</p>";
         }
         ?>
 
@@ -45,9 +45,9 @@
         <form id="form" action="login.php" method="post">
             <label for="username"><?php echo $logintext["label_username"]?></label>
             <input id="username" name="username" type="text" />
-            <label for="password"><?php echo $logintext["password"]?></label>
+            <label for="password"><?php echo $logintext["label_password"]?></label>
             <input id="password" name="password" type="password" />
-            <input type="submit" value="Accedi"><?php echo $logintext["testo_pulsante"]?></input>
+            <input type="submit" value="<?php echo $logintext["testo_pulsante"]?>" />
         </form>
     </div>
 </body>

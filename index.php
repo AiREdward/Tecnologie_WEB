@@ -14,7 +14,7 @@
 
     <div id="content">
         <section id="stanza1" class="home_room">
-            <h2 class="titolostanza"></h2>            
+            <h2 class="titolostanza"><?php echo $roomstext["room1_title"]?></h2>            
             <dl class="recap">
                 <dt><?php echo $roomstext["difficolta"]?></dt><dd>3</dd>
                 <dt><?php echo $roomstext["partecipanti"]?></dt><dd>2-6</dd>
@@ -25,7 +25,7 @@
             <a class="prenotazione_rapida" href="prenota.php?room=1"><?php echo $roomstext["pulsante_prenota"]?></a>
         </section>
         <section id="stanza2" class="home_room">
-            <h2 class="titolostanza"></h2>            
+            <h2 class="titolostanza"><?php echo $roomstext["room2_title"]?></h2>            
             <dl class="recap">
                 <dt><?php echo $roomstext["difficolta"]?></dt><dd>2</dd>
                 <dt><?php echo $roomstext["partecipanti"]?></dt><dd>4-5</dd>
@@ -36,7 +36,7 @@
             <a class="prenotazione_rapida" href="prenota.php?room=1"><?php echo $roomstext["pulsante_prenota"]?></a>
         </section>
         <section id="stanza3" class="home_room">
-            <h2 class="titolostanza"></h2>            
+            <h2 class="titolostanza"><?php echo $roomstext["room3_title"]?></h2>            
             <dl class="recap">
                 <dt><?php echo $roomstext["difficolta"]?></dt><dd>1</dd>
                 <dt><?php echo $roomstext["partecipanti"]?></dt><dd>3-4</dd>

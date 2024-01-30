@@ -39,14 +39,12 @@
         }
     }
     function all_set():bool{                                     //controlla che tutti i dati obbligatori siano stati inseriti
-        if($_POST["nome"] && $_POST["cognome"] && ($_POST["telefono"] || $_POST["email"] ) && $_POST["nascita"] && $_POST["username"] && $_POST["password"] && $_POST["conferma"]){
+        if(isset($_POST["nome"]) && isset($_POST["cognome"]) && isset($_POST["telefono"]) && isset($_POST["email"] ) && isset($_POST["nascita"]) && isset($_POST["username"]) && isset($_POST["password"])){
             return true;
         }else{
             return false;
         }
     }
-
-    $signuptext=GetTesti("signup");
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">
@@ -55,7 +53,7 @@
 </head>
 <body>
 <?php
-	echo genera_header("login");
+	echo genera_header("signup");
 ?>
 
 <div id="content">
@@ -64,41 +62,37 @@
         $errortext=GetTesti("error");
         echo "<p class='errormesage'>". $errortext[$errors]."</p>";
     }
+    $signuptext=GetTesti("signup");
     ?>
+    <p><?php echo $signuptext["prompt_login"]?><a href='login.php'><?php echo $signuptext["pulsante_login"]?></a>
 
 
-    <p><?php echo $logintext["prompt_registrarsi"]?> <a href='signup.php'><?php echo $logintext["pulsante_registrazione"]?></a></p>
-
-    <form id="form" action="login.php" method="post">
-        <label for="username"><?php echo $logintext["label_username"]?></label>
-        <input id="username" name="username" type="text" />  
-        <label for="password"><?php echo $logintext["password"]?></label>
-        <input id="password" name="password" type="password" />
-        <input type="submit" value="Accedi"><?php echo $logintext["testo_pulsante"]?></input>
-    </form>
-
-    <p><?php echo $logintext["prompt_registrarsi"]?><a href='login.php'><?php echo $logintext["pulsante_registrazione"]?></a>
-
-
-    <form id="form" action="/enigma/php/sign_in.php" method="post">
+    <form id="form" class="largeform" action="/enigma/php/sign_in.php" method="post">
         <fieldset>
-            <label for="nome">Nome</label>
+            <legend><?php echo $signuptext["legend_anagrafica"]?></legend>
+            <label for="nome"><?php echo $signuptext["label_nome"]?></label>
             <input id="nome" name="nome" type="text" />
-            <label for="cognome">Cognome</label>
+            <label for="cognome"><?php echo $signuptext["label_cognome"]?></label>
             <input id="cognome" name="cognome" type="text" />
-            <label for="username" lang="en">Username</label>
-            <input id="username" name="username" type="text" />
-            <label for="telefono">Telefono</label>
-            <input id="telefono" name="telefono" type="text"/>
-            <label for="nascita">Data di Nascita</label>
+            <label for="nascita"><?php echo $signuptext["label_nascita"]?></label>
             <input id="nascita" name="nascita" type="date" min="1924-01-01" max="2023-12-31"/>
-            <label for="email" lang="en">Email</label>
+        </fieldset>
+        <fieldset>
+            <legend><?php echo $signuptext["legend_contatti"]?></legend>
+            <label for="telefono"><?php echo $signuptext["label_telefono"]?></label>
+            <input id="telefono" name="telefono" type="text"/>
+            <label for="email" lang="en"><?php echo $signuptext["label_email"]?></label>
             <input id="email" name="email" type="email" />
-            <label for="password" lang="en">Password</label>
+        </fieldset>
+        <fieldset>
+            <legend><?php echo $signuptext["legend_account"]?></legend>
+            <label for="username" lang="en"><?php echo $signuptext["label_username"]?></label>
+            <input id="username" name="username" type="text" />
+            <label for="password" lang="en"><?php echo $signuptext["label_password"]?></label>
             <input id="password" name="password" type="password" />
-            <label for="conferma">Conferma Password</label>
+            <label for="conferma"><?php echo $signuptext["label_conferma"]?></label>
             <input id="conferma" name="conferma" type="password" />
-            <input type="submit" value="Registrati">
+            <input type="submit" value="<?php echo $signuptext["testo_pulsante"]?>">
         </fieldset>
 </div>
 </body>

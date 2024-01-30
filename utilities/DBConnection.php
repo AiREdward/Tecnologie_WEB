@@ -1,10 +1,10 @@
-<?
+<?php
 class Connection{
     //Variabili di connessione al database
     const HOST = "localhost";
     const USERNAME = "root";
     const PASS = "";
-    const DATABASE = "escaperoom";
+    const DATABASE = "enigma";
 
     public $conn = null;
 
@@ -26,7 +26,7 @@ class Connection{
     
     public function UserExists($username){
         $connection=$this->conn;
-        $query='SELECT username FROM user where email=? OR username=?';
+        $query='SELECT username FROM Utente where email=? OR username=?';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             'ss',
@@ -45,7 +45,7 @@ class Connection{
     }
     public function CheckLogin($username,$password){
         $connection=$this->conn;
-        $query='SELECT count(*) FROM user where  username=? AND password=?';
+        $query='SELECT count(*) FROM Utente where  username=? AND password=?';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             'ss',
@@ -60,7 +60,7 @@ class Connection{
     }
     public function RegisterNewUser($username,$email,$password,$nome,$cognome,$telefono,$nascita){
         $connection=$this->conn;
-        $query='INSERT INTO user (username, email, password,nome, cognome,telefono,nascita,type)VALUES(?,?,?,?,?,?,?,?)';
+        $query='INSERT INTO Utente (username, email, password,nome, cognome,telefono,nascita,type)VALUES(?,?,?,?,?,?,?,?)';
         $preparedQuery = $connection->prepare($query);
         $usertype="BasicUser";
         $preparedQuery->bind_param(
