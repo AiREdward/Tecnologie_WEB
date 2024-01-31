@@ -24,8 +24,8 @@ html {
     color: var(--text-color);
 }
 body{
-    width: 80%;
-    max-width: 80%;
+    width: 95%;
+    max-width: 95%;
 }
 a{
     color: var(--link-color);
@@ -46,7 +46,7 @@ a:hover{
 header{
     display: grid;
     width: 100%;
-    grid-template-columns: 10% auto auto;
+    grid-template-columns: 3rem auto auto;
     grid-template-rows: auto auto auto auto;
     grid-template-areas: "togglenav title title"
                          "navmenu navmenu navmenu"
@@ -64,6 +64,14 @@ header h1{
 }
 #togglenav{
     grid-area:togglenav;
+    text-indent: -9999px; /* sends the text off-screen */
+    white-space: nowrap; /* because only the first line is indented */
+    min-width: 1rem;
+    max-height: 3rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background-image: url(/images/hamburgermenuicon.png);
+    background-size:contain;
 }
 .breadcrumbs{
     grid-area:breadcrumbs;
@@ -91,7 +99,8 @@ nav{
 }
 nav ul{
     display: flex;
-    flex-direction: row;
+    gap: 1rem;
+    flex-direction: column;
     width: 100%;
     list-style: none;
 }
@@ -100,7 +109,7 @@ nav ul{
 }
 nav ul li{
     font-size: 1.5rem;
-    padding: 0.75rem;
+    padding:0;
     text-decoration: none;
 }
 header a{
@@ -133,9 +142,9 @@ label{
 .home_room{
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 0rem;
     border-radius: 1rem;
-    margin: 1rem;
+    margin: 0;
 }
 #stanza1{
     background-color: var(--stanza1);
@@ -170,11 +179,42 @@ label{
 .room_photo{
     width: 100%;
     border-radius: 1rem;
+    margin-top: 0.25rem;
 }
 .ambientazione{
     padding: 1rem;
+    width:auto;
 }
-@media screen and (min-width:50em){
+@media screen and (min-width:30rem){
+    
+    /*modifiche css per tablet*/
+        .home_room{
+            display: grid;
+            grid-template-columns:auto auto auto;
+            grid-template-rows: auto auto auto auto;
+            grid-template-areas: "title title title"
+                                 "recap setting setting"
+                                 "img  img img"
+                                 "prenota prenota prenota";
+            gap: 0.5rem;
+        }
+        .titolostanza{
+            grid-area: title;
+        }
+        .recap{
+            grid-area: recap;
+        }
+        .room_photo{
+            grid-area: img;
+        }
+        .ambientazione{
+            grid-area: setting;
+        }
+        .prenotazione_rapida{
+            grid-area: prenota;
+        }
+    }
+@media screen and (min-width:65em){
     
 /*modifiche css per desktop*/
     body{
@@ -184,7 +224,7 @@ label{
     header{
         display: grid;
         width: 100%;
-        grid-template-columns: auto auto 40%;
+        grid-template-columns: auto auto auto;
         grid-template-rows: auto auto auto auto;
         grid-template-areas: "title togglenav navmenu"
                              "langswitch . ."

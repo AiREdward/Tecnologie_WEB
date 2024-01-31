@@ -92,5 +92,33 @@ class Connection{
         $preparedQuery->close();
         return $type;
     }
+    public function InserisciPrenotazione($username,$data_,$orario,$id_room){
+        $connection=$this->conn;
+        $query='INSERT INTO Prenota (data_, orario, username,id_room)VALUES(?,?,?,?)';
+        $preparedQuery = $connection->prepare($query);
+        $preparedQuery->bind_param(
+            'ssss',
+            $data_,
+            $orario,
+            $username,
+            $id_room
+        );
+        $res=$preparedQuery->execute();
+        $preparedQuery->close();
+        return $res;
+    }
+    public function CheckSlotDisponibili($data_,$id_room){
+        $connection=$this->conn;
+        $query='SELECT slot FROM slots WHERE slot NOT IN()';
+        $preparedQuery = $connection->prepare($query);
+        $preparedQuery->execute();
+        $res=$preparedQuery->get_result();
+        $categorie=[];
+        while($row = $res->fetch_assoc()){
+            $categorie[$row["id_categoria"]]=$row["nome_cat"];
+        }
+        $preparedQuery->close();
+        return $categorie;
+    }
 }
 ?>

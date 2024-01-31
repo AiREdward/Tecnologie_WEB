@@ -1,6 +1,6 @@
 navbar=false;
-document.onload=function(){
-    document.getElementById("navtoggle").onclick=function(){
+window.onload=function(){
+    document.getElementById("togglenav").onclick=function(){
         if(navbar){
             document.getElementById("navmenu").classList.add("closednav");
         }
@@ -9,4 +9,4 @@ document.onload=function(){
         }
         navbar=!navbar;
     }
-}
+};
