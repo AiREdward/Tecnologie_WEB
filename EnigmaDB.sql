@@ -22,7 +22,7 @@ create table Room (
 );
 
 create table Prenota (
-	id_prenotazione integer not null,
+	id_prenotazione integer not null primary key,
 	data_ date not null,
 	orario time not null,
 	username varchar(32) not null,
@@ -33,6 +33,6 @@ create table Prenota (
 );
 
 create table SlotPrenotabili(
-    id integer not null,
+    id integer not null primary key,
     orario time not null
 );
