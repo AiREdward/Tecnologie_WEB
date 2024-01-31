@@ -2,8 +2,10 @@
 
     require_once "utilities/HeadPagina.php";
     require_once "utilities/HeaderPagina.php";
+    require_once "utilities/config.php";
 
     $errors = null;
+    global $patternUser, $patternPassword, $patternTelefono;
 
     
     require_once "utilities/UserFunctions.php";
@@ -18,31 +20,34 @@
     }
 
     if(all_set()) {
-        $nome = Clean($_POST["nome"]);
-        $cognome = Clean($_POST["cognome"]);
-        $telefono = Clean($_POST["telefono"]);
-        $email = Clean($_POST["email"]);
-        $nascita = Clean($_POST["nascita"]);
-        $username = Clean($_POST["username"]);
-        $password = Clean($_POST["password"]);
-
-        if(preg_match($patternTelefono, $_POST["telefono"])) {
-            if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-                if(preg_match($patternPassword, $_POST["password"])) {
-                    $errors=RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nascita);
-                } else {
-                    $errors="password_invalida";
-                    //echo 'la password non è valida, deve avere almeno 1 carattere maiuscolo, 1 minuscolo, un numero, un simbolo ed almeno 8 caratteri';
+        $nome = sanitizeInput($_POST["nome"]);
+        $cognome = sanitizeInput($_POST["cognome"]);
+        $telefono = sanitizeInput($_POST["telefono"]);
+        $email = sanitizeInput($_POST["email"]);
+        $nascita = sanitizeInput($_POST["nascita"]);
+        $username = sanitizeInput($_POST["username"]);
+        $password = sanitizeInput($_POST["password"]);
+        if(preg_match($patternUser, $_POST["username"]){
+            if(preg_match($patternTelefono, $_POST["telefono"])) {
+                if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+                    if(preg_match($patternPassword, $_POST["password"])) {
+                        $errors=RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nascita);
+                    } else {
+                        $errors="password_invalida";
+                        //echo 'la password non è valida, deve avere almeno 1 carattere maiuscolo, 1 minuscolo, un numero, un simbolo ed almeno 8 caratteri';
+                    }
+                }
+                else {
+                    $errors="email_invalida";
                 }
             }
             else {
-                $errors="email_invalida";
+                $errors="telefono_invalido";
             }
         }
-        else {
-            $errors="telefono_invalido";
+        else{
+            $errors="utente_invalido";
         }
-
         $errors = LoginUser($username,$password);
 
         if($errors == null) {

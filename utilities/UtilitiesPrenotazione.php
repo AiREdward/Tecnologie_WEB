@@ -1,5 +1,5 @@
 <?php 
-require_once "utilities/DBConnection.php";
+require_once "utilities/DBConnectionTest.php";
 require_once "utilities/UserUtilities.php";
 use DB\DBAccess;
 
