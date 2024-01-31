@@ -1,11 +1,11 @@
-
 <?php
 
+/*
 
 class connector{            
     protected $conn;
 
-    public function connect($user = "root",$password = "", $db ="enigma", $host = "localhost"):bool{  
+    public function connect($user = "root",$password = "", $db ="enigma", $host = "localhost"):bool{
         $this->conn=new mysqli($host,$user,$password,$db);
         if ($this->conn->connect_errno) {
             return false;
@@ -37,6 +37,9 @@ class connector{
         }  
     }
 }
+
+*/
+
 ?>
 
 

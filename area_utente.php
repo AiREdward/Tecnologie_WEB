@@ -3,19 +3,26 @@
     require_once "utilities/InputCleaner.php";
     require_once "utilities/HeadPagina.php";
 	require_once "utilities/HeaderPagina.php";
-    if(get_logged_user()==""){
+
+    global $patternUser, $patternPassword;
+
+    $user = get_logged_user();
+
+    if(!get_logged_user()){
         header("Location: login.php");
         exit();
     }
-    $errors="";
+
+    $errors = null;
+
     if(isset($_POST["username"]) && isset($_POST["password"])) {
-        $username=Clean($_POST["username"]);
-        $password=Clean($_POST["password"]);
-        if(!Check($username,$patternUser)||!Check($password,$patternPassword)){
+        $username = sanitizeInput($_POST["username"]);
+        $password = sanitizeInput($_POST["password"]);
+        if(!checkInputCorrectness($username, $patternUser) || !checkInputCorrectness($password, $patternPassword)) {
             $errors="formato_invalido";
         }
-        $errors=LoginUser($username,$password);
-        if($errors==""){
+        $errors = loginUser($username, $password);
+        if($errors == null) {
             header("Location: area_utenti.php");
             exit();
         }
@@ -32,6 +39,10 @@
     <?php echo genera_header("area_utente"); ?>
 
     <div id="content">
+        <span>Area Utente</span>
+        <br>
+        <span>Benvenuto <?php echo $user ?></span>
+        <a href="logout.php">Logout</a>
 
     </div>
 </body>

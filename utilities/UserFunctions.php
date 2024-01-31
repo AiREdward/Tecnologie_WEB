@@ -1,41 +1,46 @@
 <?php 
-require_once "utilities/DBConnection.php";
+require_once "utilities/DBConnectionTest.php";
 
-use DB\DBAccess;
+use Test\Connection;
 
 function get_logged_user(){
-    if(isset($_SESSION["user"])){
-        return $_SESSION["user"];
-    }
-    return "";
+    return $_SESSION["user"] ?? null;
 }
-function LoginUser($email,$password){
-    $connessione1 = new Connection();
-    $connOK = $connessione1->apriConnessione();
-    if(!$connOK) {
+
+function loginUser($email, $password) {
+    $conn = new Connection();
+
+    if(!$conn->connect()) {
         return "errore_connessione";
     }
-    $username=$connessione1->UserExists($email);
+
+    $username = $conn->checkIfUserExists($email);
+
     if(!$username){
-        $connessione1->closeDBConnection();
+        $conn->closeConnection();
         return "utente_inesistente";
     }
-    if(!$connessione1->CheckLogin($username,$password)){
-        $connessione1->closeDBConnection();
+
+    if(!$conn->checkLogin($username,$password)) {
+        $conn->closeConnection();
         return "password_errata";
     }
-    $_SESSION["user"]=$username;
-    $_SESSION["admin"]=$connessione1->CheckUserPriviledge($username)=="ADMIN";
-    $connessione1->closeDBConnection();
-    return "";
+
+    $_SESSION["user"] = $username;
+    $_SESSION["admin"] = $conn->getUserPrivilege($username) == "ADMIN";
+
+    $conn->closeConnection();
+
+    return null;
 }
+
 function logout(){
     $_SESSION["user"]=null;
     $_SESSION["admin"]=false;
 }
 function RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nascita){
     $connessione1 = new Connection();
-    $connOK = $connessione1->apriConnessione();
+    $connOK = $connessione1->connect();
     if(!$connOK) {
         return "errore_connessione";
     }
@@ -48,6 +53,5 @@ function RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nasci
         return "errore_registrazione_utente";
     };
     $connessione1->closeDBConnection();
-    return "";
+    return null;
 }
-?>
