@@ -4,25 +4,39 @@
     require_once "utilities/HeaderPagina.php";
     require_once "utilities/UserFunctions.php";
     require_once "utilities/InputCleaner.php";
-    if(get_logged_user()!=""){
-        header("Location: area_utenti.php");
+
+    global $patternUser, $patternPassword;
+
+    if(get_logged_user()){
+        if($_SESSION["admin"])
+        {
+            header("Location: admin.php");
+        }
+        else{
+            header("Location: area_utente.php");
+        }
         exit();
     }
-    $errors="";
+
+    $errors = null;
+
     if(isset($_POST["username"]) && isset($_POST["password"])) {
-        $username=Clean($_POST["username"]);
-        $password=Clean($_POST["password"]);
-        if(!Check($username,$patternUser)||!Check($password,$patternPassword)){
-            $errors="formato_invalido";
+        $username = sanitizeInput($_POST["username"]);
+        $password = sanitizeInput($_POST["password"]);
+
+        if(!checkInputCorrectness($username, $patternUser) || !checkInputCorrectness($password, $patternPassword)){
+            $errors = "formato_invalido";
         }
-        $errors=LoginUser($username,$password);
-        if($errors==""){
+
+        $errors = loginUser($username,$password);
+
+        if($errors == null){
             header("Location: area_utenti.php");
             exit();
         }
     }
 
-    $logintext=GetTesti("login");
+    $login_text = GetTesti("login");
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">
@@ -34,20 +48,20 @@
 
     <div id="content">
         <?php
-        if($errors!=""){
+        if($errors != null){
             $errorstext=GetTesti("errors");
             echo "<p class='errormesage'>". $errorstext[$errors]."</p>";
         }
         ?>
 
-        <p><?php echo $logintext["prompt_registrarsi"]?> <a href='signup.php'><?php echo $logintext["pulsante_registrazione"]?></a></p>
+        <p><?php echo $login_text["prompt_registrarsi"]?> <a href='signup.php'><?php echo $login_text["pulsante_registrazione"]?></a></p>
 
         <form id="form" action="login.php" method="post">
-            <label for="username"><?php echo $logintext["label_username"]?></label>
+            <label for="username"><?php echo $login_text["label_username"]?></label>
             <input id="username" name="username" type="text" />
-            <label for="password"><?php echo $logintext["label_password"]?></label>
+            <label for="password"><?php echo $login_text["label_password"]?></label>
             <input id="password" name="password" type="password" />
-            <input type="submit" value="<?php echo $logintext["testo_pulsante"]?>" />
+            <input type="submit" value="<?php echo $login_text["testo_pulsante"]?>" />
         </form>
     </div>
 </body>

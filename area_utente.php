@@ -3,24 +3,23 @@
     require_once "utilities/InputCleaner.php";
     require_once "utilities/HeadPagina.php";
 	require_once "utilities/HeaderPagina.php";
-    if(get_logged_user()==""){
+
+    global $patternUser, $patternPassword;
+
+    $user = get_logged_user();
+
+    if(!get_logged_user()){
         header("Location: login.php");
         exit();
     }
-    $errors="";
-    if(isset($_POST["username"]) && isset($_POST["password"])) {
-        $username=Clean($_POST["username"]);
-        $password=Clean($_POST["password"]);
-        if(!Check($username,$patternUser)||!Check($password,$patternPassword)){
-            $errors="formato_invalido";
-        }
-        $errors=LoginUser($username,$password);
-        if($errors==""){
-            header("Location: area_utenti.php");
-            exit();
-        }
+
+    $errors = null;
+
+    if(isset($_GET["action"]) && $_GET["action"]=="logout") {
+        logout();
+        header("Location: login.php");
     }
-    $roomstext=GetTesti("area_utente");
+    $areautentetext=GetTesti("area_utente");
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">
@@ -32,6 +31,8 @@
     <?php echo genera_header("area_utente"); ?>
 
     <div id="content">
+        <p><?php echo $areautentetext["in_as"]." ".get_logged_user()?></p>
+        <a href="area_utente.php?action=logout"><?php echo $areautentetext["logout"]?></a>
 
     </div>
 </body>

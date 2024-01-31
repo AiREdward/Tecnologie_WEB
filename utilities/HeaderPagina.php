@@ -51,10 +51,6 @@ function get_menu($pagina): string {
         if ($menu_entry != $pagina) {
             $indirizzo = $indirizzi_pagine[$menu_entry];
             $key = $accesskeys[$menu_entry];
-            /* if($menu_entry=="login"&&isset($_SESSION["user"]))
-            {
-                $menu_entry=$_SESSION["user"];
-            } */
             $menu = $menu . '<li><a href="' . $indirizzo . '" accesskey="' . $key . '">' . $headertext[$menu_entry] . "</a></li> ";
 
         } else {
@@ -74,7 +70,7 @@ function get_breadcrumb($pagina) : string {
     // Il ciclo termina quando raggiunge la radice
     while($genitore && ($genitore != "#")) {
         // aggiunge genitore/ a breadrumbs in formato figlio/.....
-        $breadcrumb = '<a href="' . $indirizzi_pagine[$genitore] . '"> ' . $headertext[$genitore] . "</a> <span aria-hidden='true'> </span> " . $breadcrumb;
+        $breadcrumb = '<a href="' . $indirizzi_pagine[$genitore] . '"> ' . $headertext[$genitore] . "</a> <span aria-hidden='true'> </span> " . ' &gt;' . $breadcrumb;
         $genitore = $padre_pagina[$genitore];
     }
 

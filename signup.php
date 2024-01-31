@@ -1,50 +1,56 @@
 <?php
+
     require_once "utilities/HeadPagina.php";
     require_once "utilities/HeaderPagina.php";
+
+    $errors = null;
+
+    
     require_once "utilities/UserFunctions.php";
     require_once "utilities/InputCleaner.php";
 
-    $errors="";
-    if(all_set()){
-        $nome=Clean($_POST["nome"]);
-        $cognome=Clean($_POST["cognome"]);
-        $telefono=Clean($_POST["telefono"]);
-        $email=Clean($_POST["email"]);
-        $nascita=Clean($_POST["nascita"]);
-        $username=Clean($_POST["username"]);
-        $password=Clean($_POST["password"]);
-        if(empty($_POST["telefono"]) || preg_match($patternTelefono, $_POST["telefono"]))
-        {
-            if(empty($_POST["email"]) || filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
-            {
-                if(preg_match($patternPassword, $_POST["password"]))
-                {
+    // Controlla che tutti i dati obbligatori siano stati inseriti
+    function all_set() : bool {
+        if(isset($_POST["nome"]) && isset($_POST["cognome"]) && isset($_POST["telefono"]) && isset($_POST["email"] ) && isset($_POST["nascita"]) && isset($_POST["username"]) && isset($_POST["password"]))
+            return true;
+        else
+            return false;
+    }
+
+    if(all_set()) {
+        $nome = Clean($_POST["nome"]);
+        $cognome = Clean($_POST["cognome"]);
+        $telefono = Clean($_POST["telefono"]);
+        $email = Clean($_POST["email"]);
+        $nascita = Clean($_POST["nascita"]);
+        $username = Clean($_POST["username"]);
+        $password = Clean($_POST["password"]);
+
+        if(preg_match($patternTelefono, $_POST["telefono"])) {
+            if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+                if(preg_match($patternPassword, $_POST["password"])) {
                     $errors=RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nascita);
-                }else{
+                } else {
                     $errors="password_invalida";
-                    //echo'la password non è valida, deve avere almeno 1 carattere maiuscolo, 1 minuscolo, un numero, un simbolo ed almeno 8 caratteri';
+                    //echo 'la password non è valida, deve avere almeno 1 carattere maiuscolo, 1 minuscolo, un numero, un simbolo ed almeno 8 caratteri';
                 }
             }
-            else{
+            else {
                 $errors="email_invalida";
             }
         }
-        else{
+        else {
             $errors="telefono_invalido";
         }
-        $errors=LoginUser($username,$password);
-        if($errors==""){
+
+        $errors = LoginUser($username,$password);
+
+        if($errors == null) {
             header("Location: area_utenti.php");
             exit();
         }
     }
-    function all_set():bool{                                     //controlla che tutti i dati obbligatori siano stati inseriti
-        if(isset($_POST["nome"]) && isset($_POST["cognome"]) && isset($_POST["telefono"]) && isset($_POST["email"] ) && isset($_POST["nascita"]) && isset($_POST["username"]) && isset($_POST["password"])){
-            return true;
-        }else{
-            return false;
-        }
-    }
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">
@@ -58,16 +64,18 @@
 
 <div id="content">
     <?php
-    if($errors!=""){
-        $errortext=GetTesti("error");
-        echo "<p class='errormesage'>". $errortext[$errors]."</p>";
-    }
-    $signuptext=GetTesti("signup");
+        if($errors != null){
+            $errortext=GetTesti("error");
+            echo "<p class='errormesage'>". $errortext[$errors]."</p>";
+        }
+
+        $signuptext=GetTesti("signup");
     ?>
+
     <p><?php echo $signuptext["prompt_login"]?><a href='login.php'><?php echo $signuptext["pulsante_login"]?></a>
 
 
-    <form id="form" class="largeform" action="/enigma/php/signup.php" method="post">
+    <form id="form" class="largeform" action="signup.php" method="post">
         <fieldset>
             <legend><?php echo $signuptext["legend_anagrafica"]?></legend>
             <label for="nome"><?php echo $signuptext["label_nome"]?></label>
