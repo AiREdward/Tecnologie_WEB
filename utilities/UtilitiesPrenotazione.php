@@ -39,21 +39,24 @@ function RegistraPrenotazione($user,$stanza,$giorno,$slot){
     $connessione1->closeDBConnection();
     return "";
 }
-function RegistraPrenotazione($stanza,$giorno,$slot){
+function GetPrenotazioniUtente(&$out){
     $connessione1 = new Connection();
     $connOK = $connessione1->apriConnessione();
     if(!$connOK) {
         return "errore_connessione";
     }
     $loggeduser=get_logged_user();
-    if(!in_array($slot,SlotDisponibili($stanza,$giorno) )){
-        $connessione1->closeDBConnection();
-        return "slot_non_disponibile"
+    $out=$connessione1->GetPrenotazioniUtente($loggeduser);
+    $connessione1->closeDBConnection();
+    return "";
+}
+function GetPrenotazioni(&$out){
+    $connessione1 = new Connection();
+    $connOK = $connessione1->apriConnessione();
+    if(!$connOK) {
+        return "errore_connessione";
     }
-    if(!$connessione1->InserisciPrenotazione($loggeduser,$stanza,$giorno,$slot)){
-        $connessione1->closeDBConnection();
-        return "errore_prenotazione"
-    }
+    $out=$connessione1->GetTuttePrenotazioni($loggeduser);
     $connessione1->closeDBConnection();
     return "";
 }

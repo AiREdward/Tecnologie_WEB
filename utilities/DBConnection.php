@@ -142,7 +142,7 @@ class Connection{
         $preparedQuery->close();
         return $out;
     }
-    public function GetTuttePrenotazioni($username){
+    public function GetPrenotazioniUtente($username){
         $connection=$this->conn;
         $query='SELECT data id_prenotazione data_ orario id_room FROM Prenota where username=?';
         $preparedQuery = $connection->prepare($query);
