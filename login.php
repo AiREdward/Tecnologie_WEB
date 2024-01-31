@@ -8,7 +8,13 @@
     global $patternUser, $patternPassword;
 
     if(get_logged_user()){
-        header("Location: area_utente.php");
+        if($_SESSION["admin"])
+        {
+            header("Location: admin.php");
+        }
+        else{
+            header("Location: area_utente.php");
+        }
         exit();
     }
 

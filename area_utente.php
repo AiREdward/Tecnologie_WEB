@@ -15,19 +15,11 @@
 
     $errors = null;
 
-    if(isset($_POST["username"]) && isset($_POST["password"])) {
-        $username = sanitizeInput($_POST["username"]);
-        $password = sanitizeInput($_POST["password"]);
-        if(!checkInputCorrectness($username, $patternUser) || !checkInputCorrectness($password, $patternPassword)) {
-            $errors="formato_invalido";
-        }
-        $errors = loginUser($username, $password);
-        if($errors == null) {
-            header("Location: area_utenti.php");
-            exit();
-        }
+    if(isset($_GET["action"]) && $_GET["action"]=="logout") {
+        logout();
+        header("Location: login.php");
     }
-    $roomstext=GetTesti("area_utente");
+    $areautentetext=GetTesti("area_utente");
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">
@@ -39,10 +31,8 @@
     <?php echo genera_header("area_utente"); ?>
 
     <div id="content">
-        <span>Area Utente</span>
-        <br>
-        <span>Benvenuto <?php echo $user ?></span>
-        <a href="logout.php">Logout</a>
+        <p><?php echo $areautentetext["in_as"]." ".get_logged_user()?></p>
+        <a href="area_utente.php?action=logout"><?php echo $areautentetext["logout"]?></a>
 
     </div>
 </body>

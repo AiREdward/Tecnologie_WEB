@@ -62,7 +62,7 @@ class Connection{
         return $exist[0];
     }
 
-    // TODO: understand what this function does
+    //verifica la validità delle credenziali unsate per il login
     public function checkLogin($username,$password){
         $connection = $this->conn;
 
