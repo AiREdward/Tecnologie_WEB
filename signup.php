@@ -67,7 +67,7 @@
     <p><?php echo $signuptext["prompt_login"]?><a href='login.php'><?php echo $signuptext["pulsante_login"]?></a>
 
 
-    <form id="form" class="largeform" action="/enigma/php/sign_in.php" method="post">
+    <form id="form" class="largeform" action="/enigma/php/signup.php" method="post">
         <fieldset>
             <legend><?php echo $signuptext["legend_anagrafica"]?></legend>
             <label for="nome"><?php echo $signuptext["label_nome"]?></label>
