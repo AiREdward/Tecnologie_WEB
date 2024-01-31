@@ -109,16 +109,57 @@ class Connection{
     }
     public function CheckSlotDisponibili($data_,$id_room){
         $connection=$this->conn;
-        $query='SELECT slot FROM slots WHERE slot NOT IN()';
+        $query='SELECT orario FROM SlotPrenotabili WHERE orario NOT IN(select orario From Prenota where data_=? AND id_room=? )';
+        $preparedQuery = $connection->prepare($query);
+        $preparedQuery->bind_param(
+            'ss',
+            $data_,
+            $id_room
+        );
+        $preparedQuery->execute();
+        $res=$preparedQuery->get_result();
+        $out=[];
+        $i=0;
+        while($row = $res->fetch_assoc()){
+            $out[$i]=$row["orario"];
+            $i++;
+        }
+        $preparedQuery->close();
+        return $out;
+    }
+    public function GetTuttePrenotazioni(){
+        $connection=$this->conn;
+        $query='SELECT data id_prenotazione data_ orario username id_room FROM Prenota';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->execute();
         $res=$preparedQuery->get_result();
-        $categorie=[];
+        $out=[];
+        $i=0;
         while($row = $res->fetch_assoc()){
-            $categorie[$row["id_categoria"]]=$row["nome_cat"];
+            $out[$i]=$row;
+            $i++;
         }
         $preparedQuery->close();
-        return $categorie;
+        return $out;
+    }
+    public function GetTuttePrenotazioni($username){
+        $connection=$this->conn;
+        $query='SELECT data id_prenotazione data_ orario id_room FROM Prenota where username=?';
+        $preparedQuery = $connection->prepare($query);
+        $preparedQuery->bind_param(
+            's',
+            $username
+        );
+        $preparedQuery->execute();
+        $res=$preparedQuery->get_result();
+        $out=[];
+        $i=0;
+        while($row = $res->fetch_assoc()){
+            $out[$i]=$row;
+            $i++;
+        }
+        $preparedQuery->close();
+        return $out;
     }
 }
 ?>

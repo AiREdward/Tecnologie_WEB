@@ -14,6 +14,7 @@ create table Room (
 );
 
 create table Prenota (
+	id_prenotazione integer not null,
 	data_ date not null,
 	orario time not null,
 	username varchar(32) not null,
