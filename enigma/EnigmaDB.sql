@@ -4,6 +4,8 @@ create table Utente (
 	passwor varchar(50) not null,
 	nome varchar(32) not null,
 	cognome varchar(32) not null
+	nascita  date not null,
+	telefono varchar(20) not null,
 );
 
 create table Room (
