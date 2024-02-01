@@ -6,14 +6,16 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
     $slot = $_POST['slot'];
-    //$stanza = $_GET['room'];
-    //echo $stanza;
-    //$giorno = ---------------------
-    
+    $giorno = date('Y. m. d'); 
+    $out=GetOrarioPrenotazione($slot);
+    $row = $out->fetch_assoc();
+    $orario = $row['orario'];
+    $room = $_POST['room'];
+
     //CheckUtente($username,$password);
-    //$query1='UPDATE SlotPrenotabili SET disponibilita = '0'  where id="$slot"';
-    //$query2='insert into prenota ('giorno','orario','username','id_room') VALUES ()';
-    //RegistraPrenotazione($username,$stanza,$giorno,$slot);
+    //$query1='UPDATE SlotPrenotabili SET disponibilita = '0'  where id="$slot"'; da fare
+   
+    RegistraPrenotazione($giorno,$orario,$username,$room);
    
 ?>
 

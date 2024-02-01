@@ -16,7 +16,7 @@ create table Room (
 
 create table Prenota (
 	id_prenotazione integer AUTO_INCREMENT primary key,
-	giorno data not null,
+	giorno date not null,
 	orario time not null,
 	username varchar(32) not null,
 	id_room integer not null,
@@ -26,9 +26,18 @@ create table Prenota (
 
 create table SlotPrenotabili(
 	id integer not null primary key,
-	giorno data not null,
 	orario time not null,
 	room integer,
-	disponibilita boolean,
-	foreign key (room) references Room(codice)
-)
+	disponibilita boolean
+);
+
+
+INSERT INTO `room` (`codice`, `nome`, `prezzo`)
+VALUES ('1', 'Cripta arcana', '1'),
+	   ('2', 'Sabotaggio sul treno', '1'),
+       ('3', 'Riavvio del reattore', '1');
+
+INSERT INTO `slotprenotabili` (`id`, `orario`, `room`, `disponibilita`) 
+VALUES ('1', '10:32:00', '2', '1'), 
+       ('2', '17:22:00', '3', '1'), 
+       ('3', '12:22:00', '2', '1');
