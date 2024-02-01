@@ -197,7 +197,7 @@ label{
     font-size: 1.5rem;
     background-color: var(--theme-color);
 }
-.singola_prenotazione a{
+.link_modifica{
     float: right;
 }
 @media screen and (min-width:30rem){

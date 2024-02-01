@@ -31,12 +31,6 @@
         $errors = loginUser($username,$password);
 
         if($errors == null){
-            if($_SESSION["after_login"]=="prenotazione")
-            {
-                header("Location: prenotazione.php");
-                $_SESSION["after_login"]="";
-                exit();
-            }
             if($_SESSION["admin"])
             {
                 header("Location: admin.php");

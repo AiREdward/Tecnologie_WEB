@@ -161,5 +161,41 @@ class Connection{
         $preparedQuery->close();
         return $out;
     }
+    public function UpdatePrenotazioneUtente($username,$data_,$orario,$id_room,$id_prenotazione){
+        $connection=$this->conn;
+        $query='UPDATE prenota
+        SET data_ = ?, orario = ?, id_room=?
+        WHERE id_prenotazione=? and username=?;';
+        $preparedQuery = $connection->prepare($query);
+        $preparedQuery->bind_param(
+            'ssss',
+            $data_,
+            $orario,
+            $id_room,
+            $id_prenotazione,
+            $username
+        );
+        $res=$preparedQuery->execute();
+        $preparedQuery->close();
+        return $res;
+    }
+    public function UpdatePrenotazioneAdmin($data_,$orario,$id_room,$id_prenotazione){
+        $connection=$this->conn;
+        $query='UPDATE prenota
+        SET data_ = ?, orario = ?, id_room=?
+        WHERE id_prenotazione=?;';
+        $preparedQuery = $connection->prepare($query);
+        $preparedQuery->bind_param(
+            'ssss',
+            $data_,
+            $orario,
+            $id_room,
+            $id_prenotazione,
+            $username
+        );
+        $res=$preparedQuery->execute();
+        $preparedQuery->close();
+        return $res;
+    }
 }
 ?>

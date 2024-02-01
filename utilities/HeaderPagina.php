@@ -24,6 +24,7 @@ $indirizzi_pagine["home"]="index.php";
 $indirizzi_pagine["area_utente"]="area_utente.php";
 $indirizzi_pagine["login"]="login.php";
 $indirizzi_pagine["signup"]="signup.php";
+$indirizzi_pagine["amministrazione"]="amministrazione.php";
 $indirizzi_pagine["404"]="404.php";
 $indirizzi_pagine["500"]="500.php";
 
@@ -34,6 +35,7 @@ $padre_pagina["home"]="#";
 $padre_pagina["area_utente"]="home";
 $padre_pagina["login"]="area_utente";
 $padre_pagina["signup"]="area_utente";
+$padre_pagina["amministrazione"]="area_utente"
 $padre_pagina["404"]="#";
 $padre_pagina["500"]="#";
 
