@@ -92,27 +92,31 @@ class Connection{
         $preparedQuery->close();
         return $type;
     }
-    public function InserisciPrenotazione($username,$id_room,$giorno,$orario){
+    public function InserisciPrenotazione($giorno,$orario,$username,$room){
         $connection=$this->conn;
-        $query='INSERT INTO Prenota (giorno, orario, username,id_room)VALUES(?,?,?,?)';
+        $query='INSERT INTO Prenota (giorno, orario, username,id_room)VALUES("$giorno","$orario","$username","$room")';
         $preparedQuery = $connection->prepare($query);
-        $preparedQuery->bind_param(
-            'ssss',
-            $giorno,
-            $orario,
-            $username,
-            $id_room
-        );
         $res=$preparedQuery->execute();
         $preparedQuery->close();
         return $res;
     }
-    public function CheckSlotDisponibili($room){
+    public function CheckSlotDisponibili(){
         $connection=$this->conn;
-        $query="SELECT id, giorno_settimana, orario FROM SlotPrenotabili WHERE room='$room'";
+        $query="SELECT id, orario, room FROM SlotPrenotabili";
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->execute();
         $res=$preparedQuery->get_result();  
+        $preparedQuery->close();
+        return $res;
+    }
+
+
+    public function GetOrario($slot){
+        $connection=$this->conn;
+        $query="SELECT orario FROM SlotPrenotabili where id='$slot'";
+        $preparedQuery = $connection->prepare($query);
+        $preparedQuery->execute();
+        $res=$preparedQuery->get_result();
         $preparedQuery->close();
         return $res;
     }

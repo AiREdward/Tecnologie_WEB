@@ -32,15 +32,22 @@
                 if(!$connOK) {    
                     return "errore_connessione";
                 }else{
-                   $res=$connessione1->CheckSlotDisponibili($stanza);
+                   $res=$connessione1->CheckSlotDisponibili();
                    $connessione1->closeDBConnection();
                 }       
                 while($row = $res->fetch_assoc()){
-                    print "<option value=".$row["id"].">".$row["giorno_settimana"]."  ". $row["orario"]."</option>";
+                    print "<option value=".$row["id"].">".$row["orario"]."  ". $row["room"]."</option>";
                 }
                 ?> 
-            </select>   
-            <input type="submit" value="prenota">   </a>
+            </select> 
+            <label for="room">Stanze</label>
+            <?php $selected = $_GET['room'];?>
+            <select name='room' id='room'>
+                <option value="1" <?php if($selected == '1'){echo("selected");}?>>Cripta arcana</option>
+                <option value="2" <?php if($selected == '2'){echo("selected");}?>>Sabotaggio sul treno</option>
+                <option value="3" <?php if($selected == '3'){echo("selected");}?>>Riavvio del reattore</option>
+            </select>  
+            <input type="submit" value="prenota">
         </fieldset>
         </form>
 
@@ -48,3 +55,5 @@
 
 </body>
 </html>
+
+
