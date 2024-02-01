@@ -26,10 +26,10 @@ create table Prenota (
 	data_ date not null,
 	orario time not null,
 	username varchar(32) not null,
-	id_room integer not null,
-	foreign key (username) references Utente(username),
+	id_room integer not null
+	/* foreign key (username) references Utente(username),
 	foreign key (id_room) references Room(codice),
-	foreign key (username) references SlotPrenotabili(orario)
+	foreign key (username) references SlotPrenotabili(orario) */
 );
 
 create table SlotPrenotabili(

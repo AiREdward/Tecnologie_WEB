@@ -45,7 +45,7 @@ function GetTesti($blocco){
         case "signup":
             require_once("localizzazioni/".$lang."/signuptext.php");
             return GetSignupText();
-        case "signup":
+        case "area_utente":
             require_once("localizzazioni/".$lang."/areautentetext.php");
             return GetAreaUtenteText();
         default:

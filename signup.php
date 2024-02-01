@@ -27,7 +27,7 @@
         $nascita = sanitizeInput($_POST["nascita"]);
         $username = sanitizeInput($_POST["username"]);
         $password = sanitizeInput($_POST["password"]);
-        if(preg_match($patternUser, $_POST["username"]){
+        if(preg_match($patternUser, $_POST["username"])){
             if(preg_match($patternTelefono, $_POST["telefono"])) {
                 if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
                     if(preg_match($patternPassword, $_POST["password"])) {
@@ -84,27 +84,27 @@
         <fieldset>
             <legend><?php echo $signuptext["legend_anagrafica"]?></legend>
             <label for="nome"><?php echo $signuptext["label_nome"]?></label>
-            <input id="nome" name="nome" type="text" />
+            <input id="nome" name="nome" type="text" reqired/>
             <label for="cognome"><?php echo $signuptext["label_cognome"]?></label>
-            <input id="cognome" name="cognome" type="text" />
+            <input id="cognome" name="cognome" type="text" reqired />
             <label for="nascita"><?php echo $signuptext["label_nascita"]?></label>
-            <input id="nascita" name="nascita" type="date" min="1924-01-01" max="2023-12-31"/>
+            <input id="nascita" name="nascita" type="date" min="1924-01-01" max="2023-12-31" reqired/>
         </fieldset>
         <fieldset>
             <legend><?php echo $signuptext["legend_contatti"]?></legend>
             <label for="telefono"><?php echo $signuptext["label_telefono"]?></label>
-            <input id="telefono" name="telefono" type="text"/>
+            <input id="telefono" name="telefono" type="tel" pattern="[0-9]{10}" reqired/>
             <label for="email" lang="en"><?php echo $signuptext["label_email"]?></label>
-            <input id="email" name="email" type="email" />
+            <input id="email" name="email" type="email" reqired/>
         </fieldset>
         <fieldset>
             <legend><?php echo $signuptext["legend_account"]?></legend>
             <label for="username" lang="en"><?php echo $signuptext["label_username"]?></label>
-            <input id="username" name="username" type="text" />
+            <input id="username" name="username" type="text"reqired />
             <label for="password" lang="en"><?php echo $signuptext["label_password"]?></label>
-            <input id="password" name="password" type="password" />
+            <input id="password" name="password" type="password" reqired />
             <label for="conferma"><?php echo $signuptext["label_conferma"]?></label>
-            <input id="conferma" name="conferma" type="password" />
+            <input id="conferma" name="conferma" type="password" reqired/>
             <input type="submit" value="<?php echo $signuptext["testo_pulsante"]?>">
         </fieldset>
 </div>

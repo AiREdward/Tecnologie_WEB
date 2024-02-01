@@ -185,6 +185,21 @@ label{
     padding: 1rem;
     width:auto;
 }
+
+
+.prenotazioni_utente{
+    list-style: none;
+    width: 100%;
+}
+.singola_prenotazione{
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: var(--theme-color);
+}
+.singola_prenotazione a{
+    float: right;
+}
 @media screen and (min-width:30rem){
     
     /*modifiche css per tablet*/

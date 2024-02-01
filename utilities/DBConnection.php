@@ -26,7 +26,7 @@ class Connection{
     
     public function UserExists($username){
         $connection=$this->conn;
-        $query='SELECT username FROM Utente where email=? OR username=?';
+        $query='SELECT username FROM utente where email=? OR username=?';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             'ss',
@@ -45,7 +45,7 @@ class Connection{
     }
     public function CheckLogin($username,$password){
         $connection=$this->conn;
-        $query='SELECT count(*) FROM Utente where  username=? AND password=?';
+        $query='SELECT count(*) FROM utente where  username=? AND password=?';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             'ss',
@@ -60,7 +60,7 @@ class Connection{
     }
     public function RegisterNewUser($username,$email,$password,$nome,$cognome,$telefono,$nascita){
         $connection=$this->conn;
-        $query='INSERT INTO Utente (username, email, password,nome, cognome,telefono,nascita,type)VALUES(?,?,?,?,?,?,?,?)';
+        $query='INSERT INTO utente (username, email, password,nome, cognome,telefono,nascita,type)VALUES(?,?,?,?,?,?,?,?)';
         $preparedQuery = $connection->prepare($query);
         $usertype="BasicUser";
         $preparedQuery->bind_param(
@@ -109,7 +109,7 @@ class Connection{
     }
     public function CheckSlotDisponibili($data_,$id_room){
         $connection=$this->conn;
-        $query='SELECT orario FROM SlotPrenotabili WHERE orario NOT IN(select orario From Prenota where data_=? AND id_room=? )';
+        $query='SELECT orario FROM slotprenotabili WHERE orario NOT IN(select orario From Prenota where data_=? AND id_room=? )';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             'ss',
@@ -129,7 +129,7 @@ class Connection{
     }
     public function GetTuttePrenotazioni(){
         $connection=$this->conn;
-        $query='SELECT data id_prenotazione data_ orario username id_room FROM Prenota';
+        $query='SELECT data id_prenotazione, data_ orario, username, id_room FROM prenota';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->execute();
         $res=$preparedQuery->get_result();
@@ -144,7 +144,7 @@ class Connection{
     }
     public function GetPrenotazioniUtente($username){
         $connection=$this->conn;
-        $query='SELECT data id_prenotazione data_ orario id_room FROM Prenota where username=?';
+        $query='SELECT id_prenotazione, data_, orario, id_room FROM prenota where username=?';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             's',

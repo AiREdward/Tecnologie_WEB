@@ -1,10 +1,11 @@
 <?php
 function GetroomsText() : array {
     $rooms=[];
-    $rooms["difficolta"]="difficoltà";
+    $rooms["titolo_sezione"]="Le Nostre Stanze";
+    $rooms["difficolta"]="Difficoltà";
     $rooms["pulsante_prenota"]="prenota ora";
-    $rooms["partecipanti"]="giocatori";
-    $rooms["durata"]="durata";
+    $rooms["partecipanti"]="Giocatori";
+    $rooms["durata"]="Durata";
     $rooms["room1_title"]="Cripta Arcana";
     $rooms["room2_title"]="Sabotaggio sul treno";
     $rooms["room3_title"]="Riavvio del reattore";

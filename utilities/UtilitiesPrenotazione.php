@@ -1,7 +1,7 @@
 <?php 
-require_once "utilities/DBConnectionTest.php";
-require_once "utilities/UserUtilities.php";
-use DB\DBAccess;
+require_once "utilities/DBConnection.php";
+require_once "utilities/UserFunctions.php";
+//use DB\DBAccess;
 
 function SlotDisponibili($stanza,$giorno){
     $connessione1 = new Connection();
@@ -31,10 +31,10 @@ function RegistraPrenotazione($user,$stanza,$giorno,$slot){
         return "errore_connessione";
     }
     if(!in_array($slot,SlotDisponibili($stanza,$giorno) )){
-        return "slot_non_disponibile"
+        return "slot_non_disponibile";
     }
     if(!$connessione1->InserisciPrenotazione($user,$stanza,$giorno,$slot)){
-        
+        return "errore";
     }
     $connessione1->closeDBConnection();
     return "";

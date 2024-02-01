@@ -58,9 +58,9 @@
 
         <form id="form" action="login.php" method="post">
             <label for="username"><?php echo $login_text["label_username"]?></label>
-            <input id="username" name="username" type="text" />
+            <input id="username" name="username" type="text" reqired />
             <label for="password"><?php echo $login_text["label_password"]?></label>
-            <input id="password" name="password" type="password" />
+            <input id="password" name="password" type="password" reqired/>
             <input type="submit" value="<?php echo $login_text["testo_pulsante"]?>" />
         </form>
     </div>

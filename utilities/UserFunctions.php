@@ -1,7 +1,7 @@
 <?php 
-require_once "utilities/DBConnectionTest.php";
+require_once "utilities/DBConnection.php";
 
-use Test\Connection;
+//use Connection;
 
 function get_logged_user(){
     return $_SESSION["user"] ?? null;
@@ -10,11 +10,11 @@ function get_logged_user(){
 function loginUser($email, $password) {
     $conn = new Connection();
 
-    if(!$conn->connect()) {
+    if(!$conn->apriConnessione()) {
         return "errore_connessione";
     }
 
-    $username = $conn->checkIfUserExists($email);
+    $username = $conn->UserExists($email);
 
     if(!$username){
         $conn->closeConnection();
@@ -27,7 +27,7 @@ function loginUser($email, $password) {
     }
 
     $_SESSION["user"] = $username;
-    $_SESSION["admin"] = $conn->getUserPrivilege($username) == "ADMIN";
+    $_SESSION["admin"] = $conn->CheckUserPriviledge($username) == "ADMIN";
 
     $conn->closeConnection();
 
@@ -40,7 +40,7 @@ function logout(){
 }
 function RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nascita){
     $connessione1 = new Connection();
-    $connOK = $connessione1->connect();
+    $connOK = $connessione1->apriConnessione();
     if(!$connOK) {
         return "errore_connessione";
     }
