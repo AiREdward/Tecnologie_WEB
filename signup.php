@@ -27,11 +27,11 @@
         $nascita = sanitizeInput($_POST["nascita"]);
         $username = sanitizeInput($_POST["username"]);
         $password = sanitizeInput($_POST["password"]);
-        if(preg_match($patternUser, $_POST["username"]){
-            if(preg_match($patternTelefono, $_POST["telefono"])) {
+        if(checkInputCorrectness($_POST["username"], $patternUser)) {
+            if(checkInputCorrectness($_POST["telefono"], $patternTelefono)) {
                 if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-                    if(preg_match($patternPassword, $_POST["password"])) {
-                        $errors=RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nascita);
+                    if(checkInputCorrectness($_POST["password"], $patternPassword)) {
+                        $errors=registerUser($username, $email, $password, $nome, $cognome, $telefono, $nascita);
                     } else {
                         $errors="password_invalida";
                         //echo 'la password non è valida, deve avere almeno 1 carattere maiuscolo, 1 minuscolo, un numero, un simbolo ed almeno 8 caratteri';
@@ -48,7 +48,7 @@
         else{
             $errors="utente_invalido";
         }
-        $errors = LoginUser($username,$password);
+        $errors = logUser($username,$password);
 
         if($errors == null) {
             header("Location: area_utenti.php");
@@ -70,11 +70,11 @@
 <div id="content">
     <?php
         if($errors != null){
-            $errortext=GetTesti("error");
+            $errortext=getTexts("error");
             echo "<p class='errormesage'>". $errortext[$errors]."</p>";
         }
 
-        $signuptext=GetTesti("signup");
+        $signuptext=getTexts("signup");
     ?>
 
     <p><?php echo $signuptext["prompt_login"]?><a href='login.php'><?php echo $signuptext["pulsante_login"]?></a>

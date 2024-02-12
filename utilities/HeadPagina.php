@@ -20,7 +20,7 @@ function get_head() {
     global $head_template;
 
     $title = get_title();
-    $output= str_replace("<TITLE/>", $title, $head_template);
+    $output = str_replace("<TITLE/>", $title, $head_template);
 
     return $output;
 }

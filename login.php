@@ -7,14 +7,11 @@
 
     global $patternUser, $patternPassword;
 
-    if(get_logged_user()){
-        if($_SESSION["admin"])
-        {
-            header("Location: admin.php");
-        }
-        else{
-            header("Location: area_utente.php");
-        }
+    $user = getLoggedUser();
+
+    if($user){
+        if(checkIfUserIsAdmin($user)) header("Location: admin.php");
+        else header("Location: area_utente.php");
         exit();
     }
 
@@ -28,15 +25,15 @@
             $errors = "formato_invalido";
         }
 
-        $errors = loginUser($username,$password);
+        $errors = logUser($username,$password);
 
         if($errors == null){
-            header("Location: area_utenti.php");
+            header("Location: area_utente.php");
             exit();
         }
     }
 
-    $login_text = GetTesti("login");
+    $login_text = getTexts("login");
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">
@@ -48,10 +45,10 @@
 
     <div id="content">
         <?php
-        if($errors != null){
-            $errorstext=GetTesti("errors");
-            echo "<p class='errormesage'>". $errorstext[$errors]."</p>";
-        }
+            if($errors != null){
+                $errors_text = getTexts("errors");
+                echo "<p class='errormessage'>". $errors_text[$errors]."</p>";
+            }
         ?>
 
         <p><?php echo $login_text["prompt_registrarsi"]?> <a href='signup.php'><?php echo $login_text["pulsante_registrazione"]?></a></p>

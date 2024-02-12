@@ -6,9 +6,9 @@ function GetHeaderText() : array {
     $Header["home"]="Home";
     $Header["nav_toggle"]="toggle navbar";
     $Header["login"]="Login";
+    $Header["logout"]="Logout";
     $Header["area_utente"]="User Area";
     $Header["signup"]="Register Account";
     $Header["lang_switch"]="Go to the italian version";
     return $Header;
 }
-?>

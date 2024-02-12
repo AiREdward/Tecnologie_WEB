@@ -1,7 +1,6 @@
 <?php 
 require_once "utilities/DBConnectionTest.php";
 require_once "utilities/UserUtilities.php";
-use DB\DBAccess;
 
 function SlotDisponibili($stanza,$giorno){
     $connessione1 = new Connection();
@@ -31,7 +30,7 @@ function RegistraPrenotazione($user,$stanza,$giorno,$slot){
         return "errore_connessione";
     }
     if(!in_array($slot,SlotDisponibili($stanza,$giorno) )){
-        return "slot_non_disponibile"
+        return "slot_non_disponibile";
     }
     if(!$connessione1->InserisciPrenotazione($user,$stanza,$giorno,$slot)){
         
@@ -39,17 +38,30 @@ function RegistraPrenotazione($user,$stanza,$giorno,$slot){
     $connessione1->closeDBConnection();
     return "";
 }
+
+function GetOrarioPrenotazione($slot){
+    $connessione1 = new Connection();
+    $connOK = $connessione1->apriConnessione();
+    if(!$connOK) {
+        return "errore_connessione";
+    }
+    $out=$connessione1->GetOrario($slot);
+    $connessione1->closeDBConnection();
+    return $out;
+}
+
 function GetPrenotazioniUtente(&$out){
     $connessione1 = new Connection();
     $connOK = $connessione1->apriConnessione();
     if(!$connOK) {
         return "errore_connessione";
     }
-    $loggeduser=get_logged_user();
+    $loggeduser=getLoggedUser();
     $out=$connessione1->GetPrenotazioniUtente($loggeduser);
     $connessione1->closeDBConnection();
     return "";
 }
+
 function GetPrenotazioni(&$out){
     $connessione1 = new Connection();
     $connOK = $connessione1->apriConnessione();
@@ -60,4 +72,3 @@ function GetPrenotazioni(&$out){
     $connessione1->closeDBConnection();
     return "";
 }
-?>

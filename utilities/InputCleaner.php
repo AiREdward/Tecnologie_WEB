@@ -6,8 +6,6 @@
         return htmlentities(trim($input));
     }
 
-    function checkInputCorrectness($input, $regex) {
+    function checkInputCorrectness($input, $regex): bool|int {
         return preg_match($regex, $input);
     }
-
-?>

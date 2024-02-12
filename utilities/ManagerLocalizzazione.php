@@ -1,8 +1,8 @@
 <?php
-$lingue=["it","en"];
+$languages = ["it","en"];
 
 function initial_setup() {
-    global $lingue;
+    global $languages;
 
     if (!isset($_SESSION)) {
         session_start();
@@ -11,18 +11,18 @@ function initial_setup() {
 
     if (isset($_GET["lang"])) {
         $lang = $_GET["lang"];
-        if (in_array($lang, $lingue)) {
+        if (in_array($lang, $languages)) {
             $_SESSION["lang"] = $lang;
         }
     }
 }
 
-function GetTesti($blocco){
-    global $lingue;
+function getTexts($blocco) {
+    global $languages;
 
     $lang=$_SESSION["lang"];
 
-    if(!in_array($lang, $lingue)){
+    if(!in_array($lang, $languages)){
         $_SESSION["lang"]="en";
         $lang="en";
     }
@@ -48,8 +48,10 @@ function GetTesti($blocco){
         case "signup":
             require_once("localizzazioni/".$lang."/areautentetext.php");
             return GetAreaUtenteText();
+        case "logout":
+            require_once("localizzazioni/".$lang."/logouttext.php");
+            return GetLogoutText();
         default:
             return null;
     }
 }
-?>

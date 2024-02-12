@@ -3,7 +3,7 @@ require_once "utilities/ManagerLocalizzazione.php";
 
 initial_setup();
 
-$headertext=GetTesti("header");
+$headertext=getTexts("header");
 
 $header_template='<a href="#content" class="SRskip" title="'.$headertext["skip"].'" aria-label="'.$headertext["skip"].'">'.$headertext["skip"].'</a>
 	
@@ -24,6 +24,7 @@ $indirizzi_pagine["home"]="index.php";
 $indirizzi_pagine["area_utente"]="area_utente.php";
 $indirizzi_pagine["login"]="login.php";
 $indirizzi_pagine["signup"]="signup.php";
+$indirizzi_pagine["logout"]="logout.php";
 $indirizzi_pagine["404"]="404.php";
 $indirizzi_pagine["500"]="500.php";
 
@@ -34,6 +35,7 @@ $padre_pagina["home"]="#";
 $padre_pagina["area_utente"]="home";
 $padre_pagina["login"]="area_utente";
 $padre_pagina["signup"]="area_utente";
+$padre_pagina["logout"]="area_utente";
 $padre_pagina["404"]="#";
 $padre_pagina["500"]="#";
 
@@ -94,7 +96,7 @@ function get_language_switch($pagina) : string {
     return $lang_switch;
 }
 
-function genera_header($pagina){
+function genera_header($pagina): array|string {
 	global $header_template;
 
     $menu = get_menu($pagina);
@@ -108,4 +110,3 @@ function genera_header($pagina){
 
 	return $output;
 }
-?>

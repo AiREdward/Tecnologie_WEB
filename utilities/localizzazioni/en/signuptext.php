@@ -3,7 +3,7 @@ function GetSignupText() : array {
     $signup=[];
     $signup["prompt_login"]="already have an account?";
     $signup["pulsante_login"]="login here";
-    $signup["legend_anagrafica"]="Anagraphics";
+    $signup["legend_anagrafica"]="Registry Info";
     $signup["label_nome"]="First name";
     $signup["label_cognome"]="Last name";
     $signup["label_nascita"]="First name";

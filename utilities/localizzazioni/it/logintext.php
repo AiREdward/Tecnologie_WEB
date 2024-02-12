@@ -8,4 +8,3 @@ function GetLoginText(): array {
     $Login["testo_pulsante"]="Accedi";
     return $Login;
 }
-?>

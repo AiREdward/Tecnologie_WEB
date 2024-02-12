@@ -3,6 +3,12 @@ namespace Test;
 use PDO;
 use PDOException;
 
+/*
+ *
+ * File di testing locale
+ *
+ */
+
 class Connection{
     public $conn = null;
 
@@ -12,7 +18,7 @@ class Connection{
 
     public function connect(): bool {
         try {
-            $this->conn = new PDO('sqlite:' . __DIR__ . '/identifier.sqlite');
+            $this->conn = new PDO('sqlite:' . __DIR__ . '/testingDB.sqlite');
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -22,7 +28,7 @@ class Connection{
         }
     }
 
-    public function closeConnection() {
+    public function closeConnection(): void {
         $this->conn = null;
     }
 
@@ -41,7 +47,7 @@ class Connection{
         return $res;
     }
 
-    public function checkIfUserExists($username){
+    public function checkIfUserExists($username) : ?string {
         $connection = $this->conn;
 
         $query = 'SELECT username FROM Utente where email=? OR username=?';
@@ -51,22 +57,20 @@ class Connection{
         $preparedQuery->bindValue(2, $username);
         $preparedQuery->execute();
 
-        $exist= $preparedQuery->fetchAll();
+        $exist = $preparedQuery->fetchAll();
 
         $preparedQuery->closeCursor();
 
-        if(!$exist){
-            return null;
-        }
+        if(!$exist) return null;
 
-        return $exist[0];
+        return $exist[0]["username"];
     }
 
     //verifica la validità delle credenziali unsate per il login
-    public function checkLogin($username,$password){
+    public function checkLogin($username, $password) : bool {
         $connection = $this->conn;
 
-        $query = 'SELECT count(*) FROM Utente where  username=? AND password=?';
+        $query = 'SELECT count(*) FROM Utente WHERE username=? AND password=?';
 
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bindValue(1, $username);
@@ -105,10 +109,10 @@ class Connection{
         return $res;
     }
 
-    public function getUserPrivilege($username){
+    public function isUserAdmin($username) : bool {
         $connection = $this->conn;
 
-        $query = 'SELECT usertype FROM Utente where username=?';
+        $query = 'SELECT admin FROM Utente WHERE username=?';
 
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bindValue(1, $username);
@@ -118,7 +122,8 @@ class Connection{
 
         $preparedQuery->closeCursor();
 
-        return $type;
+        if($type == 1) return true;
+        else return false;
     }
     public function InserisciPrenotazione($username,$data_,$orario,$id_room){
         $connection=$this->conn;

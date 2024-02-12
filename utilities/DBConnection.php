@@ -23,7 +23,6 @@ class Connection{
         }
     }
 
-    
     public function UserExists($username){
         $connection=$this->conn;
         $query='SELECT username FROM Utente where email=? OR username=?';
@@ -43,6 +42,7 @@ class Connection{
         $preparedQuery->close();
         return $exist[0];
     }
+
     public function CheckLogin($username,$password){
         $connection=$this->conn;
         $query='SELECT count(*) FROM Utente where  username=? AND password=?';
@@ -58,11 +58,13 @@ class Connection{
         $preparedQuery->close();
         return $exist;
     }
-    public function RegisterNewUser($username,$email,$password,$nome,$cognome,$telefono,$nascita){
-        $connection=$this->conn;
-        $query='INSERT INTO Utente (username, email, password,nome, cognome,telefono,nascita,type)VALUES(?,?,?,?,?,?,?,?)';
+
+    public function RegisterNewUser($username,$email,$password,$nome,$cognome,$telefono,$nascita)
+    {
+        $connection = $this->conn;
+        $query = 'INSERT INTO Utente (username, email, password,nome, cognome,telefono,nascita,type)VALUES(?,?,?,?,?,?,?,?)';
         $preparedQuery = $connection->prepare($query);
-        $usertype="BasicUser";
+        $usertype = "BasicUser";
         $preparedQuery->bind_param(
             'ssssssss',
             $username,
@@ -74,10 +76,11 @@ class Connection{
             $nascita,
             $usertype
         );
-        $res=$preparedQuery->execute();
+        $res = $preparedQuery->execute();
         $preparedQuery->close();
         return $res;
-    }    
+    }
+
     public function CheckUserPriviledge($username){
         $connection=$this->conn;
         $query='SELECT type FROM user where username=?';
@@ -92,6 +95,7 @@ class Connection{
         $preparedQuery->close();
         return $type;
     }
+
     public function InserisciPrenotazione($username,$data_,$orario,$id_room){
         $connection=$this->conn;
         $query='INSERT INTO Prenota (data_, orario, username,id_room)VALUES(?,?,?,?)';
@@ -107,6 +111,7 @@ class Connection{
         $preparedQuery->close();
         return $res;
     }
+
     public function CheckSlotDisponibili($data_,$id_room){
         $connection=$this->conn;
         $query='SELECT orario FROM SlotPrenotabili WHERE orario NOT IN(select orario From Prenota where data_=? AND id_room=? )';
@@ -127,6 +132,17 @@ class Connection{
         $preparedQuery->close();
         return $out;
     }
+
+    public function GetOrario($slot){
+        $connection=$this->conn;
+        $query="SELECT orario FROM SlotPrenotabili where id='$slot'";
+        $preparedQuery = $connection->prepare($query);
+        $preparedQuery->execute();
+        $res=$preparedQuery->get_result();
+        $preparedQuery->close();
+        return $res;
+    }
+
     public function GetTuttePrenotazioni(){
         $connection=$this->conn;
         $query='SELECT data id_prenotazione data_ orario username id_room FROM Prenota';
@@ -162,4 +178,3 @@ class Connection{
         return $out;
     }
 }
-?>

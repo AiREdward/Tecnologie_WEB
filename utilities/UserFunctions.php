@@ -3,16 +3,15 @@ require_once "utilities/DBConnectionTest.php";
 
 use Test\Connection;
 
-function get_logged_user(){
+function getLoggedUser() {
     return $_SESSION["user"] ?? null;
 }
 
-function loginUser($email, $password) {
+function logUser($email, $password) {
     $conn = new Connection();
 
-    if(!$conn->connect()) {
-        return "errore_connessione";
-    }
+    if(!$conn->connect()) return "errore_connessione";
+
 
     $username = $conn->checkIfUserExists($email);
 
@@ -21,37 +20,48 @@ function loginUser($email, $password) {
         return "utente_inesistente";
     }
 
-    if(!$conn->checkLogin($username,$password)) {
+    if(!$conn->checkLogin($username, $password)) {
         $conn->closeConnection();
         return "password_errata";
     }
 
     $_SESSION["user"] = $username;
-    $_SESSION["admin"] = $conn->getUserPrivilege($username) == "ADMIN";
+    $_SESSION["admin"] = $conn->isUserAdmin($username) == "ADMIN";
 
     $conn->closeConnection();
 
     return null;
 }
 
-function logout(){
+function logout() : void {
     $_SESSION["user"]=null;
     $_SESSION["admin"]=false;
 }
-function RegisterUser($username,$email,$password,$nome,$cognome,$telefono,$nascita){
-    $connessione1 = new Connection();
-    $connOK = $connessione1->connect();
-    if(!$connOK) {
-        return "errore_connessione";
-    }
-    if($connessione1->UserExists($username)||$connessione1->UserExists($email)){
-        $connessione1->closeDBConnection();
+
+function registerUser($username, $email, $password, $nome, $cognome, $telefono, $nascita) {
+    $conn = new Connection();
+    if(!$conn->connect()) return "errore_connessione";
+
+    if($conn->checkIfUserExists($username) || $conn->checkIfUserExists($email)) {
+        $conn->closeConnection();
         return "mail_username_duplicata";
     }
-    if(!$connessione1->RegisterNewUser($username,$email,$password,$nome,$cognome,$telefono,$nascita)){
-        $connessione1->closeDBConnection();
+
+    if(!$conn->registerNewUser($username, $email, $password, $nome, $cognome, $telefono, $nascita)) {
+        $conn->closeConnection();
         return "errore_registrazione_utente";
-    };
-    $connessione1->closeDBConnection();
+    }
+
+    $conn->closeConnection();
     return null;
+}
+
+function checkIfUserIsAdmin($username) : bool {
+    $conn = new Connection();
+    if(!$conn->connect()) return "errore_connessione";
+
+    $isAdmin = $conn->isUserAdmin($username);
+    $conn->closeConnection();
+
+    return $isAdmin ;
 }

@@ -1,7 +1,7 @@
 <?php
     require_once "utilities/HeadPagina.php";
 	require_once "utilities/HeaderPagina.php";
-    $rooms_text = GetTesti("rooms");
+    $rooms_text = getTexts("rooms");
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">

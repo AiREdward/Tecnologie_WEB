@@ -1,4 +1,4 @@
-navbar=false;
+navbar = false;
 window.onload=function(){
     document.getElementById("togglenav").onclick=function(){
         if(navbar){
@@ -7,6 +7,6 @@ window.onload=function(){
         else{
             document.getElementById("navmenu").classList.remove("closednav");
         }
-        navbar=!navbar;
+        navbar = !navbar;
     }
 };
