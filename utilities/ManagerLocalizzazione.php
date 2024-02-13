@@ -1,13 +1,10 @@
 <?php
 $languages = ["it","en"];
 
-function initial_setup() {
+function initial_setup() : void {
     global $languages;
 
-    if (!isset($_SESSION)) {
-        session_start();
-        $_SESSION["lang"] = "it";
-    }
+    if (session_status() == PHP_SESSION_NONE) session_start();
 
     if (isset($_GET["lang"])) {
         $lang = $_GET["lang"];

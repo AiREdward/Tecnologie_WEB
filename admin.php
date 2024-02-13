@@ -10,5 +10,8 @@
 </head>
 <body>
     <?php echo genera_header("login"); ?>
+
+    <!-- just for testing purposes -->
+    <a href="logout.php">logout</a>
 </body>
 </html>

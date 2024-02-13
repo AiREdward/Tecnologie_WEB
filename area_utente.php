@@ -53,5 +53,8 @@
             ?>
         <ul>
     </div>
+
+    <!-- just for testing purposes -->
+    <a href="logout.php">logout</a>
 </body>
 </html>

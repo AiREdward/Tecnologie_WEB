@@ -31,12 +31,15 @@ create table Room (
     Nome varchar(128) not null,
     Prezzo decimal(5, 2) not null,
     Durata int not null,
+    Numero_Partecipanti_Minimo int not null,
+    Numero_Partecipanti_Massimo int not null,
     Difficolta int not null,
     Descrizione varchar(512) not null
 );
 ```
 
 `Room` contiene tutte le informazioni che verrano mostrate nella homepage. <br>
+`Durata` è un intero che indica la durata della stanza in minuti. <br>
 `Difficolta` è un intero che indica la difficoltà della stanza, da 1 a 3 con:
 - 1: Facile
 - 2: Media

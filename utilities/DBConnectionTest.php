@@ -5,7 +5,7 @@ use PDOException;
 
 /*
  *
- * File di testing locale
+ * File di testing locale con sqlite
  *
  */
 
@@ -50,7 +50,7 @@ class Connection{
     public function checkIfUserExists($username) : ?string {
         $connection = $this->conn;
 
-        $query = 'SELECT username FROM Utente where email=? OR username=?';
+        $query = 'SELECT Username FROM Utente where Username=? OR Email=?';
 
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bindValue(1, $username);
@@ -63,14 +63,13 @@ class Connection{
 
         if(!$exist) return null;
 
-        return $exist[0]["username"];
+        return $exist[0]["Username"];
     }
 
-    //verifica la validità delle credenziali unsate per il login
     public function checkLogin($username, $password) : bool {
         $connection = $this->conn;
 
-        $query = 'SELECT count(*) FROM Utente WHERE username=? AND password=?';
+        $query = 'SELECT count(*) FROM Utente WHERE Username=? AND Password=?';
 
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bindValue(1, $username);
@@ -87,7 +86,7 @@ class Connection{
     public function registerNewUser($username, $email, $password, $nome, $cognome, $telefono, $nascita) {
         $connection = $this->conn;
 
-        $query = 'INSERT INTO Utente (username, email, password, nome, cognome, telefono, nascita, usertype) VALUES(?,?,?,?,?,?,?,?)';
+        $query = 'INSERT INTO Utente (Username, Email, Password, Nome, Cognome, Telefono, Data_di_Nascita, Admin) VALUES(?,?,?,?,?,?,?,?)';
 
         $preparedQuery = $connection->prepare($query);
 
@@ -100,7 +99,7 @@ class Connection{
         $preparedQuery->bindValue(5, $cognome);
         $preparedQuery->bindValue(6, $telefono);
         $preparedQuery->bindValue(7, $nascita);
-        $preparedQuery->bindValue(8, $usertype);
+        $preparedQuery->bindValue(8, false);
 
         $res = $preparedQuery->execute();
 
@@ -112,7 +111,7 @@ class Connection{
     public function isUserAdmin($username) : bool {
         $connection = $this->conn;
 
-        $query = 'SELECT admin FROM Utente WHERE username=?';
+        $query = 'SELECT Admin FROM Utente WHERE Username=?';
 
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bindValue(1, $username);
@@ -125,19 +124,51 @@ class Connection{
         if($type == 1) return true;
         else return false;
     }
-    public function InserisciPrenotazione($username,$data_,$orario,$id_room){
-        $connection=$this->conn;
-        $query='INSERT INTO Prenota (data_, orario, username,id_room)VALUES(?,?,?,?)';
-        $preparedQuery = $connection->prepare($query);
-        $preparedQuery->bind_param(
-            'ssss',
-            $data_,
-            $orario,
-            $username,
-            $id_room
-        );
-        $res=$preparedQuery->execute();
+
+    public function getRooms() {
+        $conn = $this->conn;
+
+        $query = 'SELECT * FROM Room';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function getRoomsEnglish() {
+        $conn = $this->conn;
+
+        $query = 'SELECT * FROM RoomTranslated';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function inserisciPrenotazione($data, $ora, $username, $id_room) {
+        $conn = $this->conn;
+
+        $query='INSERT INTO Prenota (Data_Prenotazione, Ora_Prenotazione, Username, ID_Room) VALUES (?,?,?,?)';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $data);
+        $preparedQuery->bindValue(2, $ora);
+        $preparedQuery->bindValue(3, $username);
+        $preparedQuery->bindValue(4, $id_room);
+        $res = $preparedQuery->execute();
+
         $preparedQuery->close();
+
         return $res;
     }
     public function CheckSlotDisponibili($data_,$id_room){
@@ -195,4 +226,3 @@ class Connection{
         return $out;
     }
 }
-?>

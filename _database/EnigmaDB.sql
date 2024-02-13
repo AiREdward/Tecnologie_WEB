@@ -21,6 +21,8 @@ create table Room (
 	Nome varchar(128) not null,
 	Prezzo decimal(5, 2) not null,
     Durata int not null,
+    Numero_Partecipanti_Minimo int not null,
+    Numero_Partecipanti_Massimo int not null,
     Difficolta int not null,
     Descrizione varchar(512) not null
 );
@@ -68,12 +70,12 @@ VALUES ('admin', 'admin@admin.com', 'admin', 'admin', 'admin', '1234567890', '19
        ('user', 'user@user.com', 'user', 'user', 'user', '1234567891', '1970-01-01', false);
 
 -- Creazione delle stanze
-INSERT INTO Room (ID, Nome, Prezzo, Durata, Difficolta, Descrizione)
-VALUES (1, 'Cripta arcana', 1, 60, 3, 'Esplora una cripta alla ricerca di un potente artefatto, sarai in grado di evitare le trappole e ottenerlo?'),
-       (2, 'Sabotaggio sul treno', 1, 60, 2, 'Un semplice viaggio in treno si dimostra di gran lunga più movimentato dopo un incidente, c''è il sospetto di un sabotaggio, investiga la scena e tenta di riparare il treno'),
-       (3, 'Riavvio del reattore', 1, 60, 1, 'Bloccati nello spazio con solo l''energia di emergenza: è necesario rimettere in modo il reattore quanto prima possibile, esiste un manuale technico con le procedure richieste ma la situazione è tutt''altro che risolta');
+INSERT INTO Room (ID, Nome, Prezzo, Durata, Numero_Partecipanti_Minimo, Numero_Partecipanti_Massimo, Difficolta, Descrizione)
+VALUES (1, 'Cripta arcana', 1, 55, 2, 6, 3, 'Esplora una cripta alla ricerca di un potente artefatto, sarai in grado di evitare le trappole e ottenerlo?'),
+       (2, 'Sabotaggio sul treno', 1, 45, 4, 5, 2, 'Un semplice viaggio in treno si dimostra di gran lunga più movimentato dopo un incidente, c''è il sospetto di un sabotaggio, investiga la scena e tenta di riparare il treno'),
+       (3, 'Riavvio del reattore', 1, 35, 3, 4, 1, 'Bloccati nello spazio con solo l''energia di emergenza: è necesario rimettere in modo il reattore quanto prima possibile, esiste un manuale technico con le procedure richieste ma la situazione è tutt''altro che risolta');
 
 INSERT INTO RoomTranslated (ID, Nome, Descrizione)
-VALUES (1, 'Cripta arcana', 'You have entered a dungeon in search of a powerful magical artifact, will you be able to avoid the traps and acquire it?'),
-       (2, 'Sabotaggio sul treno', 'A simple train ride proved to be far more eventful after an accident, potentially a sabotage, investigate the scene and try to repair the train'),
-       (3, 'Riavvio del reattore', 'Stranded in the emptiness of space with only emergency power: you have to restart the main reactor as quickly as possible, there is a technical manual with procedures but the task is not trivial');
+VALUES (1, 'Magic Dungeon', 'You have entered a dungeon in search of a powerful magical artifact, will you be able to avoid the traps and acquire it?'),
+       (2, 'Train Sabotage', 'A simple train ride proved to be far more eventful after an accident, potentially a sabotage, investigate the scene and try to repair the train'),
+       (3, 'Reactor Reboot', 'Stranded in the emptiness of space with only emergency power: you have to restart the main reactor as quickly as possible, there is a technical manual with procedures but the task is not trivial');
