@@ -69,18 +69,18 @@ class Connection{
     public function checkLogin($username, $password) : bool {
         $connection = $this->conn;
 
-        $query = 'SELECT count(*) FROM Utente WHERE Username=? AND Password=?';
+        $query = 'SELECT Password FROM Utente WHERE Username=?';
 
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bindValue(1, $username);
-        $preparedQuery->bindValue(2, $password);
         $preparedQuery->execute();
 
-        $exist = $preparedQuery->fetchColumn() > 0;
+        $pass_res = $preparedQuery->fetchColumn();
 
         $preparedQuery->closeCursor();
 
-        return $exist;
+        if (password_verify($password, $pass_res)) return true;
+        else return false;
     }
 
     public function registerNewUser($username, $email, $password, $nome, $cognome, $telefono, $nascita) {
@@ -90,8 +90,6 @@ class Connection{
 
         $preparedQuery = $connection->prepare($query);
 
-        $usertype = "BasicUser";
-
         $preparedQuery->bindValue(1, $username);
         $preparedQuery->bindValue(2, $email);
         $preparedQuery->bindValue(3, $password);
@@ -99,7 +97,7 @@ class Connection{
         $preparedQuery->bindValue(5, $cognome);
         $preparedQuery->bindValue(6, $telefono);
         $preparedQuery->bindValue(7, $nascita);
-        $preparedQuery->bindValue(8, false);
+        $preparedQuery->bindValue(8, 0);
 
         $res = $preparedQuery->execute();
 
@@ -155,19 +153,19 @@ class Connection{
         return $res;
     }
 
-    public function inserisciPrenotazione($data, $ora, $username, $id_room) {
+    public function createBooking($date, $time, $username, $id_room) {
         $conn = $this->conn;
 
         $query='INSERT INTO Prenota (Data_Prenotazione, Ora_Prenotazione, Username, ID_Room) VALUES (?,?,?,?)';
 
         $preparedQuery = $conn->prepare($query);
-        $preparedQuery->bindValue(1, $data);
-        $preparedQuery->bindValue(2, $ora);
+        $preparedQuery->bindValue(1, $date);
+        $preparedQuery->bindValue(2, $time);
         $preparedQuery->bindValue(3, $username);
         $preparedQuery->bindValue(4, $id_room);
         $res = $preparedQuery->execute();
 
-        $preparedQuery->close();
+        $preparedQuery->closeCursor();
 
         return $res;
     }
@@ -191,6 +189,59 @@ class Connection{
         $preparedQuery->close();
         return $out;
     }
+
+    public function getRoomDuration($id_room) {
+        $conn = $this->conn;
+
+        $query = 'SELECT Durata FROM Room WHERE ID=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $id_room);
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchColumn();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function getRoomHours($id_room, $giorno_settimana) {
+        $conn = $this->conn;
+
+        $query = 'SELECT Ora_Apertura, Ora_Chiusura FROM Orari_Apertura WHERE ID_Room=? AND Giorno=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $id_room);
+        $preparedQuery->bindValue(2, $giorno_settimana);
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res[0];
+    }
+
+    public function getBookedSlots($date, $id_room) {
+        $conn = $this->conn;
+
+        $query = 'SELECT Ora_Prenotazione FROM Prenota WHERE Data_Prenotazione=? AND ID_Room=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $date);
+        $preparedQuery->bindValue(2, $id_room);
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    // TODO: change also this function ig
+    /*
     public function GetTuttePrenotazioni(){
         $connection=$this->conn;
         $query='SELECT data id_prenotazione data_ orario username id_room FROM Prenota';

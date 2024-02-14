@@ -46,11 +46,12 @@ create table Prenota (
 
 create table Orari_Apertura (
     ID integer AUTO_INCREMENT primary key,
-    Giorno varchar(16) not null,
+    Giorno int not null,
     Ora_Apertura time not null,
     Ora_Chiusura time not null,
-    ID_Room integer not null,
-    foreign key (ID_Room) references Room(ID)
+    ID_Room int not null,
+    foreign key (ID_Room) references Room(ID),
+    check (Giorno >= 0 and Giorno <= 6)
 );
 
 create table Recensione (
@@ -66,8 +67,8 @@ create table Recensione (
 
 -- Creazione manuale di utenti per test
 INSERT INTO Utente (Username, Email, Password, Nome, Cognome, Telefono, Data_di_Nascita, Admin)
-VALUES ('admin', 'admin@admin.com', 'admin', 'admin', 'admin', '1234567890', '1970-01-01', true),
-       ('user', 'user@user.com', 'user', 'user', 'user', '1234567891', '1970-01-01', false);
+VALUES ('admin', 'admin@admin.com', '$2y$10$nyeU5F/LSdJu44JR3anEH.AT7FLNxfGz0qFo1b3bn0hz1WzYVnW0G', 'admin', 'admin', '1234567890', '1970-01-01', true),
+       ('user', 'user@user.com', '$2y$10$m1BDEivBF0o7oHCYoX/Va.O9LxihQNAKT/YwfiDq5dRNg8cDl9mOS', 'user', 'user', '1234567891', '1970-01-01', false);
 
 -- Creazione delle stanze
 INSERT INTO Room (ID, Nome, Prezzo, Durata, Numero_Partecipanti_Minimo, Numero_Partecipanti_Massimo, Difficolta, Descrizione)
@@ -79,3 +80,34 @@ INSERT INTO RoomTranslated (ID, Nome, Descrizione)
 VALUES (1, 'Magic Dungeon', 'You have entered a dungeon in search of a powerful magical artifact, will you be able to avoid the traps and acquire it?'),
        (2, 'Train Sabotage', 'A simple train ride proved to be far more eventful after an accident, potentially a sabotage, investigate the scene and try to repair the train'),
        (3, 'Reactor Reboot', 'Stranded in the emptiness of space with only emergency power: you have to restart the main reactor as quickly as possible, there is a technical manual with procedures but the task is not trivial');
+
+-- Creazione degli orari di apertura
+-- Room 1
+INSERT INTO Orari_Apertura (Giorno, Ora_Apertura, Ora_Chiusura, ID_Room)
+VALUES (0, '10:00:00', '20:00:00', 1),
+       (1, '10:00:00', '20:00:00', 1),
+       (2, '10:00:00', '20:00:00', 1),
+       (3, '10:00:00', '20:00:00', 1),
+       (4, '10:00:00', '20:00:00', 1),
+       (5, '10:00:00', '20:00:00', 1),
+       (6, '10:00:00', '20:00:00', 1);
+
+-- Room 2
+INSERT INTO Orari_Apertura (Giorno, Ora_Apertura, Ora_Chiusura, ID_Room)
+VALUES (0, '10:00:00', '20:00:00', 2),
+       (1, '10:00:00', '20:00:00', 2),
+       (2, '10:00:00', '20:00:00', 2),
+       (3, '10:00:00', '20:00:00', 2),
+       (4, '10:00:00', '20:00:00', 2),
+       (5, '10:00:00', '20:00:00', 2),
+       (6, '10:00:00', '20:00:00', 2);
+
+-- Room 3
+INSERT INTO Orari_Apertura (Giorno, Ora_Apertura, Ora_Chiusura, ID_Room)
+VALUES (0, '10:00:00', '20:00:00', 3),
+       (1, '10:00:00', '20:00:00', 3),
+       (2, '10:00:00', '20:00:00', 3),
+       (3, '10:00:00', '20:00:00', 3),
+       (4, '10:00:00', '20:00:00', 3),
+       (5, '10:00:00', '20:00:00', 3),
+       (6, '10:00:00', '20:00:00', 3);

@@ -27,11 +27,12 @@
         $nascita = sanitizeInput($_POST["nascita"]);
         $username = sanitizeInput($_POST["username"]);
         $password = sanitizeInput($_POST["password"]);
+
         if(checkInputCorrectness($_POST["username"], $patternUser)) {
             if(checkInputCorrectness($_POST["telefono"], $patternTelefono)) {
                 if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
                     if(checkInputCorrectness($_POST["password"], $patternPassword)) {
-                        $errors=registerUser($username, $email, $password, $nome, $cognome, $telefono, $nascita);
+                        $errors = registerUser($username, $email, $password, $nome, $cognome, $telefono, $nascita);
                     } else {
                         $errors="password_invalida";
                         //echo 'la password non è valida, deve avere almeno 1 carattere maiuscolo, 1 minuscolo, un numero, un simbolo ed almeno 8 caratteri';
@@ -48,10 +49,13 @@
         else{
             $errors="utente_invalido";
         }
-        $errors = logUser($username,$password);
 
         if($errors == null) {
-            header("Location: area_utenti.php");
+            $errors = logUser($username,$password);
+        }
+
+        if($errors == null) {
+            header("Location: area_utente.php");
             exit();
         }
     }
@@ -70,8 +74,8 @@
 <div id="content">
     <?php
         if($errors != null){
-            $errortext=getTexts("error");
-            echo "<p class='errormesage'>". $errortext[$errors]."</p>";
+            $errortext = getTexts("errors");
+            echo "<p class='errormessage'>". $errortext[$errors]."</p>";
         }
 
         $signuptext=getTexts("signup");
@@ -88,7 +92,7 @@
             <label for="cognome"><?php echo $signuptext["label_cognome"]?></label>
             <input id="cognome" name="cognome" type="text" />
             <label for="nascita"><?php echo $signuptext["label_nascita"]?></label>
-            <input id="nascita" name="nascita" type="date" min="1924-01-01" max="2023-12-31"/>
+            <input id="nascita" name="nascita" type="date" min="1924-01-01" max="<?php echo date('Y-m-d'); ?>"/>
         </fieldset>
         <fieldset>
             <legend><?php echo $signuptext["legend_contatti"]?></legend>

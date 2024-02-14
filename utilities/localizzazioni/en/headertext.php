@@ -1,14 +1,16 @@
 <?php
 function GetHeaderText() : array {
-    $Header=[];
-    $Header["skip"]="skip to content";
-    $Header["breadcrumb"]="You are in:";
-    $Header["home"]="Home";
-    $Header["nav_toggle"]="toggle navbar";
-    $Header["login"]="Login";
-    $Header["logout"]="Logout";
-    $Header["area_utente"]="User Area";
-    $Header["signup"]="Register Account";
-    $Header["lang_switch"]="Go to the italian version";
-    return $Header;
+    $header = [];
+    $header["skip"] = "Skip to content";
+    $header["breadcrumb"]="You are in:";
+    $header["home"] = "Home";
+    $header["nav_toggle"] = "toggle navbar";
+    $header["login"] = "Login";
+    $header["logout"] = "Logout";
+    $header["area_utente"] = "User Area";
+    $header["signup"] = "Register Account";
+    $header["prenota"] = "Booking";
+    $header["lang_switch"] = "Go to the italian version";
+
+    return $header;
 }

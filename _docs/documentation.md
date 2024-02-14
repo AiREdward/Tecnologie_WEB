@@ -75,11 +75,12 @@ Il calcolo degli slot prenotabili avviene andando a controllare le prenotazioni 
 ```sql
 create table Orari_Apertura (
     ID integer AUTO_INCREMENT primary key,
-    Giorno varchar(16) not null,
+    Giorno int not null,
     Ora_Apertura time not null,
     Ora_Chiusura time not null,
-    ID_Room integer not null,
-    foreign key (ID_Room) references Room(ID)
+    ID_Room int not null,
+    foreign key (ID_Room) references Room(ID),
+    check (Giorno >= 0 and Giorno <= 6)
 );
 ```
 
@@ -97,3 +98,10 @@ create table Recensione (
     check (Voto >= 0 and Voto <= 5)
 );
 ```
+
+## Account di Testing
+
+Per testare l'applicazione è possibile utilizzare i seguenti account:
+
+- Username: `admin`, Password: `admin`
+- Username: `user`, Password: `user`

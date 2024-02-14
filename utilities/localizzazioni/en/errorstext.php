@@ -1,12 +1,11 @@
 <?php
 function GetErrorsText() : array {
     $errors=[];
-    $errors["errore_connessione"]="connection error";
-    $errors["utente_inesistente"]="user does not exist";
-    $errors["password_errata"]="incorrect password";
-    $errors["utente_invalido"]="invalid username format";
-    $errors["mail_username_duplicata"]="user already exists";
-    $errors["errore_registrazione_utente"]="error while creating account";
+    $errors["errore_connessione"] = "Connection error";
+    $errors["utente_inesistente"] = "The user doesn't exist";
+    $errors["password_errata"] = "Incorrect password";
+    $errors["utente_invalido"] = "Invalid username format";
+    $errors["username_gia_presente"] = "The username is taken";
+    $errors["errore_registrazione_utente"] = "Error while creating account";
     return $errors;
 }
-?>

@@ -7,7 +7,7 @@ function getLoggedUser() {
     return $_SESSION["user"] ?? null;
 }
 
-function logUser($email, $password) {
+function logUser($email, $password): ?string {
     $conn = new Connection();
 
     if(!$conn->connect()) return "errore_connessione";
@@ -26,14 +26,13 @@ function logUser($email, $password) {
     }
 
     $_SESSION["user"] = $username;
-    $_SESSION["admin"] = $conn->isUserAdmin($username) == "ADMIN";
 
     $conn->closeConnection();
 
     return null;
 }
 
-function logout() : void {
+function logout(): void {
     $_SESSION["user"]=null;
     $_SESSION["admin"]=false;
 }
@@ -42,10 +41,12 @@ function registerUser($username, $email, $password, $nome, $cognome, $telefono, 
     $conn = new Connection();
     if(!$conn->connect()) return "errore_connessione";
 
-    if($conn->checkIfUserExists($username) || $conn->checkIfUserExists($email)) {
+    if($conn->checkIfUserExists($username)) {
         $conn->closeConnection();
-        return "mail_username_duplicata";
+        return "username_gia_presente";
     }
+
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
     if(!$conn->registerNewUser($username, $email, $password, $nome, $cognome, $telefono, $nascita)) {
         $conn->closeConnection();
@@ -56,7 +57,7 @@ function registerUser($username, $email, $password, $nome, $cognome, $telefono, 
     return null;
 }
 
-function checkIfUserIsAdmin($username) : bool {
+function checkIfUserIsAdmin($username): bool {
     $conn = new Connection();
     if(!$conn->connect()) return "errore_connessione";
 

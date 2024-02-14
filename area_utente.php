@@ -32,7 +32,7 @@
     <?php echo genera_header("area_utente"); ?>
 
     <div id="content">
-        <p><?php echo $area_utente_text["in_as"]." ".getLoggedUser()?></p>
+        <p><?php echo $area_utente_text["in_as"] . getLoggedUser()?></p>
         <a href="logout.php"><?php echo $area_utente_text["logout"]?></a>
         <?php
             $prenotazioni = '';
@@ -53,8 +53,5 @@
             ?>
         <ul>
     </div>
-
-    <!-- just for testing purposes -->
-    <a href="logout.php">logout</a>
 </body>
 </html>

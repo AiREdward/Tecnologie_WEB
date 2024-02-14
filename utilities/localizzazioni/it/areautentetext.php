@@ -1,9 +1,9 @@
 <?php
 function GetAreaUtenteText() : array {
     $areautente=[];
-    $areautente["logout"] = "<span lang=en>logout</span>";
-    $areautente["in_as"] = "attualmente loggati come:";
-    $areautente["riepilogo_prenotazioni"] = "prenotazioni";
-    $areautente["modifica_prenotazioe"] = "modifica";
+    $areautente["logout"] = "<span lang=en>Log out</span>";
+    $areautente["in_as"] = "Attualmente loggati come: ";
+    $areautente["riepilogo_prenotazioni"] = "Prenotazioni";
+    $areautente["modifica_prenotazioe"] = "Modifica";
     return $areautente;
 }

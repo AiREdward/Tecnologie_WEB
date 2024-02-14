@@ -6,6 +6,10 @@ function initial_setup() : void {
 
     if (session_status() == PHP_SESSION_NONE) session_start();
 
+    if (!isset($_SESSION["lang"])) {
+        $_SESSION["lang"] = "it";
+    }
+
     if (isset($_GET["lang"])) {
         $lang = $_GET["lang"];
         if (in_array($lang, $languages)) {
@@ -15,14 +19,8 @@ function initial_setup() : void {
 }
 
 function getTexts($blocco) {
-    global $languages;
+    $lang = $_SESSION["lang"];
 
-    $lang=$_SESSION["lang"];
-
-    if(!in_array($lang, $languages)){
-        $_SESSION["lang"]="en";
-        $lang="en";
-    }
     switch($blocco) {
         case "header":
             require_once("localizzazioni/".$lang."/headertext.php");
@@ -42,12 +40,15 @@ function getTexts($blocco) {
         case "signup":
             require_once("localizzazioni/".$lang."/signuptext.php");
             return GetSignupText();
-        case "signup":
+        case "area_utente":
             require_once("localizzazioni/".$lang."/areautentetext.php");
             return GetAreaUtenteText();
         case "logout":
             require_once("localizzazioni/".$lang."/logouttext.php");
             return GetLogoutText();
+        case "prenota":
+            require_once("localizzazioni/".$lang."/prenotatext.php");
+            return GetPrenotaText();
         default:
             return null;
     }

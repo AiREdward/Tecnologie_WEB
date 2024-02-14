@@ -3,19 +3,19 @@ require_once "utilities/ManagerLocalizzazione.php";
 
 initial_setup();
 
-$headertext=getTexts("header");
+$header_text = getTexts("header");
 
-$header_template='<a href="#content" class="SRskip" title="'.$headertext["skip"].'" aria-label="'.$headertext["skip"].'">'.$headertext["skip"].'</a>
+$header_template='<a href="#content" class="SRskip" title="'.$header_text["skip"].'" aria-label="'.$header_text["skip"].'">'.$header_text["skip"].'</a>
 	
 	<header>
 		<h1 class="logo"> escaperoom </h1>
-		<button type="button" id="togglenav">'.$headertext["nav_toggle"].'</button>
+		<button type="button" id="togglenav">'.$header_text["nav_toggle"].'</button>
 		<nav>
 			<MENU/>
 		</nav>
 		<LANGSWITCH/>
 		<div class="breadcrumbs">
-      		<p>'.$headertext["breadcrumb"].'  <span id="percorso"> <BREADCRUMB/> </span> </p>
+      		<p>'.$header_text["breadcrumb"].'  <span id="percorso"> <BREADCRUMB/> </span> </p>
       	</div>
     </header>';
 
@@ -25,19 +25,21 @@ $indirizzi_pagine["area_utente"]="area_utente.php";
 $indirizzi_pagine["login"]="login.php";
 $indirizzi_pagine["signup"]="signup.php";
 $indirizzi_pagine["logout"]="logout.php";
+$indirizzi_pagine["prenota"]="prenota.php";
 $indirizzi_pagine["404"]="404.php";
 $indirizzi_pagine["500"]="500.php";
 
 $navmenu=["home","area_utente"];
 
 $padre_pagina=[];//nome->nome genitore
-$padre_pagina["home"]="#";
-$padre_pagina["area_utente"]="home";
-$padre_pagina["login"]="area_utente";
-$padre_pagina["signup"]="area_utente";
-$padre_pagina["logout"]="area_utente";
-$padre_pagina["404"]="#";
-$padre_pagina["500"]="#";
+$padre_pagina["home"] = "#";
+$padre_pagina["area_utente"] = "home";
+$padre_pagina["login"] = "area_utente";
+$padre_pagina["signup"] = "area_utente";
+$padre_pagina["logout"] = "area_utente";
+$padre_pagina["prenota"] = "home";
+$padre_pagina["404"] = "#";
+$padre_pagina["500"] = "#";
 
 $accesskeys=[]; //nome->key
 $accesskeys["home"]="h";
@@ -45,7 +47,7 @@ $accesskeys["area_utente"]="u";
 //$accesskeys["login"]="l";
 
 function get_menu($pagina): string {
-    global $navmenu, $indirizzi_pagine, $headertext, $accesskeys;
+    global $navmenu, $indirizzi_pagine, $header_text, $accesskeys;
 
     $menu='<ul class="navmenu closednav" id="navmenu"> ';
 
@@ -53,26 +55,26 @@ function get_menu($pagina): string {
         if ($menu_entry != $pagina) {
             $indirizzo = $indirizzi_pagine[$menu_entry];
             $key = $accesskeys[$menu_entry];
-            $menu = $menu . '<li><a href="' . $indirizzo . '" accesskey="' . $key . '">' . $headertext[$menu_entry] . "</a></li> ";
+            $menu = $menu . '<li><a href="' . $indirizzo . '" accesskey="' . $key . '">' . $header_text[$menu_entry] . "</a></li> ";
 
         } else {
-            $menu = $menu . '<li class="currentpage">' . $headertext[$menu_entry] . "</li> ";
+            $menu = $menu . '<li class="currentpage">' . $header_text[$menu_entry] . "</li> ";
         }
     }
     return $menu . '</ul>';
 }
 
 function get_breadcrumb($pagina) : string {
-    global $headertext, $indirizzi_pagine, $padre_pagina;
+    global $header_text, $indirizzi_pagine, $padre_pagina;
 
-    $breadcrumb = "<span id=current_page> " . $headertext[$pagina] . " </span> ";
+    $breadcrumb = "<span id=current_page> " . $header_text[$pagina] . " </span> ";
     $genitore = $padre_pagina[$pagina];
 
     // genera breadcrumb nel formato genitore/figlio/...
     // Il ciclo termina quando raggiunge la radice
     while($genitore && ($genitore != "#")) {
         // aggiunge genitore/ a breadrumbs in formato figlio/.....
-        $breadcrumb = '<a href="' . $indirizzi_pagine[$genitore] . '"> ' . $headertext[$genitore] . "</a> <span aria-hidden='true'> </span> " . ' &gt;' . $breadcrumb;
+        $breadcrumb = '<a href="' . $indirizzi_pagine[$genitore] . '"> ' . $header_text[$genitore] . "</a> <span aria-hidden='true'> </span> " . ' &gt;' . $breadcrumb;
         $genitore = $padre_pagina[$genitore];
     }
 
@@ -80,16 +82,16 @@ function get_breadcrumb($pagina) : string {
 }
 
 function get_language_switch($pagina) : string {
-    global $headertext, $indirizzi_pagine;
+    global $header_text, $indirizzi_pagine;
 
     $lang_switch="";
 
     switch ($_SESSION["lang"]) {
         case "it":
-            $lang_switch = "<a href='" . $indirizzi_pagine[$pagina] . "?lang=en' class='langswitch'>" . $headertext["lang_switch"] . "</a>";
+            $lang_switch = "<a href='" . $indirizzi_pagine[$pagina] . "?lang=en' class='langswitch'>" . $header_text["lang_switch"] . "</a>";
             break;
         case "en":
-            $lang_switch = "<a href='" . $indirizzi_pagine[$pagina] . "?lang=it' class='langswitch'>" . $headertext["lang_switch"] . "</a>";
+            $lang_switch = "<a href='" . $indirizzi_pagine[$pagina] . "?lang=it' class='langswitch'>" . $header_text["lang_switch"] . "</a>";
             break;
     }
 
