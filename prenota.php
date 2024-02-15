@@ -14,6 +14,8 @@
         $_SESSION["next_page"] = "prenota.php";
         header("Location: login.php");
         exit();
+    } else {
+        $_SESSION["next_page"] = null;
     }
 
     $id_room = $_SESSION["id_room"];
@@ -23,6 +25,8 @@
         $slot = $_POST["rooms"];
 
         bookRoom($day, $slot, $user, $id_room);
+
+        // TODO: send a message to the user that the room has been booked
     }
 
     $prenota_text = getTexts("prenota");

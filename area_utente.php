@@ -9,10 +9,12 @@
 
     $user = getLoggedUser();
 
-    if(!getLoggedUser()){
+    if($user == null){
         $_SESSION["next_page"] = "area_utente.php";
         header("Location: login.php");
         exit();
+    } else {
+        $_SESSION["next_page"] = null;
     }
 
     if(checkIfUserIsAdmin($user)){
@@ -31,6 +33,8 @@
 </head>
 <body>
     <?php echo genera_header("area_utente"); ?>
+
+    <!-- TODO: mostra le prenotazioni dell'utente -->
 
     <div id="content">
         <p><?php echo $area_utente_text["in_as"] . getLoggedUser()?></p>
@@ -54,5 +58,10 @@
             ?>
         <ul>
     </div>
+
+    <!-- TODO: aggiungi la possibilità di modificare/cancellare le prenotazioni -->
+
+    <!-- TODO: Aggiungere la possibilità di creare recensioni -->
+
 </body>
 </html>

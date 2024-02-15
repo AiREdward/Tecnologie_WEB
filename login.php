@@ -13,11 +13,9 @@ if($user){
     if($_SESSION["next_page"] == "area_utente.php") {
         if(checkIfUserIsAdmin($user)) header("Location: admin.php");
         else header("Location: area_utente.php");
-        $_SESSION["next_page"] = null;
         exit();
     } else {
         header("Location: " . $_SESSION["next_page"]);
-        $_SESSION["next_page"] = null;
         exit();
     }
 }
@@ -35,15 +33,8 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     $errors = logUser($username,$password);
 
     if($errors == null){
-        if($_SESSION["next_page"] == "area_utente.php") {
-            header("Location: area_utente.php");
-            $_SESSION["next_page"] = null;
-            exit();
-        } else {
-            header("Location: " . $_SESSION["next_page"]);
-            $_SESSION["next_page"] = null;
-            exit();
-        }
+        header("Location: " . $_SESSION["next_page"]);
+        exit();
     }
 }
 
@@ -56,24 +47,24 @@ $login_text = getTexts("login");
     <?php echo get_head(); ?>
 </head>
 <body>
-<?php echo genera_header("login"); ?>
+    <?php echo genera_header("login"); ?>
 
-<div id="content">
-    <?php
-    if($errors != null){
-        $errors_text = getTexts("errors");
-        echo "<p class='errormessage'>". $errors_text[$errors]."</p>";
-    }
-    ?>
+    <div id="content">
+        <?php
+        if($errors != null){
+            $errors_text = getTexts("errors");
+            echo "<p class='errormessage'>". $errors_text[$errors]."</p>";
+        }
+        ?>
 
-    <p><?php echo $login_text["prompt_registrarsi"]?> <a href='signup.php'><?php echo $login_text["pulsante_registrazione"]?></a></p>
+        <p><?php echo $login_text["prompt_registrarsi"]?> <a href='signup.php'><?php echo $login_text["pulsante_registrazione"]?></a></p>
 
-    <form id="form" action="login.php" method="post">
-        <label for="username"><?php echo $login_text["label_username"]?></label>
-        <input id="username" name="username" type="text" />
-        <label for="password"><?php echo $login_text["label_password"]?></label>
-        <input id="password" name="password" type="password" />
-        <input type="submit" value="<?php echo $login_text["testo_pulsante"]?>" />
-    </form>
-</div>
+        <form id="form" action="login.php" method="post">
+            <label for="username"><?php echo $login_text["label_username"]?></label>
+            <input id="username" name="username" type="text" />
+            <label for="password"><?php echo $login_text["label_password"]?></label>
+            <input id="password" name="password" type="password" />
+            <input type="submit" value="<?php echo $login_text["testo_pulsante"]?>" />
+        </form>
+    </div>
 </body>

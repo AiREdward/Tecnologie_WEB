@@ -33,11 +33,10 @@ function logUser($email, $password): ?string {
 }
 
 function logout(): void {
-    $_SESSION["user"]=null;
-    $_SESSION["admin"]=false;
+    $_SESSION["user"] = null;
 }
 
-function registerUser($username, $email, $password, $nome, $cognome, $telefono, $nascita) {
+function registerUser($username, $email, $password, $nome, $cognome, $telefono, $nascita): ?string {
     $conn = new Connection();
     if(!$conn->connect()) return "errore_connessione";
 
