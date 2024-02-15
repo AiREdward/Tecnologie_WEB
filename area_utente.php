@@ -10,6 +10,7 @@
     $user = getLoggedUser();
 
     if(!getLoggedUser()){
+        $_SESSION["next_page"] = "area_utente.php";
         header("Location: login.php");
         exit();
     }

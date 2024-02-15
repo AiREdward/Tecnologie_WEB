@@ -56,8 +56,14 @@ function createPossibleSlots($hours, $duration_in_minutes): array {
 
     $start_times = [];
     $start_times[] = gmdate("H:i:s", $opening_hour_from_epoch);
-    while (strtotime($start_times[count($start_times) - 1]) + $duration_in_seconds < $closing_hour_from_epoch) {
+    while (strtotime($start_times[count($start_times) - 1]) + $duration_in_seconds < ($closing_hour_from_epoch - $duration_in_seconds)) {
         $start_times[] = gmdate("H:i:s", strtotime($start_times[count($start_times) - 1]) + $duration_in_seconds);
     }
     return $start_times;
+}
+
+function bookRoom($date, $time_slot, $username, $id_room): void {
+    $conn = new Connection();
+
+    $conn->createBooking($date, $time_slot, $username, $id_room);
 }
