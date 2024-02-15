@@ -33,8 +33,14 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     $errors = logUser($username,$password);
 
     if($errors == null){
-        header("Location: " . $_SESSION["next_page"]);
-        exit();
+        if($_SESSION["next_page"] == "area_utente.php") {
+            if(checkIfUserIsAdmin($user)) header("Location: admin.php");
+            else header("Location: area_utente.php");
+            exit();
+        } else {
+            header("Location: " . $_SESSION["next_page"]);
+            exit();
+        }
     }
 }
 

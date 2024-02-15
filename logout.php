@@ -4,6 +4,14 @@
     require_once "utilities/HeaderPagina.php";
     require_once "utilities/UserFunctions.php";
 
+    $login_redirect = $_GET["l"] ?? null;
+
+    if($login_redirect == "y") {
+        $_SESSION["next_page"] = "area_utente.php";
+        header("Location: login.php");
+        exit();
+    }
+
     logout();
 
 ?>
@@ -18,7 +26,7 @@
 
     <div id="content">
         <p><?php echo getTexts("logout")["logout_success"] ?></p>
-        <a href="login.php"><?php echo getTexts("logout")["login_link"] ?></a>
+        <a href="logout.php?l=y"><?php echo getTexts("logout")["login_link"] ?></a>
     </div>
 </body>
 </html>
