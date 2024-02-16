@@ -49,6 +49,9 @@ function getTexts($blocco) {
         case "prenota":
             require_once("localizzazioni/".$lang."/prenotatext.php");
             return GetPrenotaText();
+        case "modifica_prenotazione":
+            require_once("localizzazioni/".$lang."/modificaprenotazionetext.php");
+            return GetModificaPrenotazioneText();
         default:
             return null;
     }

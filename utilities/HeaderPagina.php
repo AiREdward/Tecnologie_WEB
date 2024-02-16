@@ -20,14 +20,15 @@ $header_template='<a href="#content" class="SRskip" title="'.$header_text["skip"
     </header>';
 
 $indirizzi_pagine=[];//nome->Indirizzo
-$indirizzi_pagine["home"]="index.php";
-$indirizzi_pagine["area_utente"]="area_utente.php";
-$indirizzi_pagine["login"]="login.php";
-$indirizzi_pagine["signup"]="signup.php";
-$indirizzi_pagine["logout"]="logout.php";
-$indirizzi_pagine["prenota"]="prenota.php";
-$indirizzi_pagine["404"]="404.php";
-$indirizzi_pagine["500"]="500.php";
+$indirizzi_pagine["home"] = "index.php";
+$indirizzi_pagine["area_utente"] = "area_utente.php";
+$indirizzi_pagine["login"] = "login.php";
+$indirizzi_pagine["signup"] = "signup.php";
+$indirizzi_pagine["logout"] = "logout.php";
+$indirizzi_pagine["prenota"] = "prenota.php";
+$indirizzi_pagine["modifica_prenotazione"] = "modifica_prenotazione.php";
+$indirizzi_pagine["404"] = "404.php";
+$indirizzi_pagine["500"] = "500.php";
 
 $navmenu=["home","area_utente"];
 
@@ -38,6 +39,7 @@ $padre_pagina["login"] = "area_utente";
 $padre_pagina["signup"] = "area_utente";
 $padre_pagina["logout"] = "area_utente";
 $padre_pagina["prenota"] = "home";
+$padre_pagina["modifica_prenotazione"] = "area_utente";
 $padre_pagina["404"] = "#";
 $padre_pagina["500"] = "#";
 
