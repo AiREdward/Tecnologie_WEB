@@ -60,7 +60,7 @@ create table RoomTranslated (
 
 ```sql
 create table Prenota (
-    ID integer AUTO_INCREMENT primary key,
+    ID integer primary key AUTO_INCREMENT,
     Data_Prenotazione date not null,
     Ora_Prenotazione time not null,
     Username varchar(32) not null,
@@ -74,7 +74,7 @@ Il calcolo degli slot prenotabili avviene andando a controllare le prenotazioni 
 
 ```sql
 create table Orari_Apertura (
-    ID integer AUTO_INCREMENT primary key,
+    ID integer primary key AUTO_INCREMENT,
     Giorno int not null,
     Ora_Apertura time not null,
     Ora_Chiusura time not null,
@@ -88,7 +88,7 @@ create table Orari_Apertura (
 
 ```sql
 create table Recensione (
-    ID integer AUTO_INCREMENT primary key,
+    ID integer primary key AUTO_INCREMENT,
     Testo varchar(1024) not null,
     Voto decimal(1,1) not null,
     Username varchar(32) not null,

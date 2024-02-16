@@ -276,4 +276,65 @@ class Connection{
         $preparedQuery->close();
         return $out;
     }
+
+    public function getNextBookingsByUser($user) {
+        $conn = $this->conn;
+
+        $query = 'SELECT Data_Prenotazione, Ora_Prenotazione, ID_Room FROM Prenota WHERE Username=? AND (Data_Prenotazione>? OR (Data_Prenotazione=? AND Ora_Prenotazione>=?)) ORDER BY Data_Prenotazione, Ora_Prenotazione';
+
+        $current_time = date('H:i:s');
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $user);
+        $preparedQuery->bindValue(2, date('Y-m-d'));
+        $preparedQuery->bindValue(3, date('Y-m-d'));
+        $preparedQuery->bindValue(4, date('H:i:s', strtotime($current_time) + 3600));
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function getPastBookingsByUser($user) {
+        $conn = $this->conn;
+
+        $query = 'SELECT Data_Prenotazione, Ora_Prenotazione, ID_Room FROM Prenota WHERE Username=? AND (Data_Prenotazione<? OR (Data_Prenotazione=? AND Ora_Prenotazione<?)) ORDER BY Data_Prenotazione, Ora_Prenotazione';
+
+        $current_time = date('H:i:s');
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $user);
+        $preparedQuery->bindValue(2, date('Y-m-d'));
+        $preparedQuery->bindValue(3, date('Y-m-d'));
+        $preparedQuery->bindValue(4, date('H:i:s', strtotime($current_time) + 3600));
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function getBookingId($date, $time, $user, $room_id) {
+        $conn = $this->conn;
+
+        $query = 'SELECT ID FROM Prenota WHERE Data_Prenotazione=? AND Ora_Prenotazione=? AND Username=? AND ID_Room=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $date);
+        $preparedQuery->bindValue(2, $time);
+        $preparedQuery->bindValue(3, $user);
+        $preparedQuery->bindValue(4, $room_id);
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchColumn();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
 }

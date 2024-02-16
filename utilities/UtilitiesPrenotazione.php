@@ -1,8 +1,9 @@
-<?php 
-require_once "utilities/DBConnectionTest.php";
-require_once "utilities/UserUtilities.php";
+<?php
 
-function SlotDisponibili($stanza,$giorno){
+require_once "utilities/DBConnectionTest.php";
+use Test\Connection;
+
+function SlotDisponibili($stanza,$giorno): string {
     $connessione1 = new Connection();
     $connOK = $connessione1->apriConnessione();
     if(!$connOK) {
@@ -29,7 +30,7 @@ function RegistraPrenotazione($user,$stanza,$giorno,$slot){
     if(!$connOK) {
         return "errore_connessione";
     }
-    if(!in_array($slot,SlotDisponibili($stanza,$giorno) )){
+    if(!in_array($slot, SlotDisponibili($stanza,$giorno) )){
         return "slot_non_disponibile";
     }
     if(!$connessione1->InserisciPrenotazione($user,$stanza,$giorno,$slot)){
@@ -71,4 +72,34 @@ function GetPrenotazioni(&$out){
     $out=$connessione1->GetTuttePrenotazioni($loggeduser);
     $connessione1->closeDBConnection();
     return "";
+}
+
+function getNextBookingsByUser($user) {
+    $conn = new Connection();
+
+    if(!$conn->connect()) {
+        return null;
+    }
+
+    return $conn->getNextBookingsByUser($user);
+}
+
+function getPastBookingsByUser($user) {
+    $conn = new Connection();
+
+    if(!$conn->connect()) {
+        return null;
+    }
+
+    return $conn->getPastBookingsByUser($user);
+}
+
+function getBookingId($date, $time, $user, $room_id){
+    $conn = new Connection();
+
+    if(!$conn->connect()) {
+        return null;
+    }
+
+    return $conn->getBookingId($date, $time, $user, $room_id);
 }

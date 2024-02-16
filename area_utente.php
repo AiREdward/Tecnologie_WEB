@@ -1,9 +1,9 @@
 <?php
+    require_once "utilities/HeadPagina.php";
+    require_once "utilities/HeaderPagina.php";
     require_once "utilities/UserFunctions.php";
     require_once "utilities/InputCleaner.php";
-    require_once "utilities/HeadPagina.php";
-	require_once "utilities/HeaderPagina.php";
-    require_once "utilities/HeaderPagina.php";
+    require_once "utilities/UtilitiesPrenotazione.php";
 
     global $patternUser, $patternPassword;
 
@@ -24,6 +24,9 @@
 
     $errors = null;
 
+    $next_bookings = getNextBookingsByUser($user);
+    $past_bookings = getPastBookingsByUser($user);
+
     $area_utente_text = getTexts("area_utente");
 ?>
 <!DOCTYPE html>
@@ -34,16 +37,9 @@
 <body>
     <?php echo genera_header("area_utente"); ?>
 
-    <!-- TODO: mostra le prenotazioni dell'utente -->
-
     <div id="content">
         <p><?php echo $area_utente_text["in_as"] . getLoggedUser()?></p>
-        <a href="logout.php"><?php echo $area_utente_text["logout"]?></a>
-        <?php
-            $prenotazioni = '';
-            // if(GetPrenotazioniUtente(&$prenotazioni)=""){}
-        ?>
-        <h2><?php echo $area_utente_text["riepilogo_prenotazioni"]?></h2>
+        <h2><?php // echo $area_utente_text["riepilogo_prenotazioni"]?>Prossime Prenotazioni</h2>
         <ul class="prenotazioni_utente">
             <?php 
                 /*
@@ -55,13 +51,44 @@
                     echo "</li>";
                 }
                 */
+
+                if ($next_bookings == null) {
+                    echo "Non hai prenotazioni future.";
+                } else {
+                    foreach ($next_bookings as $booking) {
+                        echo "<li class='singola_prenotazione'>" . $booking["Data_Prenotazione"] . "  " . $booking["Ora_Prenotazione"] . " [Room: " . $booking["ID_Room"] . "] ";
+                        echo "<a class='link_modifica' href='modifica_prenotazione.php?id=" . getBookingId($booking["Data_Prenotazione"], $booking["Ora_Prenotazione"], $user, $booking["ID_Room"]) . "' >" . $area_utente_text["modifica_prenotazione"] . "</a>";
+                        echo "</li>";
+                    }
+                }
             ?>
-        <ul>
+        </ul>
+        <h2><?php // echo $area_utente_text["riepilogo_prenotazioni"]?>Prenotazioni Passate</h2>
+        <ul class="prenotazioni_utente">
+            <?php
+                if($past_bookings == null) {
+                    echo "Non hai prenotazioni passate.";
+                } else {
+                    foreach ($past_bookings as $booking) {
+                        echo "<li class='singola_prenotazione'>" . $booking["Data_Prenotazione"] . "  " . $booking["Ora_Prenotazione"] . " [Room: " . $booking["ID_Room"] . "]" . "</li>";
+                    }
+                }
+            ?>
+        </ul>
+        <a href="logout.php"><?php echo $area_utente_text["logout"]?></a>
     </div>
 
+
     <!-- TODO: aggiungi la possibilità di modificare/cancellare le prenotazioni -->
+    <!--
+    È già presente un tasto per la modifica, quindi le opzioni sono due:
+        1. Creare una pagina dove viene modificata la prenotazione
+        2. Creare un form della modifica temporaneo in questa pagina
+     -->
 
     <!-- TODO: Aggiungere la possibilità di creare recensioni -->
+    <!-- Se sono presenti past bookings e non ci sono già recensioni per quella pagina si ha la possibilità di creare una recensione -->
+    <!-- Stesso problema del to do precedente -->
 
 </body>
 </html>
