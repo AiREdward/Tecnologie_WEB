@@ -20,7 +20,8 @@ Aggiunta di gestione stanze (e prenotazioni?).
 ### Database
 
 Per la parte del database è necessario modificare il file *DBConnection.php* siccome attualmente gli altri file usano il file di test *DBConnectionTest.php* con connessione a un database sqlite. <br>
-<!-- TODO: this -->
+Per fare questo basta ricreare le funzioni del file di test in quello definitivo con le istruzioni per MariaDB. <br>
+Va anche rimosso il namespace: `use Test\Connection;`
 
 ### Codice HTML
 

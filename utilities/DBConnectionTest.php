@@ -343,4 +343,28 @@ class Connection{
 
         $query = 'SELECT Data_Prenotazione, Ora_Prenotazione, Username, ID_Room FROM Prenota WHERE ID=?';
 
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $booking_id);
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res[0];
+    }
+
+    public function deleteBooking($booking_id) {
+        $conn = $this->conn;
+
+        $query = 'DELETE FROM Prenota WHERE ID=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $booking_id);
+        $res = $preparedQuery->execute();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
 }
