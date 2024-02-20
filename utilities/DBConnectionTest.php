@@ -337,4 +337,10 @@ class Connection{
 
         return $res;
     }
+
+    public function getBookingInfo($booking_id) {
+        $conn = $this->conn;
+
+        $query = 'SELECT Data_Prenotazione, Ora_Prenotazione, Username, ID_Room FROM Prenota WHERE ID=?';
+
 }

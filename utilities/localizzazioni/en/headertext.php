@@ -10,6 +10,7 @@ function GetHeaderText() : array {
     $header["area_utente"] = "User Area";
     $header["signup"] = "Register Account";
     $header["prenota"] = "Booking";
+    $header["modifica_prenotazione"] = "Modify Booking";
     $header["lang_switch"] = "Go to the italian version";
 
     return $header;

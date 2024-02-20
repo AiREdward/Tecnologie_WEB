@@ -103,3 +103,23 @@ function getBookingId($date, $time, $user, $room_id){
 
     return $conn->getBookingId($date, $time, $user, $room_id);
 }
+
+function getBookingInfo($booking_id) {
+    $conn = new Connection();
+
+    if(!$conn->connect()) {
+        return null;
+    }
+
+    return $conn->getBookingInfo($booking_id);
+}
+
+function deleteBooking($booking_id) {
+    $conn = new Connection();
+
+    if(!$conn->connect()) {
+        return null;
+    }
+
+    return $conn->deleteBooking($booking_id);
+}
