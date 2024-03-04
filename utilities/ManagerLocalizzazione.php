@@ -23,35 +23,35 @@ function getTexts($blocco) {
 
     switch($blocco) {
         case "header":
-            require_once("localizzazioni/".$lang."/headertext.php");
-            return GetHeaderText();
+            require_once("localizzazioni/headertext.php");
+            return getHeaderText($lang);
         case "login":
-            require_once("localizzazioni/".$lang."/logintext.php");
-            return GetLoginText();
+            require_once("localizzazioni/logintext.php");
+            return getLoginText($lang);
         case "home":
-            require_once("localizzazioni/".$lang."/hometext.php");
-            return GetHomeText();
+            require_once("localizzazioni/hometext.php");
+            return getHomeText($lang);
         case "rooms":
-            require_once("localizzazioni/".$lang."/roomstext.php");
-            return GetroomsText();
+            require_once("localizzazioni/roomstext.php");
+            return getRoomsText($lang);
         case "errors":
-            require_once("localizzazioni/".$lang."/errorstext.php");
-            return GetErrorsText();
+            require_once("localizzazioni/errorstext.php");
+            return getErrorsText($lang);
         case "signup":
-            require_once("localizzazioni/".$lang."/signuptext.php");
-            return GetSignupText();
+            require_once("localizzazioni/signuptext.php");
+            return getSignupText($lang);
         case "area_utente":
-            require_once("localizzazioni/".$lang."/areautentetext.php");
-            return GetAreaUtenteText();
+            require_once("localizzazioni/areautentetext.php");
+            return getAreaUtenteText($lang);
         case "logout":
-            require_once("localizzazioni/".$lang."/logouttext.php");
-            return GetLogoutText();
+            require_once("localizzazioni/logouttext.php");
+            return getLogoutText($lang);
         case "prenota":
-            require_once("localizzazioni/".$lang."/prenotatext.php");
-            return GetPrenotaText();
+            require_once("localizzazioni/prenotatext.php");
+            return getPrenotaText($lang);
         case "modifica_prenotazione":
-            require_once("localizzazioni/".$lang."/modificaprenotazionetext.php");
-            return GetModificaPrenotazioneText();
+            require_once("localizzazioni/modificaprenotazionetext.php");
+            return getModificaPrenotazioneText($lang);
         default:
             return null;
     }
