@@ -354,6 +354,22 @@ class Connection{
         return $res[0];
     }
 
+    public function editBooking($booking_id, $date, $time) {
+        $conn = $this->conn;
+
+        $query = 'UPDATE Prenota SET Data_Prenotazione=?, Ora_Prenotazione=? WHERE ID=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $date);
+        $preparedQuery->bindValue(2, $time);
+        $preparedQuery->bindValue(3, $booking_id);
+        $res = $preparedQuery->execute();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
     public function deleteBooking($booking_id) {
         $conn = $this->conn;
 
@@ -361,6 +377,23 @@ class Connection{
 
         $preparedQuery = $conn->prepare($query);
         $preparedQuery->bindValue(1, $booking_id);
+        $res = $preparedQuery->execute();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function deleteBookingWithInfo($date, $time_slot, $room_id, $username) {
+        $conn = $this->conn;
+
+        $query = 'DELETE FROM Prenota WHERE Data_Prenotazione=? AND Ora_Prenotazione=? AND ID_Room=? AND Username=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $date);
+        $preparedQuery->bindValue(2, $time_slot);
+        $preparedQuery->bindValue(3, $room_id);
+        $preparedQuery->bindValue(4, $username);
         $res = $preparedQuery->execute();
 
         $preparedQuery->closeCursor();

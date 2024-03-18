@@ -66,7 +66,7 @@ function get_menu($pagina): string {
     return $menu . '</ul>';
 }
 
-function get_breadcrumb($pagina) : string {
+function get_breadcrumb($pagina): string {
     global $header_text, $indirizzi_pagine, $padre_pagina;
 
     $breadcrumb = "<span id=current_page> " . $header_text[$pagina] . " </span> ";

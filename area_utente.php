@@ -78,14 +78,6 @@
         <a href="logout.php"><?php echo $area_utente_text["logout"]?></a>
     </div>
 
-
-    <!-- TODO: aggiungi la possibilità di modificare/cancellare le prenotazioni -->
-    <!--
-    È già presente un tasto per la modifica, quindi le opzioni sono due:
-        1. Creare una pagina dove viene modificata la prenotazione
-        2. Creare un form della modifica temporaneo in questa pagina
-     -->
-
     <!-- TODO: Aggiungere la possibilità di creare recensioni -->
     <!-- Se sono presenti past bookings e non ci sono già recensioni per quella pagina si ha la possibilità di creare una recensione -->
     <!-- Stesso problema del to do precedente -->

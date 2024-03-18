@@ -1,7 +1,6 @@
 <?php
 
 require_once "DBConnectionTest.php";
-
 use Test\Connection;
 
 function getRoomInfo() {
@@ -40,6 +39,21 @@ function getPossibleSlots($id_room, $date): ?array {
     $booked_slots = $conn->getBookedSlots($date, $id_room);
     $possible_slots = [];
 
+    // Rimozione degli slot già passati piu un'ora
+    if (date('Y-m-d') == $date) {
+        $current_time = date('H:i:s');
+        $current_time = strtotime($current_time);
+        $current_time = gmdate("H:i:s", $current_time);
+        $current_time = strtotime($current_time);
+        $current_time = strtotime($current_time) + 60 * 60;
+        $current_time = gmdate("H:i:s", $current_time);
+        $current_time = strtotime($current_time);
+
+        $all_possible_slots = array_filter($all_possible_slots, function($slot) use ($current_time) {
+            return strtotime($slot) > $current_time;
+        });
+    }
+
     foreach ($all_possible_slots as $slot) {
         $is_booked = false;
 
@@ -58,9 +72,6 @@ function getPossibleSlots($id_room, $date): ?array {
 }
 
 function createPossibleSlots($hours, $duration_in_minutes): array {
-    $opening_hour = date("H:i", strtotime($hours["Ora_Apertura"]));
-    $closing_hour = date("H:i", strtotime($hours["Ora_Chiusura"]));
-
     $opening_hour_from_epoch = strtotime($hours["Ora_Apertura"]);
     $closing_hour_from_epoch = strtotime($hours["Ora_Chiusura"]);
 

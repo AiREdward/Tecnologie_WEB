@@ -1,6 +1,6 @@
 <?php
 
-require_once "utilities/DBConnectionTest.php";
+require_once "DBConnectionTest.php";
 use Test\Connection;
 
 function SlotDisponibili($stanza,$giorno): string {
@@ -114,6 +114,14 @@ function getBookingInfo($booking_id) {
     return $conn->getBookingInfo($booking_id);
 }
 
+function editBooking($date, $time_slot, $booking_id): void {
+    $conn = new Connection();
+
+    $conn->editBooking($booking_id, $date, $time_slot);
+
+    $conn->closeConnection();
+}
+
 function deleteBooking($booking_id) {
     $conn = new Connection();
 
@@ -122,4 +130,12 @@ function deleteBooking($booking_id) {
     }
 
     return $conn->deleteBooking($booking_id);
+}
+
+function deleteBookingWithInfo($date, $time_slot, $room_id, $username): void {
+    $conn = new Connection();
+
+    $conn->deleteBooking($conn->getBookingId($date, $time_slot, $username, $room_id));
+
+    $conn->closeConnection();
 }

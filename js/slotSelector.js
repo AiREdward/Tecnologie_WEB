@@ -23,8 +23,6 @@ function getXMLHttp() {
 }
 
 day_selector.addEventListener('change', function() {
-    console.log(room_id);
-
     let day = day_selector.value;
     let url = 'utilities/getSlots.php?day=' + day + '&id_room=' + room_id;
     let xmlHttp = getXMLHttp();
