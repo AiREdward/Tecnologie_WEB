@@ -32,27 +32,12 @@ class Connection{
         $this->conn = null;
     }
 
-    public function executeQuery($query) {
-        $connection = $this->conn;
-
-        $preparedQuery = $connection->prepare($query);
-        $preparedQuery->execute();
-
-        $preparedQuery->closeCursor();
-
-        $res = $preparedQuery->fetchAll();
-
-        $preparedQuery->closeCursor();
-
-        return $res;
-    }
-
     public function checkIfUserExists($username) : ?string {
-        $connection = $this->conn;
+        $conn = $this->conn;
 
         $query = 'SELECT Username FROM Utente where Username=? OR Email=?';
 
-        $preparedQuery = $connection->prepare($query);
+        $preparedQuery = $conn->prepare($query);
         $preparedQuery->bindValue(1, $username);
         $preparedQuery->bindValue(2, $username);
         $preparedQuery->execute();
@@ -67,11 +52,11 @@ class Connection{
     }
 
     public function checkLogin($username, $password) : bool {
-        $connection = $this->conn;
+        $conn = $this->conn;
 
         $query = 'SELECT Password FROM Utente WHERE Username=?';
 
-        $preparedQuery = $connection->prepare($query);
+        $preparedQuery = $conn->prepare($query);
         $preparedQuery->bindValue(1, $username);
         $preparedQuery->execute();
 
@@ -84,11 +69,11 @@ class Connection{
     }
 
     public function registerNewUser($username, $email, $password, $nome, $cognome, $telefono, $nascita) {
-        $connection = $this->conn;
+        $conn = $this->conn;
 
         $query = 'INSERT INTO Utente (Username, Email, Password, Nome, Cognome, Telefono, Data_di_Nascita, Admin) VALUES(?,?,?,?,?,?,?,?)';
 
-        $preparedQuery = $connection->prepare($query);
+        $preparedQuery = $conn->prepare($query);
 
         $preparedQuery->bindValue(1, $username);
         $preparedQuery->bindValue(2, $email);
@@ -107,11 +92,11 @@ class Connection{
     }
 
     public function isUserAdmin($username) : bool {
-        $connection = $this->conn;
+        $conn = $this->conn;
 
         $query = 'SELECT Admin FROM Utente WHERE Username=?';
 
-        $preparedQuery = $connection->prepare($query);
+        $preparedQuery = $conn->prepare($query);
         $preparedQuery->bindValue(1, $username);
         $preparedQuery->execute();
 
@@ -394,6 +379,60 @@ class Connection{
         $preparedQuery->bindValue(2, $time_slot);
         $preparedQuery->bindValue(3, $room_id);
         $preparedQuery->bindValue(4, $username);
+        $res = $preparedQuery->execute();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function getPossibleRoomsForReview($username) {
+        $conn = $this->conn;
+
+        $query = 'SELECT ID_Room FROM Prenota WHERE Username=? AND (Data_Prenotazione<? OR (Data_Prenotazione=? AND Ora_Prenotazione<?))';
+
+        $current_time = date('H:i:s');
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $username);
+        $preparedQuery->bindValue(2, date('Y-m-d'));
+        $preparedQuery->bindValue(3, date('Y-m-d'));
+        $preparedQuery->bindValue(4, date('H:i:s', strtotime($current_time) + 3600));
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function getUserReviews($username): array {
+        $conn = $this->conn;
+
+        $query = 'SELECT ID_Room, Voto, Testo FROM Recensione WHERE Username=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $username);
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function createReview($username, $room_id, $review, $rating) {
+        $conn = $this->conn;
+
+        $query = 'INSERT INTO Recensione (Username, ID_Room, Voto, Testo) VALUES (?,?,?,?)';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $username);
+        $preparedQuery->bindValue(2, $room_id);
+        $preparedQuery->bindValue(3, $rating);
+        $preparedQuery->bindValue(4, $review);
         $res = $preparedQuery->execute();
 
         $preparedQuery->closeCursor();

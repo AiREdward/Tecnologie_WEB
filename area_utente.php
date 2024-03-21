@@ -75,12 +75,27 @@
                 }
             ?>
         </ul>
+
+        <h2><?php // echo $area_utente_text["recensioni"] ?>Scrivi una recensione</h2>
+        <ul class="">
+            <?php
+                $rooms_for_review = getRoomsForNewReview($user);
+
+                $area_utente_text["crea_recensione"] = "Crea recensione";
+
+                if($rooms_for_review == null) {
+                    echo "Non hai stanze da recensire.";
+                } else {
+                    foreach ($rooms_for_review as $re) {
+                        echo "<li>";
+                        echo "<a class='link_modifica' href='crea_recensione.php?room_id=" . $re . "' >" . $area_utente_text["crea_recensione"] . " per Room " . $re . "</a>";
+                        echo "</li>";
+                    }
+                }
+            ?>
+        </ul>
+
         <a href="logout.php"><?php echo $area_utente_text["logout"]?></a>
     </div>
-
-    <!-- TODO: Aggiungere la possibilità di creare recensioni -->
-    <!-- Se sono presenti past bookings e non ci sono già recensioni per quella pagina si ha la possibilità di creare una recensione -->
-    <!-- Stesso problema del to do precedente -->
-
 </body>
 </html>

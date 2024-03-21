@@ -18,7 +18,7 @@ function initial_setup() : void {
     }
 }
 
-function getTexts($blocco) {
+function getTexts($blocco): ?array {
     $lang = $_SESSION["lang"];
 
     switch($blocco) {
@@ -52,6 +52,9 @@ function getTexts($blocco) {
         case "modifica_prenotazione":
             require_once("localizzazioni/modificaprenotazionetext.php");
             return getModificaPrenotazioneText($lang);
+        case "crea_recensione":
+            require_once("localizzazioni/crea_recensione_text.php");
+            return getCreaRecensioneText($lang);
         default:
             return null;
     }

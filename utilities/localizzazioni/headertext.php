@@ -12,6 +12,7 @@ function getHeaderText($lang): array {
             "signup" => "Registra Account",
             "prenota" => "Prenota",
             "modifica_prenotazione" => "Modifica Prenotazione",
+            "crea_recensione" => "Crea Recensione",
             "lang_switch" => "Vai alla versione inglese"
         ],
         "en" => [
@@ -25,6 +26,7 @@ function getHeaderText($lang): array {
             "signup" => "Sign Up",
             "prenota" => "Book",
             "modifica_prenotazione" => "Edit Booking",
+            "crea_recensione" => "Create Review",
             "lang_switch" => "Go to Italian version"
         ],
         default => [],
