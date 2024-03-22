@@ -55,6 +55,9 @@ function getTexts($blocco): ?array {
         case "crea_recensione":
             require_once("localizzazioni/crea_recensione_text.php");
             return getCreaRecensioneText($lang);
+        case "modifica_recensione":
+            require_once("localizzazioni/modifica_recensione_text.php");
+            return getModificaRecensioneText($lang);
         default:
             return null;
     }

@@ -410,7 +410,7 @@ class Connection{
     public function getUserReviews($username): array {
         $conn = $this->conn;
 
-        $query = 'SELECT ID_Room, Voto, Testo FROM Recensione WHERE Username=?';
+        $query = 'SELECT ID, ID_Room, Voto, Testo FROM Recensione WHERE Username=?';
 
         $preparedQuery = $conn->prepare($query);
         $preparedQuery->bindValue(1, $username);
@@ -433,6 +433,52 @@ class Connection{
         $preparedQuery->bindValue(2, $room_id);
         $preparedQuery->bindValue(3, $rating);
         $preparedQuery->bindValue(4, $review);
+        $res = $preparedQuery->execute();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function getReviewById($id) {
+        $conn = $this->conn;
+
+        $query = 'SELECT Username, ID_Room, Voto, Testo FROM Recensione WHERE ID=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $id);
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res[0];
+    }
+
+    public function editReview($id, $text, $rating) {
+        $conn = $this->conn;
+
+        $query = 'UPDATE Recensione SET Voto=?, Testo=? WHERE ID=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $rating);
+        $preparedQuery->bindValue(2, $text);
+        $preparedQuery->bindValue(3, $id);
+        $res = $preparedQuery->execute();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
+
+    public function deleteReview($id) {
+        $conn = $this->conn;
+
+        $query = 'DELETE FROM Recensione WHERE ID=?';
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $id);
         $res = $preparedQuery->execute();
 
         $preparedQuery->closeCursor();

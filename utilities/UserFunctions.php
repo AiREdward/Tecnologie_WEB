@@ -1,6 +1,5 @@
 <?php 
-require_once "utilities/DBConnectionTest.php";
-
+require_once "DBConnectionTest.php";
 use Test\Connection;
 
 function getLoggedUser() {
@@ -81,9 +80,8 @@ function getPossibleRoomsForReview($username): array {
     return $rooms_reduced;
 }
 
-function getUserReviews($username) {
+function getUserReviews($username): array {
     $conn = new Connection();
-    if(!$conn->connect()) return "errore_connessione";
 
     $reviews = $conn->getUserReviews($username);
     $conn->closeConnection();

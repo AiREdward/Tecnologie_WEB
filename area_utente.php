@@ -76,7 +76,7 @@
             ?>
         </ul>
 
-        <h2><?php // echo $area_utente_text["recensioni"] ?>Scrivi una recensione</h2>
+        <h2><?php // echo $area_utente_text["recensioni"] ?>Scrivi una recensione:</h2>
         <ul class="">
             <?php
                 $rooms_for_review = getRoomsForNewReview($user);
@@ -89,6 +89,25 @@
                     foreach ($rooms_for_review as $re) {
                         echo "<li>";
                         echo "<a class='link_modifica' href='crea_recensione.php?room_id=" . $re . "' >" . $area_utente_text["crea_recensione"] . " per Room " . $re . "</a>";
+                        echo "</li>";
+                    }
+                }
+            ?>
+        </ul>
+
+        <h2><?php // echo $area_utente_text["visualizza_recensioni"] ?>Recensioni scritte:</h2>
+        <ul class="">
+            <?php
+                $reviews = getUserReviews($user);
+
+                if($reviews == null) {
+                    echo "Non hai recensioni scritte.";
+                } else {
+                    foreach ($reviews as $re) {
+                        echo "<li>";
+                        echo "Room " . $re["ID_Room"] . " - Valutazione: " . $re["Voto"] . " - Testo: " . $re["Testo"];
+                        echo "<br>";
+                        echo " <a class='link_modifica' href='modifica_recensione.php?review_id=" . $re["ID"] . "' >" . $area_utente_text["modifica_recensione"] . "</a> ";
                         echo "</li>";
                     }
                 }
