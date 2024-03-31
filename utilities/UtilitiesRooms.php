@@ -1,7 +1,5 @@
 <?php
-
-require_once "DBConnectionTest.php";
-use Test\Connection;
+require_once "DBConnection.php";
 
 function getRoomInfo() {
     $conn = new Connection();

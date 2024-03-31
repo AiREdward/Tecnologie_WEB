@@ -1,6 +1,5 @@
-<?php 
-require_once "DBConnectionTest.php";
-use Test\Connection;
+<?php
+require_once "DBConnection.php";
 
 function getLoggedUser() {
     return $_SESSION["user"] ?? null;
