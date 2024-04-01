@@ -69,8 +69,7 @@ class Connection
         return $exist[0]["Username"];
     }
 
-    public function checkLogin($username, $password): bool
-    {
+    public function checkLogin($username, $password): bool {
         $conn = $this->conn;
 
         $query = 'SELECT Password FROM Utente WHERE Username=?';
@@ -87,8 +86,7 @@ class Connection
         else return false;
     }
 
-    public function registerNewUser($username, $email, $password, $nome, $cognome, $telefono, $nascita)
-    {
+    public function registerNewUser($username, $email, $password, $name, $surname, $phone_number, $birth_date) {
         $conn = $this->conn;
 
         $query = 'INSERT INTO Utente (Username, Email, Password, Nome, Cognome, Telefono, Data_di_Nascita, Admin) VALUES(?,?,?,?,?,?,?,?)';
@@ -98,10 +96,10 @@ class Connection
         $preparedQuery->bindValue(1, $username);
         $preparedQuery->bindValue(2, $email);
         $preparedQuery->bindValue(3, $password);
-        $preparedQuery->bindValue(4, $nome);
-        $preparedQuery->bindValue(5, $cognome);
-        $preparedQuery->bindValue(6, $telefono);
-        $preparedQuery->bindValue(7, $nascita);
+        $preparedQuery->bindValue(4, $name);
+        $preparedQuery->bindValue(5, $surname);
+        $preparedQuery->bindValue(6, $phone_number);
+        $preparedQuery->bindValue(7, $birth_date);
         $preparedQuery->bindValue(8, 0);
 
         $res = $preparedQuery->execute();
@@ -111,8 +109,7 @@ class Connection
         return $res;
     }
 
-    public function isUserAdmin($username): bool
-    {
+    public function isUserAdmin($username): bool {
         $conn = $this->conn;
 
         $query = 'SELECT Admin FROM Utente WHERE Username=?';
@@ -129,8 +126,7 @@ class Connection
         else return false;
     }
 
-    public function getRooms()
-    {
+    public function getRooms() {
         $conn = $this->conn;
 
         $query = 'SELECT * FROM Room';
@@ -145,8 +141,7 @@ class Connection
         return $res;
     }
 
-    public function getRoomsEnglish()
-    {
+    public function getRoomsEnglish() {
         $conn = $this->conn;
 
         $query = 'SELECT * FROM RoomTranslated';
@@ -161,8 +156,7 @@ class Connection
         return $res;
     }
 
-    public function createBooking($date, $time, $username, $id_room)
-    {
+    public function createBooking($date, $time, $username, $id_room) {
         $conn = $this->conn;
 
         $query = 'INSERT INTO Prenota (Data_Prenotazione, Ora_Prenotazione, Username, ID_Room) VALUES (?,?,?,?)';
@@ -179,36 +173,7 @@ class Connection
         return $res;
     }
 
-    public function CheckSlotDisponibili($data_,$id_room){
-        $connection=$this->conn;
-        $query='SELECT orario FROM SlotPrenotabili WHERE orario NOT IN(select orario From Prenota where data_=? AND id_room=? )';
-        $preparedQuery = $connection->prepare($query);
-    public function getSlotDisponibili($date, $id_room)
-    {
-        $conn = $this->conn;
-
-        $query = 'SELECT orario FROM SlotPrenotabili WHERE orario NOT IN(select orario From Prenota where data_=? AND id_room=? )';
-
-        $preparedQuery = $conn->prepare($query);
-        $preparedQuery->bind_param(
-            'ss',
-            $date,
-            $id_room
-        );
-        $preparedQuery->execute();
-        $res = $preparedQuery->get_result();
-        $out = [];
-        $i = 0;
-        while ($row = $res->fetch_assoc()) {
-            $out[$i] = $row["orario"];
-            $i++;
-        }
-        $preparedQuery->close();
-        return $out;
-    }
-
-    public function getRoomDuration($id_room)
-    {
+    public function getRoomDuration($id_room) {
         $conn = $this->conn;
 
         $query = 'SELECT Durata FROM Room WHERE ID=?';
@@ -224,8 +189,7 @@ class Connection
         return $res;
     }
 
-    public function getRoomHours($id_room, $week_day)
-    {
+    public function getRoomHours($id_room, $week_day) {
         $conn = $this->conn;
 
         $query = 'SELECT Ora_Apertura, Ora_Chiusura FROM Orari_Apertura WHERE ID_Room=? AND Giorno=?';
@@ -242,8 +206,7 @@ class Connection
         return $res[0];
     }
 
-    public function getBookedSlots($date, $id_room)
-    {
+    public function getBookedSlots($date, $id_room) {
         $conn = $this->conn;
 
         $query = 'SELECT Ora_Prenotazione FROM Prenota WHERE Data_Prenotazione=? AND ID_Room=?';
@@ -260,54 +223,7 @@ class Connection
         return $res;
     }
 
-    /*
-    public function GetTuttePrenotazioni(){
-        $connection=$this->conn;
-        $query='SELECT data id_prenotazione data_ orario username id_room FROM Prenota';
-        $preparedQuery = $connection->prepare($query);
-        $preparedQuery->execute();
-        $res=$preparedQuery->get_result();
-        $out=[];
-        $i=0;
-        while($row = $res->fetch_assoc()){
-            $out[$i]=$row;
-            $i++;
-        }
-        $preparedQuery->close();
-        return $out;
-    }
-    public function GetPrenotazioniUtente($username){
-        $connection=$this->conn;
-        $query='SELECT data id_prenotazione data_ orario id_room FROM Prenota where username=?';
-        $preparedQuery = $connection->prepare($query);
-        $preparedQuery->bind_param(
-            's',
-            $username
-        );
-    */
-
-    public function getPrenotazioniUtente($username)
-    {
-        $conn = $this->conn;
-
-        $query = 'SELECT ID, Data_Prenotazione, Ora_Prenotazione, ID_Room FROM Prenota where Username=?';
-
-        $preparedQuery = $conn->prepare($query);
-        $preparedQuery->bind_param(1, $username);
-        $preparedQuery->execute();
-        $res = $preparedQuery->get_result();
-        $out = [];
-        $i = 0;
-        while ($row = $res->fetch_assoc()) {
-            $out[$i] = $row;
-            $i++;
-        }
-        $preparedQuery->close();
-        return $out;
-    }
-
-    public function getNextBookingsByUser($user)
-    {
+    public function getNextBookingsByUser($user) {
         $conn = $this->conn;
 
         $query = 'SELECT Data_Prenotazione, Ora_Prenotazione, ID_Room FROM Prenota WHERE Username=? AND (Data_Prenotazione>? OR (Data_Prenotazione=? AND Ora_Prenotazione>=?)) ORDER BY Data_Prenotazione, Ora_Prenotazione';
@@ -328,8 +244,7 @@ class Connection
         return $res;
     }
 
-    public function getPastBookingsByUser($user)
-    {
+    public function getPastBookingsByUser($user) {
         $conn = $this->conn;
 
         $query = 'SELECT Data_Prenotazione, Ora_Prenotazione, ID_Room FROM Prenota WHERE Username=? AND (Data_Prenotazione<? OR (Data_Prenotazione=? AND Ora_Prenotazione<?)) ORDER BY Data_Prenotazione, Ora_Prenotazione';
@@ -350,8 +265,7 @@ class Connection
         return $res;
     }
 
-    public function getBookingId($date, $time, $user, $room_id)
-    {
+    public function getBookingId($date, $time, $user, $room_id) {
         $conn = $this->conn;
 
         $query = 'SELECT ID FROM Prenota WHERE Data_Prenotazione=? AND Ora_Prenotazione=? AND Username=? AND ID_Room=?';
@@ -370,8 +284,7 @@ class Connection
         return $res;
     }
 
-    public function getBookingInfo($booking_id)
-    {
+    public function getBookingInfo($booking_id) {
         $conn = $this->conn;
 
         $query = 'SELECT Data_Prenotazione, Ora_Prenotazione, Username, ID_Room FROM Prenota WHERE ID=?';
@@ -387,8 +300,7 @@ class Connection
         return $res[0];
     }
 
-    public function editBooking($booking_id, $date, $time)
-    {
+    public function editBooking($booking_id, $date, $time) {
         $conn = $this->conn;
 
         $query = 'UPDATE Prenota SET Data_Prenotazione=?, Ora_Prenotazione=? WHERE ID=?';
@@ -404,8 +316,7 @@ class Connection
         return $res;
     }
 
-    public function deleteBooking($booking_id)
-    {
+    public function deleteBooking($booking_id) {
         $conn = $this->conn;
 
         $query = 'DELETE FROM Prenota WHERE ID=?';
@@ -421,6 +332,7 @@ class Connection
 
     public function deleteBookingWithInfo($date, $time_slot, $room_id, $username)
     {
+    public function deleteBookingWithInfo($date, $time_slot, $room_id, $username) {
         $conn = $this->conn;
 
         $query = 'DELETE FROM Prenota WHERE Data_Prenotazione=? AND Ora_Prenotazione=? AND ID_Room=? AND Username=?';
@@ -437,8 +349,7 @@ class Connection
         return $res;
     }
 
-    public function getPossibleRoomsForReview($username)
-    {
+    public function getPossibleRoomsForReview($username) {
         $conn = $this->conn;
 
         $query = 'SELECT ID_Room FROM Prenota WHERE Username=? AND (Data_Prenotazione<? OR (Data_Prenotazione=? AND Ora_Prenotazione<?))';
@@ -459,8 +370,7 @@ class Connection
         return $res;
     }
 
-    public function getUserReviews($username): array
-    {
+    public function getUserReviews($username): array {
         $conn = $this->conn;
 
         $query = 'SELECT ID, ID_Room, Voto, Testo FROM Recensione WHERE Username=?';
@@ -476,8 +386,7 @@ class Connection
         return $res;
     }
 
-    public function createReview($username, $room_id, $review, $rating)
-    {
+    public function createReview($username, $room_id, $review, $rating) {
         $conn = $this->conn;
 
         $query = 'INSERT INTO Recensione (Username, ID_Room, Voto, Testo) VALUES (?,?,?,?)';
@@ -494,8 +403,7 @@ class Connection
         return $res;
     }
 
-    public function getReviewById($id)
-    {
+    public function getReviewById($id) {
         $conn = $this->conn;
 
         $query = 'SELECT Username, ID_Room, Voto, Testo FROM Recensione WHERE ID=?';
@@ -511,8 +419,7 @@ class Connection
         return $res[0];
     }
 
-    public function editReview($id, $text, $rating)
-    {
+    public function editReview($id, $text, $rating) {
         $conn = $this->conn;
 
         $query = 'UPDATE Recensione SET Voto=?, Testo=? WHERE ID=?';
@@ -528,8 +435,7 @@ class Connection
         return $res;
     }
 
-    public function deleteReview($id)
-    {
+    public function deleteReview($id) {
         $conn = $this->conn;
 
         $query = 'DELETE FROM Recensione WHERE ID=?';

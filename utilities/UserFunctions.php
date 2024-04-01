@@ -10,7 +10,6 @@ function logUser($email, $password): ?string {
 
     if(!$conn->connect()) return "errore_connessione";
 
-
     $username = $conn->checkIfUserExists($email);
 
     if(!$username){

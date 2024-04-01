@@ -10,9 +10,7 @@
         $_SESSION["next_page"] = "admin.php";
         header("Location: login.php");
         exit();
-    } else {
-        $_SESSION["next_page"] = null;
-    }
+    } else $_SESSION["next_page"] = null;
 
     if(!checkIfUserIsAdmin($user)){
         header("Location: area_utente.php");
@@ -26,7 +24,6 @@
     <?php echo get_head(); ?>
 </head>
 <body>
-    <?php echo genera_header("login"); ?>
     <?php echo genera_header("admin"); ?>
 
     <h2>Rooms:</h2>

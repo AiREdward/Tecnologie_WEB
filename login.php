@@ -13,11 +13,10 @@ if($user){
     if($_SESSION["next_page"] == "area_utente.php") {
         if(checkIfUserIsAdmin($user)) header("Location: admin.php");
         else header("Location: area_utente.php");
-        exit();
     } else {
         header("Location: " . $_SESSION["next_page"]);
-        exit();
     }
+    exit();
 }
 
 $errors = null;
@@ -36,11 +35,10 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
         if($_SESSION["next_page"] == "area_utente.php") {
             if(checkIfUserIsAdmin($user)) header("Location: admin.php");
             else header("Location: area_utente.php");
-            exit();
         } else {
             header("Location: " . $_SESSION["next_page"]);
-            exit();
         }
+        exit();
     }
 }
 

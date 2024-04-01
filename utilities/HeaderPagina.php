@@ -19,7 +19,8 @@ $header_template='<a href="#content" class="SRskip" title="'.$header_text["skip"
       	</div>
     </header>';
 
-$indirizzi_pagine=[];//nome->Indirizzo
+// Nome -> File
+$indirizzi_pagine=[];
 $indirizzi_pagine["home"] = "index.php";
 $indirizzi_pagine["area_utente"] = "area_utente.php";
 $indirizzi_pagine["admin"] = "admin.php";
@@ -33,9 +34,11 @@ $indirizzi_pagine["modifica_recensione"] = "modifica_recensione.php";
 $indirizzi_pagine["404"] = "404.php";
 $indirizzi_pagine["500"] = "500.php";
 
+// Pagine presenti nella navbar
 $navmenu=["home","area_utente"];
 
-$padre_pagina=[];//nome->nome genitore
+// Nome -> Nome Genitore
+$padre_pagina=[];
 $padre_pagina["home"] = "#";
 $padre_pagina["area_utente"] = "home";
 $padre_pagina["admin"] = "home";
@@ -49,7 +52,8 @@ $padre_pagina["modifica_recensione"] = "area_utente";
 $padre_pagina["404"] = "#";
 $padre_pagina["500"] = "#";
 
-$accesskeys=[]; //nome->key
+// Nome -> Key
+$accesskeys=[];
 $accesskeys["home"]="h";
 $accesskeys["area_utente"]="u";
 //$accesskeys["login"]="l";
@@ -116,7 +120,5 @@ function genera_header($pagina): array|string {
     $output= str_replace("<LANGSWITCH/>", $lang_switch, $output);
 
     $breadcrumb = get_breadcrumb($pagina);
-	$output= str_replace("<BREADCRUMB/>",$breadcrumb,$output);
-
-	return $output;
+    return str_replace("<BREADCRUMB/>",$breadcrumb,$output);
 }

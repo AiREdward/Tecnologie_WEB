@@ -16,11 +16,9 @@ function get_title() : string {
     return 'Titolo';
 }
 
-function get_head() {
+function get_head(): array|string {
     global $head_template;
 
     $title = get_title();
-    $output = str_replace("<TITLE/>", $title, $head_template);
-
-    return $output;
+    return str_replace("<TITLE/>", $title, $head_template);
 }

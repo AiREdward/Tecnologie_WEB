@@ -1,5 +1,4 @@
 <?php
-
     require_once "utilities/HeadPagina.php";
     require_once "utilities/HeaderPagina.php";
     require_once "utilities/UserFunctions.php";

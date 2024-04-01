@@ -2,10 +2,10 @@ const day_selector = document.getElementById('day-selector');
 const slot_selector = document.getElementById('slot-selector');
 const delete_button = document.getElementById('delete-button');
 
-var booking_date = document.getElementById('booking-date').innerHTML;
-var booking_time = document.getElementById('booking-time').innerHTML;
-var booking_user = document.getElementById('booking-user').innerHTML;
-var booking_room = document.getElementById('booking-room').innerHTML;
+let booking_date = document.getElementById('booking-date').innerHTML;
+let booking_time = document.getElementById('booking-time').innerHTML;
+let booking_user = document.getElementById('booking-user').innerHTML;
+let booking_room = document.getElementById('booking-room').innerHTML;
 
 day_selector.value = booking_date;
 let option = document.createElement('option');

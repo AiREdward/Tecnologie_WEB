@@ -1,15 +1,12 @@
 <?php
-
     require_once "utilities/HeadPagina.php";
     require_once "utilities/HeaderPagina.php";
     require_once "utilities/config.php";
+    require_once "utilities/UserFunctions.php";
+    require_once "utilities/InputCleaner.php";
 
     $errors = null;
     global $patternUser, $patternPassword, $patternTelefono;
-
-    
-    require_once "utilities/UserFunctions.php";
-    require_once "utilities/InputCleaner.php";
 
     // Controlla che tutti i dati obbligatori siano stati inseriti
     function all_set() : bool {
@@ -61,55 +58,54 @@
     }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">
 <head>
     <?php echo get_head(); ?>
 </head>
 <body>
-<?php
-	echo genera_header("signup");
-?>
+    <?php echo genera_header("signup"); ?>
 
-<div id="content">
-    <?php
-        if($errors != null){
-            $errortext = getTexts("errors");
-            echo "<p class='errormessage'>". $errortext[$errors]."</p>";
-        }
+    <div id="content">
+        <?php
+            if($errors != null){
+                $errortext = getTexts("errors");
+                echo "<p class='errormessage'>". $errortext[$errors]."</p>";
+            }
 
-        $signuptext=getTexts("signup");
-    ?>
+            $signuptext=getTexts("signup");
+        ?>
 
-    <p><?php echo $signuptext["prompt_login"]?><a href='login.php'><?php echo $signuptext["pulsante_login"]?></a>
+        <p><?php echo $signuptext["prompt_login"]?><a href='login.php'><?php echo $signuptext["pulsante_login"]?></a>
 
-
-    <form id="form" class="largeform" action="signup.php" method="post">
-        <fieldset>
-            <legend><?php echo $signuptext["legend_anagrafica"]?></legend>
-            <label for="nome"><?php echo $signuptext["label_nome"]?></label>
-            <input id="nome" name="nome" type="text" />
-            <label for="cognome"><?php echo $signuptext["label_cognome"]?></label>
-            <input id="cognome" name="cognome" type="text" />
-            <label for="nascita"><?php echo $signuptext["label_nascita"]?></label>
-            <input id="nascita" name="nascita" type="date" min="1924-01-01" max="<?php echo date('Y-m-d'); ?>"/>
-        </fieldset>
-        <fieldset>
-            <legend><?php echo $signuptext["legend_contatti"]?></legend>
-            <label for="telefono"><?php echo $signuptext["label_telefono"]?></label>
-            <input id="telefono" name="telefono" type="text"/>
-            <label for="email" lang="en"><?php echo $signuptext["label_email"]?></label>
-            <input id="email" name="email" type="email" />
-        </fieldset>
-        <fieldset>
-            <legend><?php echo $signuptext["legend_account"]?></legend>
-            <label for="username" lang="en"><?php echo $signuptext["label_username"]?></label>
-            <input id="username" name="username" type="text" />
-            <label for="password" lang="en"><?php echo $signuptext["label_password"]?></label>
-            <input id="password" name="password" type="password" />
-            <label for="conferma"><?php echo $signuptext["label_conferma"]?></label>
-            <input id="conferma" name="conferma" type="password" />
-            <input type="submit" value="<?php echo $signuptext["testo_pulsante"]?>">
-        </fieldset>
-</div>
+        <form id="form" class="largeform" action="signup.php" method="post">
+            <fieldset>
+                <legend><?php echo $signuptext["legend_anagrafica"]?></legend>
+                <label for="nome"><?php echo $signuptext["label_nome"]?></label>
+                <input id="nome" name="nome" type="text" />
+                <label for="cognome"><?php echo $signuptext["label_cognome"]?></label>
+                <input id="cognome" name="cognome" type="text" />
+                <label for="nascita"><?php echo $signuptext["label_nascita"]?></label>
+                <input id="nascita" name="nascita" type="date" min="1924-01-01" max="<?php echo date('Y-m-d'); ?>"/>
+            </fieldset>
+            <fieldset>
+                <legend><?php echo $signuptext["legend_contatti"]?></legend>
+                <label for="telefono"><?php echo $signuptext["label_telefono"]?></label>
+                <input id="telefono" name="telefono" type="text"/>
+                <label for="email" lang="en"><?php echo $signuptext["label_email"]?></label>
+                <input id="email" name="email" type="email" />
+            </fieldset>
+            <fieldset>
+                <legend><?php echo $signuptext["legend_account"]?></legend>
+                <label for="username" lang="en"><?php echo $signuptext["label_username"]?></label>
+                <input id="username" name="username" type="text" />
+                <label for="password" lang="en"><?php echo $signuptext["label_password"]?></label>
+                <input id="password" name="password" type="password" />
+                <label for="conferma"><?php echo $signuptext["label_conferma"]?></label>
+                <input id="conferma" name="conferma" type="password" />
+                <input type="submit" value="<?php echo $signuptext["testo_pulsante"]?>">
+            </fieldset>
+    </div>
 </body>
+</html>

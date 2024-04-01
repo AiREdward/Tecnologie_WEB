@@ -1,5 +1,4 @@
 <?php
-
     require_once "utilitiesReview.php";
 
     // File usato da deleteReview.js per eliminare una recensione
