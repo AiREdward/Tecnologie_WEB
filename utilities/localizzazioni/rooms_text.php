@@ -2,10 +2,10 @@
 function getRoomsText($lang): array {
     return match ($lang) {
         "it" => [
-            "difficolta" => "difficoltà",
-            "pulsante_prenota" => "prenota ora",
-            "partecipanti" => "giocatori",
-            "durata" => "durata",
+            "difficolta" => "Difficoltà",
+            "pulsante_prenota" => "Prenota Ora",
+            "partecipanti" => "Giocatori",
+            "durata" => "Durata",
             "room1_title" => "Cripta Arcana",
             "room2_title" => "Sabotaggio sul treno",
             "room3_title" => "Riavvio del reattore",
@@ -14,13 +14,13 @@ function getRoomsText($lang): array {
             "room3_img_alt" => "reattore principale di un astronave futuristica",
             "room1_ambientazione" => "esplora una cripta alla ricerca di un potente artefatto, sarai ingrado di evitare le trappole e ottenerlo?",
             "room2_ambientazione" => "un semplice viaggio in treno si dimostra di gran lunga piu movimentato dopo un incidente, c'è il sospetto di un sabotaggio investiga la scena e tenta di riparare il treno",
-            "room3_ambientazione" => "bloccati nello spazio con solo l'energia di emergenza è necesario rimettere in modo il reattore quanto prima possibile, esiste un manuale technico con le procedure richieste ma la situazione è tuttaltro che risolta"
+            "room3_ambientazione" => "bloccati nello spazio con solo l'energia di emergenza è necessario rimettere in modo il reattore quanto prima possibile, esiste un manuale technico con le procedure richieste ma la situazione è tuttaltro che risolta"
         ],
         "en" => [
-            "difficolta" => "difficulty",
-            "pulsante_prenota" => "book now",
-            "partecipanti" => "players",
-            "durata" => "length",
+            "difficolta" => "Difficulty",
+            "pulsante_prenota" => "Book Now",
+            "partecipanti" => "Players",
+            "durata" => "Length",
             "room1_title" => "Magic Dungeon",
             "room2_title" => "Train Sabotage",
             "room3_title" => "Reactor Reboot",

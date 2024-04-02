@@ -216,7 +216,21 @@ label{
     width: auto;
 }
 
-@media screen and (min-width:30rem) {
+.prenotazioni_utente{
+    list-style: none;
+    width: 100%;
+}
+.singola_prenotazione{
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: var(--theme-color);
+}
+.link_modifica{
+    float: right;
+}
+
+@media screen and (min-width: 30rem) {
     
     /*modifiche css per tablet*/
     .home_room{
@@ -251,7 +265,7 @@ label{
     }
 }
 
-@media screen and (min-width:65em) {
+@media screen and (min-width: 65em) {
 
     /*modifiche css per desktop*/
     body{
