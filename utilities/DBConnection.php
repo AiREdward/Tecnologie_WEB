@@ -7,9 +7,9 @@
 class Connection
 {
     //const HOST = "localhost";
-    //const USERNAME = "okoniecz";
+    //const USERNAME = "";
     //const PASS = "Shop7iengoochoo3";
-    //const DATABASE = "okoniecz";
+    //const DATABASE = "";
     //const CHARSET = 'utf8mb4';
 
     public $conn = null;
@@ -330,8 +330,7 @@ class Connection
         return $res;
     }
 
-    public function deleteBookingWithInfo($date, $time_slot, $room_id, $username)
-    {
+    // TODO: check why this function is not being used (it should be)
     public function deleteBookingWithInfo($date, $time_slot, $room_id, $username) {
         $conn = $this->conn;
 
