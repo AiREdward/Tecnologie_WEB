@@ -11,6 +11,16 @@ function getNextBookingsByUser($user) {
     return $conn->getNextBookingsByUser($user);
 }
 
+function getNextRoomBookings($room_id) {
+    $conn = new Connection();
+
+    if(!$conn->connect()) {
+        return null;
+    } else {
+        return $conn->getRoomBookingsFromID($room_id);
+    }
+}
+
 function getPastBookingsByUser($user) {
     $conn = new Connection();
 

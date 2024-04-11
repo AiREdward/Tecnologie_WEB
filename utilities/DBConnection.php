@@ -447,4 +447,25 @@ class Connection
 
         return $res;
     }
+
+    public function getRoomBookingsFromID($room_id) {
+        $conn = $this->conn;
+
+        $query = 'SELECT ID, Data_Prenotazione, Ora_Prenotazione, Username FROM Prenota WHERE ID_Room=? AND (Data_Prenotazione>? OR (Data_Prenotazione=? AND Ora_Prenotazione>=?)) ORDER BY ID DESC';
+
+        $current_time = date('H:i:s');
+
+        $preparedQuery = $conn->prepare($query);
+        $preparedQuery->bindValue(1, $room_id);
+        $preparedQuery->bindValue(2, date('Y-m-d'));
+        $preparedQuery->bindValue(3, date('Y-m-d'));
+        $preparedQuery->bindValue(4, date('H:i:s', strtotime($current_time) + 3600));
+        $preparedQuery->execute();
+
+        $res = $preparedQuery->fetchAll();
+
+        $preparedQuery->closeCursor();
+
+        return $res;
+    }
 }

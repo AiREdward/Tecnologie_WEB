@@ -8,6 +8,7 @@
 
     $rooms_text = getTexts("rooms");
 ?>
+
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">
 <head>

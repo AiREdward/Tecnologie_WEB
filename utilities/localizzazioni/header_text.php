@@ -15,6 +15,7 @@ function getHeaderText($lang): array {
             "modifica_prenotazione" => "Modifica Prenotazione",
             "crea_recensione" => "Crea Recensione",
             "modifica_recensione" => "Modifica Recensione",
+            "amministrazione_stanza" => "Amministrazione Stanza",
             "lang_switch" => "Vai alla versione inglese"
         ],
         "en" => [
@@ -31,6 +32,7 @@ function getHeaderText($lang): array {
             "modifica_prenotazione" => "Edit Booking",
             "crea_recensione" => "Create Review",
             "modifica_recensione" => "Modify Review",
+            "amministrazione_stanza" => "Room Administration",
             "lang_switch" => "Go to Italian version"
         ],
         default => [],

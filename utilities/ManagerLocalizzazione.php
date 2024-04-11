@@ -58,6 +58,9 @@ function getTexts($blocco): ?array {
         case "modifica_recensione":
             require_once("localizzazioni/modifica_recensione_text.php");
             return getModificaRecensioneText($lang);
+        case "amministrazione_stanza":
+            require_once("localizzazioni/amministrazione_stanza_text.php");
+            return getAmministrazioneStanzaText($lang);
         default:
             return null;
     }

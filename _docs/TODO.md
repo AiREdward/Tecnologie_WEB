@@ -6,10 +6,7 @@ In questo file sono specificate le cose da finire.
 
 Ogni stanza ha bisogno di una pagina dedicata, dove viene descritto in più dettaglio la stanza. <br>
 Alla fine di questa pagina verranno visualizzate le recensioni create dagli utenti.
-
-### Pagina Admin
-
-Aggiunta di gestione stanze (e prenotazioni?).
+Non è richiesto per il completamento del progetto ma potrebbe essere un'aggiunta sensata.
 
 ### Codice HTML
 

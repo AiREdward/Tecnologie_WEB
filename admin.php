@@ -16,6 +16,9 @@
         header("Location: area_utente.php");
         exit();
     }
+
+    $rooms = getRoomInfo();
+    $rooms_info_english = getRoomInfoEnglish();
 ?>
 
 <!DOCTYPE html>
@@ -29,15 +32,19 @@
     <h2>Rooms:</h2>
     <ul>
         <?php
-            $rooms = getRoomInfo();
-            foreach($rooms as $room){
-                echo "<li><a href='room.php?id=" . $room["ID"] . "'>" . $room["Nome"] . "</a></li>";
+        if ($_SESSION["lang"] == "it") {
+            // Italian Version
+            foreach ($rooms as $room) {
+                echo '<p><a href="amministrazione_stanza.php?room_id=' . $room["ID"] . '">' . $room["Nome"] . '</a></p>';
             }
+        } else {
+            // English Version
+            foreach ($rooms as $room) {
+                echo '<p><a href="amministrazione_stanza.php?room_id=' . $room["ID"] . '"> ' . $rooms_info_english[$room["ID"] - 1]["Nome"] . '</a></p>';
+            }
+        }
         ?>
     </ul>
-
-    <!-- just for testing purposes -->
-    <h2>Opening Hours:</h2>
 
     <a href="logout.php">logout</a>
 </body>

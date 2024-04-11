@@ -31,6 +31,7 @@ $indirizzi_pagine["prenota"] = "prenota.php";
 $indirizzi_pagine["modifica_prenotazione"] = "modifica_prenotazione.php";
 $indirizzi_pagine["crea_recensione"] = "crea_recensione.php";
 $indirizzi_pagine["modifica_recensione"] = "modifica_recensione.php";
+$indirizzi_pagine["amministrazione_stanza"] = "amministrazione_stanza.php";
 $indirizzi_pagine["404"] = "404.php";
 $indirizzi_pagine["500"] = "500.php";
 
@@ -49,6 +50,7 @@ $padre_pagina["prenota"] = "home";
 $padre_pagina["modifica_prenotazione"] = "area_utente";
 $padre_pagina["crea_recensione"] = "area_utente";
 $padre_pagina["modifica_recensione"] = "area_utente";
+$padre_pagina["amministrazione_stanza"] = "admin";
 $padre_pagina["404"] = "#";
 $padre_pagina["500"] = "#";
 
