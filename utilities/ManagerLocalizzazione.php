@@ -1,7 +1,7 @@
 <?php
-$languages = ["it","en"];
+$languages = ['it', 'en'];
 
-function initial_setup() : void {
+function initial_setup(): void {
     global $languages;
 
     if (session_status() == PHP_SESSION_NONE) session_start();

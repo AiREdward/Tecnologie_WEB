@@ -1,5 +1,5 @@
 <?php 
-require_once "utilities/ManagerLocalizzazione.php";
+require_once "ManagerLocalizzazione.php";
 
 initial_setup();
 
@@ -21,7 +21,7 @@ $header_template='<a href="#content" class="SRskip" title="'.$header_text["skip"
 
 // Nome -> File
 $indirizzi_pagine=[];
-$indirizzi_pagine["home"] = "index.php";
+$indirizzi_pagine["home"] = "old_index.php";
 $indirizzi_pagine["area_utente"] = "area_utente.php";
 $indirizzi_pagine["admin"] = "admin.php";
 $indirizzi_pagine["login"] = "login.php";

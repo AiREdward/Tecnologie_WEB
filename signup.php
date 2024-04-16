@@ -6,7 +6,7 @@
     require_once "utilities/InputCleaner.php";
 
     $errors = null;
-    global $patternUser, $patternPassword, $patternTelefono;
+    global $regex_username, $regex_password, $regex_phone_number;
 
     // Controlla che tutti i dati obbligatori siano stati inseriti
     function all_set() : bool {
@@ -25,10 +25,10 @@
         $username = sanitizeInput($_POST["username"]);
         $password = sanitizeInput($_POST["password"]);
 
-        if(checkInputCorrectness($_POST["username"], $patternUser)) {
-            if(checkInputCorrectness($_POST["telefono"], $patternTelefono)) {
+        if(checkInputCorrectness($_POST["username"], $regex_username)) {
+            if(checkInputCorrectness($_POST["telefono"], $regex_phone_number)) {
                 if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-                    if(checkInputCorrectness($_POST["password"], $patternPassword)) {
+                    if(checkInputCorrectness($_POST["password"], $regex_password)) {
                         $errors = registerUser($username, $email, $password, $nome, $cognome, $telefono, $nascita);
                     } else {
                         $errors="password_invalida";
@@ -77,7 +77,7 @@
             $signuptext=getTexts("signup");
         ?>
 
-        <p><?php echo $signuptext["prompt_login"]?><a href='login.php'><?php echo $signuptext["pulsante_login"]?></a>
+        <p><?php echo $signuptext["prompt_login"]?><a href='old_login.php'><?php echo $signuptext["pulsante_login"]?></a>
 
         <form id="form" class="largeform" action="signup.php" method="post">
             <fieldset>

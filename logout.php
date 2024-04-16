@@ -15,6 +15,8 @@
 
 ?>
 
+<!-- TODO: check if something needs to be added -->
+
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"] ?>">
 <head>

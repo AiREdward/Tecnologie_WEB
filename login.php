@@ -1,11 +1,8 @@
 <?php
-require_once "utilities/HeadPagina.php";
-require_once "utilities/HeaderPagina.php";
-require_once "utilities/config.php";
-require_once "utilities/UserFunctions.php";
-require_once "utilities/InputCleaner.php";
+require_once 'utilities/global.php';
+require_once 'utilities/UserFunctions.php';
 
-global $patternUser, $patternPassword;
+// TODO: move all of this code
 
 $user = getLoggedUser();
 
@@ -25,7 +22,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     $username = sanitizeInput($_POST["username"]);
     $password = sanitizeInput($_POST["password"]);
 
-    if(!checkInputCorrectness($username, $patternUser) || !checkInputCorrectness($password, $patternPassword)) {
+    if(!checkInputCorrectness($username, $regex_username) || !checkInputCorrectness($password, $regex_password)) {
         $errors = "formato_invalido";
     }
 
@@ -42,33 +39,20 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     }
 }
 
-$login_text = getTexts("login");
-?>
+$layout = file_get_contents("templates/base_layout.html");
 
-<!DOCTYPE html>
-<html lang="<?php echo $_SESSION["lang"] ?>">
-<head>
-    <?php echo get_head(); ?>
-</head>
-<body>
-    <?php echo genera_header("login"); ?>
+$page = str_replace('{language}', getLanguage(), $layout);
+$page = str_replace('{title}', getTitle(getNameOfTheFile(__FILE__)), $page);
+$page = str_replace('{menu}', getMenu(getNameOfTheFile(__FILE__)), $page);
+$page = str_replace('{breadcrumb}', getBreadcrumb(getNameOfTheFile(__FILE__)), $page);
+$page = str_replace('{lang_switch}', getLangSwitch(getNameOfTheFile(__FILE__)), $page);
 
-    <div id="content">
-        <?php
-        if($errors != null){
-            $errors_text = getTexts("errors");
-            echo "<p class='errormessage'>". $errors_text[$errors]."</p>";
-        }
-        ?>
+$login_component = file_get_contents("templates/login.html");
 
-        <p><?php echo $login_text["prompt_registrarsi"]?> <a href='signup.php'><?php echo $login_text["pulsante_registrazione"]?></a></p>
+$page = str_replace('{content}', $login_component, $page);
 
-        <form id="form" action="login.php" method="post">
-            <label for="username"><?php echo $login_text["label_username"]?></label>
-            <input id="username" name="username" type="text" />
-            <label for="password"><?php echo $login_text["label_password"]?></label>
-            <input id="password" name="password" type="password" />
-            <input type="submit" value="<?php echo $login_text["testo_pulsante"]?>" />
-        </form>
-    </div>
-</body>
+$page = insertText($page);
+
+
+
+echo $page;

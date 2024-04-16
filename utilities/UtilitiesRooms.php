@@ -83,6 +83,7 @@ function createPossibleSlots($hours, $duration_in_minutes): array {
     return $start_times;
 }
 
+// TODO: check if there is a need for error signaling
 function bookRoom($date, $time_slot, $username, $id_room): void {
     $conn = new Connection();
 

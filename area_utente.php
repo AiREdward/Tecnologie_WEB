@@ -5,7 +5,7 @@
     require_once "utilities/InputCleaner.php";
     require_once "utilities/UtilitiesPrenotazione.php";
 
-    global $patternUser, $patternPassword;
+    global $regex_username, $regex_password;
 
     $user = getLoggedUser();
 

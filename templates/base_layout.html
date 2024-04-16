@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{language}">
+<head>
+    <title>{title}</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="{keywords}">
+    <meta name="description" content="{description}">
+    <meta name="author" content="En?gma">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="js/navtoggle.js"></script>
+</head>
+<body>
+    <a href="#content" class="SRskip" title="~skip~" aria-label="~skip~">~skip~</a>
+
+    <header>
+        <h1 class="logo">En?gma</h1>
+        <button type="button" id="togglenav">~nav_toggle~</button>
+        <nav>
+            <ul class="navmenu closednav" id="navmenu">
+                {menu}
+            </ul>
+        </nav>
+        {lang_switch}
+        <div class="breadcrumbs">
+            <p>~breadcrumb~<span id="percorso">{breadcrumb}</span></p> <!-- TODO: change these generic tags -->
+        </div>
+    </header>
+
+    <main id="content">
+        {content}
+    </main>
+</body>
+</html>
