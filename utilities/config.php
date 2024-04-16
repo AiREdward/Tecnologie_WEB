@@ -1,5 +1,4 @@
 <?php
-
 $regex_password = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\W_]).{8,128}$/';
 $regex_username = '/^\w{1,32}$/';
 $regex_phone_number = '/^[0-9]{10}$/';
@@ -16,7 +15,6 @@ $access_keys = [
 ];
 
 $page_hierarchy = [
-    // '#' indicates that the page has no father
     'index' => 'index',
     'area_utente' => 'index',
     'admin' => 'index',
@@ -48,6 +46,11 @@ $texts = [
         'crea_recensione' => 'Crea Recensione',
         'modifica_recensione' => 'Modifica Recensione',
         'amministrazione_stanza' => 'Amministrazione Stanza',
+        // Admin
+        'rooms' => 'Stanze',
+        // Amministrazione Stanza
+        // Area Utente
+        // Crea Recensione
         // Index
         'difficulty' => 'Difficoltà',
         'players' => 'Giocatori',
@@ -59,6 +62,13 @@ $texts = [
         'label_username' => '<span lang="en">Username</span>',
         'label_password' => '<span lang="en">Password</span>',
         'login_button' => 'Accedi',
+        // Logout
+        'logout_success' => 'Logout effettuato con successo',
+        'login_link' => 'Clicca qui per effettuare il login',
+        // Modifica Prenotazione
+        // Modifica Recensione
+        // Prenota
+        // Signup
     ],
     'en' => [
         // base_layout & page names
@@ -77,6 +87,11 @@ $texts = [
         'crea_recensione' => 'Create Review',
         'modifica_recensione' => 'Modify Review',
         'amministrazione_stanza' => 'Room Administration',
+        // Admin
+        'rooms' => 'Rooms',
+        // Amministrazione Stanza
+        // Area Utente
+        // Crea Recensione
         // Index
         'difficulty' => 'Difficulty',
         'players' => 'Players',
@@ -88,5 +103,12 @@ $texts = [
         'label_username' => 'Username',
         'label_password' => 'Password',
         'login_button' => 'Login',
+        // Logout
+        'logout_success' => 'Logged out successfully',
+        'login_link' => 'Click here to login',
+        // Modifica Prenotazione
+        // Modifica Recensione
+        // Prenota
+        // Signup
     ]
 ];

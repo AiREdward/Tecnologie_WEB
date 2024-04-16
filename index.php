@@ -2,13 +2,7 @@
 require_once 'utilities/global.php';
 require_once 'utilities/UtilitiesRooms.php';
 
-$layout = file_get_contents('templates/base_layout.html');
-
-$page = str_replace('{language}', getLanguage(), $layout);
-$page = str_replace('{title}', getTitle(getNameOfTheFile(__FILE__)), $page);
-$page = str_replace('{menu}', getMenu(getNameOfTheFile(__FILE__)), $page);
-$page = str_replace('{breadcrumb}', getBreadcrumb(getNameOfTheFile(__FILE__)), $page);
-$page = str_replace('{lang_switch}', getLangSwitch(getNameOfTheFile(__FILE__)), $page);
+$page = initPage(__FILE__);
 
 $index_component = file_get_contents('templates/index.html');
 

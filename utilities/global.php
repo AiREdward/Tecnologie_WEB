@@ -1,7 +1,7 @@
 <?php
 require_once 'config.php';
 
-global $navbar_pages, $access_keys, $page_hierarchy, $texts;
+global $navbar_pages, $access_keys, $page_hierarchy, $texts, $regex_username, $regex_username;
 
 function initialSetup(): void {
     $languages = ['it', 'en'];
@@ -18,6 +18,16 @@ function initialSetup(): void {
             $_SESSION['lang'] = $lang;
         }
     }
+}
+
+function initPage(string $file_path): string {
+    $layout = file_get_contents('templates/base_layout.html');
+
+    $page = str_replace('{language}', getLanguage(), $layout);
+    $page = str_replace('{title}', getTitle(getNameOfTheFile($file_path)), $page);
+    $page = str_replace('{menu}', getMenu(getNameOfTheFile($file_path)), $page);
+    $page = str_replace('{breadcrumb}', getBreadcrumb(getNameOfTheFile($file_path)), $page);
+    return str_replace('{lang_switch}', getLangSwitch(getNameOfTheFile($file_path)), $page);
 }
 
 function getLanguage(): string {
@@ -89,6 +99,48 @@ function insertText($page) {
     }
 
     return $page;
+}
+
+function login(): void {
+    require('UserFunctions.php');
+    require('InputCleaner.php');
+
+    global $regex_username, $regex_password;
+
+    $user = getLoggedUser();
+
+    if($user){
+        if($_SESSION["next_page"] == "area_utente.php") {
+            if(checkIfUserIsAdmin($user)) header("Location: admin.php");
+            else header("Location: area_utente.php");
+        } else {
+            header("Location: " . $_SESSION["next_page"]);
+        }
+        exit();
+    }
+
+    $errors = null;
+
+    if(isset($_POST["username"]) && isset($_POST["password"])) {
+        $username = sanitizeInput($_POST["username"]);
+        $password = sanitizeInput($_POST["password"]);
+
+        if(!checkInputCorrectness($username, $regex_username) || !checkInputCorrectness($password, $regex_password)) {
+            $errors = "formato_invalido";
+        }
+
+        $errors = logUser($username,$password);
+
+        if($errors == null){
+            if($_SESSION["next_page"] == "area_utente.php") {
+                if(checkIfUserIsAdmin($user)) header("Location: admin.php");
+                else header("Location: area_utente.php");
+            } else {
+                header("Location: " . $_SESSION["next_page"]);
+            }
+            exit();
+        }
+    }
 }
 
 initialSetup();

@@ -106,6 +106,7 @@
                 <input id="conferma" name="conferma" type="password" />
                 <input type="submit" value="<?php echo $signuptext["testo_pulsante"]?>" required/>
             </fieldset>
+        </form>
     </div>
 </body>
 </html>
