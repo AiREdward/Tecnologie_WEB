@@ -99,6 +99,18 @@ $texts = [
         'room_booking' => 'Prenotazione Stanza',
         'book' => 'Prenota',
         // Signup
+        'prompt_login' => 'Hai gia un account?',
+        'login_button_alt' => 'accedi qui',
+        'legend_anagrafica' => 'Anagrafica',
+        'name_label' => 'Nome',
+        'surname_label' => 'Cognome',
+        'birth_label' => 'Data di nascita',
+        'contacts_legend' => 'Contatti',
+        'phone_label' => 'Telefono',
+        'email_label' => '<span lang="en">Email</span>',
+        'account_legend' => 'Info <span lang="en">Login</span>',
+        'confirm_label' => 'Conferma <span lang="en">Password</span>',
+        'signup_button' => "Registra",
     ],
     'en' => [
         // base_layout & page names
@@ -169,5 +181,17 @@ $texts = [
         'room_booking' => 'Room Booking',
         'book' => 'Book',
         // Signup
+        'prompt_login' => 'Already have an account?',
+        'login_button_alt' => 'Login here',
+        'legend_anagrafica' => 'Registry Info',
+        'name_label' => 'First name',
+        'surname_label' => 'Last name',
+        'birth_label' => 'Date of birth',
+        'contacts_legend' => 'Contacts',
+        'phone_label' => 'Phone Number',
+        'email_label' => 'Email',
+        'account_legend' => 'Login Info',
+        'confirm_label' => 'Confirm Password',
+        'signup_button' => 'Sign Up',
     ]
 ];
