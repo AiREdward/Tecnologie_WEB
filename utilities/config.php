@@ -85,6 +85,14 @@ $texts = [
         'logout_success' => 'Logout effettuato con successo',
         'login_link' => 'Clicca qui per effettuare il login',
         // Modifica Prenotazione
+        'edit_booking_ID' => 'Modifica prenotazione ID',
+        'booking' => 'Prenotazione',
+        'by' => 'da',
+        'where' => 'alla stanza',
+        'edit' => 'Modifica',
+        'delete' => 'Elimina',
+        'day_select' => 'Selezione del giorno',
+        'slot_select' => 'Selezione dello slot',
         // Modifica Recensione
         // Prenota
         // Signup
@@ -144,6 +152,14 @@ $texts = [
         'logout_success' => 'Logged out successfully',
         'login_link' => 'Click here to login',
         // Modifica Prenotazione
+        'edit_booking_ID' => 'Edit booking ID',
+        'booking' => 'Booking',
+        'by' => 'by',
+        'where' => 'at Room',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
+        'day_select' => 'Select day',
+        'slot_select' => 'Select slot',
         // Modifica Recensione
         // Prenota
         // Signup

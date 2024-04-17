@@ -1,6 +1,5 @@
 <?php
-require_once "utilities/HeadPagina.php";
-require_once "utilities/HeaderPagina.php";
+require_once 'utilities/global.php';
 require_once "utilities/ManagerLocalizzazione.php";
 require_once "utilities/UtilitiesPrenotazione.php";
 
@@ -29,38 +28,22 @@ if(isset($_POST["prenota"])) {
     header("Location: area_utente.php");
 }
 
-$mod_pren_texts = getTexts("modifica_prenotazione");
-?>
+$page = initPage(__FILE__);
 
-<!DOCTYPE html>
-<html lang="<?php echo $_SESSION["lang"] ?>">
-<head>
-    <?php echo get_head(); ?>
-</head>
-<body>
-    <?php echo genera_header("modifica_prenotazione"); ?>
-    <h2>Modifica prenotazione ID #<?php echo $booking_id ?></h2>
-    <h3>Prenotazione:</h3>
-    <div>
-        <span id="booking-date"><?php echo $booking_info["Data_Prenotazione"] ?></span><span> - </span>
-        <span id="booking-time"><?php echo $booking_info["Ora_Prenotazione"] ?></span><span> by </span>
-        <span id="booking-user"><?php echo $booking_info["Username"] ?></span><span> at Room </span>
-        <span id="booking-room"><?php echo $booking_info["ID_Room"] ?></span>
-    </div>
-    <form id="form" action="modifica_prenotazione.php" method="post">
-        <h4>Modifica:</h4>
+$edit_booking_component = file_get_contents('templates/modifica_prenotazione.html');
 
-        <label for="day-selector">Selezione del giorno</label>
-        <input id="day-selector" name="day" type="date" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime("+1 month")); ?>"/>
+$content = str_replace('{booking_id}', $booking_id, $edit_booking_component);
 
-        <label for="slot-selector">Selezione dello slot</label>
-        <select name="slot" id="slot-selector"></select>
+$content = str_replace('{booking_info_date}', $booking_info["Data_Prenotazione"], $content);
+$content = str_replace('{booking_info_hour}', $booking_info["Ora_Prenotazione"], $content);
+$content = str_replace('{booking_info_username}', $booking_info["Username"], $content);
+$content = str_replace('{booking_info_room_id}', $booking_info["ID_Room"], $content);
 
-        <button id="submit-button" name="prenota" type="submit"><?php //echo $prenota_text["pulsante_prenota"] ?> Modifica </button>
-    </form>
+$content = str_replace('{today_date}', date('Y-m-d'), $content);
+$content = str_replace('{max_date}', date('Y-m-d', strtotime("+1 month")), $content);
 
-    <button id="delete-button" name="delete" type="submit"><?php //echo $prenota_text["pulsante_elimina"] ?> Elimina </button>
+$page = str_replace('{content}', $content, $page);
 
-    <script type="text/javascript" src="js/bookingEdit.js"></script>
-</body>
-</html>
+$page = insertText($page);
+
+echo $page;
