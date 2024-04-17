@@ -67,6 +67,9 @@ $texts = [
         'text' => 'Testo',
         'edit_review' => 'Modifica recensione',
         // Crea Recensione
+        'create_review_for' => 'Crea Recensione per stanza n',
+        'write_review' => 'Scrivi la recensione',
+        'create_review_button' => 'Crea',
         // Index
         'difficulty' => 'Difficoltà',
         'players' => 'Giocatori',
@@ -123,6 +126,9 @@ $texts = [
         'text' => 'Text',
         'edit_review' => 'Edit review',
         // Crea Recensione
+        'create_review_for' => 'Write review for room n',
+        'write_review' => 'Write the review',
+        'create_review_button' => 'Create',
         // Index
         'difficulty' => 'Difficulty',
         'players' => 'Players',
