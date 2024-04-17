@@ -96,6 +96,8 @@ $texts = [
         // Modifica Recensione
         'edit_the_review' => 'Modifica la recensione',
         // Prenota
+        'room_booking' => 'Prenotazione Stanza',
+        'book' => 'Prenota',
         // Signup
     ],
     'en' => [
@@ -162,7 +164,10 @@ $texts = [
         'day_select' => 'Select day',
         'slot_select' => 'Select slot',
         // Modifica Recensione
+        'edit_the_review' => 'Edit the review',
         // Prenota
+        'room_booking' => 'Room Booking',
+        'book' => 'Book',
         // Signup
     ]
 ];

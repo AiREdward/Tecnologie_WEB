@@ -1,61 +1,41 @@
 <?php
-    require_once "utilities/HeadPagina.php";
-    require_once "utilities/HeaderPagina.php";
-    require_once "utilities/ManagerLocalizzazione.php";
-    require_once "utilities/UtilitiesRooms.php";
-    require_once "utilities/UserFunctions.php";
+require_once 'utilities/global.php';
+require_once "utilities/ManagerLocalizzazione.php";
+require_once "utilities/UtilitiesRooms.php";
+require_once "utilities/UserFunctions.php";
 
-    if(isset($_GET["room"])) $_SESSION["id_room"] = $_GET["room"];
+if(isset($_GET["room"])) $_SESSION["id_room"] = $_GET["room"];
 
-    $user = getLoggedUser();
+$user = getLoggedUser();
 
-    // TODO: send a message to login page that explains the user has to login to book a room
-    if($user == null) {
-        $_SESSION["next_page"] = "prenota.php";
-        header("Location: login.php");
-        exit();
-    } else {
-        $_SESSION["next_page"] = null;
-    }
+// TODO: send a message to login page that explains the user has to login to book a room
+if($user == null) {
+    $_SESSION["next_page"] = "prenota.php";
+    header("Location: login.php");
+    exit();
+} else $_SESSION["next_page"] = null;
 
-    $id_room = $_SESSION["id_room"];
+$id_room = $_SESSION["id_room"];
 
-    if(isset($_POST["prenota"])) {
-        $day = $_POST["day"];
-        $slot = $_POST["rooms"];
+if(isset($_POST["prenota"])) {
+    $day = $_POST["day"];
+    $slot = $_POST["rooms"];
 
-        bookRoom($day, $slot, $user, $id_room);
+    bookRoom($day, $slot, $user, $id_room);
 
-        // TODO: send a message to the user that the room has been booked
-    }
+    // TODO: send a message to the user that the room has been booked
+}
 
-    $prenota_text = getTexts("prenota");
-?>
+$page = initPage(__FILE__);
 
-<!DOCTYPE html>
-<html lang="<?php echo $_SESSION["lang"] ?>">
-<head>
-    <?php echo get_head(); ?>
-</head>
-<body>
-    <?php
-        echo genera_header("prenota");
-    ?>
-    <h2>Prenotazione Room: </h2>
-    <h2 id="room-id"><?php echo $id_room ?></h2>
+$book_component = file_get_contents('templates/prenota.html');
 
-    <form id="form" action="prenota.php" method="post">
-        <label for="day-selector">Selezione del giorno</label>
-        <input id="day-selector" name="day" type="date" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime("+1 month")); ?>"/>
+$content = str_replace('{room_id}', $id_room, $book_component);
+$content = str_replace('{today_date}', date('Y-m-d'), $content);
+$content = str_replace('{max_date}', date('Y-m-d', strtotime("+1 month")), $content);
 
-        <label for="slot-selector">Selezione dello slot</label>
-        <select name="rooms" id="slot-selector">
-            <option value="">Selezione dello slot</option>
-        </select>
+$page = str_replace('{content}', $content, $page);
 
-        <button id="submit-button" name="prenota" type="submit"><?php //echo $prenota_text["pulsante_prenota"] ?> Prenota </button>
-    </form>
+$page = insertText($page);
 
-    <script type="text/javascript" src="js/slotSelector.js"></script>
-</body>
-</html>
+echo $page;
