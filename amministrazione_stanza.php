@@ -1,6 +1,5 @@
 <?php
-require_once "utilities/HeadPagina.php";
-require_once "utilities/HeaderPagina.php";
+require_once 'utilities/global.php';
 require_once "utilities/ManagerLocalizzazione.php";
 require_once "utilities/UserFunctions.php";
 require_once "utilities/UtilitiesPrenotazione.php";
@@ -24,6 +23,9 @@ if(!checkIfUserIsAdmin($user)){
 if(isset($_GET["room_id"])) {
     $room_id = $_GET["room_id"];
     $_SESSION["room_id_admin_view"] = $room_id;
+
+
+
 } else {
     if($_SESSION["room_id_admin_view"] == null) {
         header("Location: 404.php");
@@ -31,28 +33,24 @@ if(isset($_GET["room_id"])) {
     }
 }
 
+$page = initPage(__FILE__);
+
+$admin_room_component = file_get_contents('templates/amministrazione_stanza.html');
+
 $bookings = getNextRoomBookings($room_id);
 
-$amministrazione_stanza_texts = getTexts("amministrazione_stanza");
-?>
+$content = str_replace('{room_id}', $room_id, $admin_room_component);
 
-<!DOCTYPE html>
-<html lang="<?php echo $_SESSION["lang"] ?>">
-<head>
-    <?php echo get_head(); ?>
-</head>
-<body>
-<?php echo genera_header("amministrazione_stanza"); ?>
-<h2>Stanza num: <?php echo $room_id ?></h2>
+$bookings_to_show = '';
 
-<h3>Lista delle prenotazioni future:</h3>
-<ul>
-    <?php
-        foreach ($bookings as $booking) {
-            echo "<li> Prenotazione numero: " . $booking["ID"] . " | Data: " . $booking["Data_Prenotazione"] . " | Orario: " . $booking["Ora_Prenotazione"] . " | Utente: " . $booking["Username"] . "</li>";
-        }
-    ?>
-</ul>
+foreach ($bookings as $booking) {
+    $bookings_to_show .= "<li> Prenotazione numero: " . $booking["ID"] . " | Data: " . $booking["Data_Prenotazione"] . " | Orario: " . $booking["Ora_Prenotazione"] . " | Utente: " . $booking["Username"] . "</li>";
+}
 
-</body>
-</html>
+$content = str_replace('{booking_list}', $bookings_to_show, $content);
+
+$page = str_replace('{content}', $content, $page);
+
+$page = insertText($page);
+
+echo $page;

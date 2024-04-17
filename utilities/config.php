@@ -14,6 +14,7 @@ $access_keys = [
     'area_utente' => 'u'
 ];
 
+// TODO: change file names into english
 $page_hierarchy = [
     'index' => 'index',
     'area_utente' => 'index',
@@ -21,11 +22,11 @@ $page_hierarchy = [
     'login' => 'area_utente',
     'signup' => 'area_utente',
     'logout' => 'area_utente',
-    'book' => 'index',
-    'modify_booking' => 'user_area',
-    'create_review' => 'user_area',
-    'modify_review' => 'user_area',
-    'room_administration' => 'admin'
+    'prenota' => 'index',
+    'modifica_prenotazione' => 'area_utente',
+    'crea_recensione' => 'area_utente',
+    'modifica_recensione' => 'area_utente',
+    'amministrazione_stanza' => 'admin'
 ];
 
 $texts = [
