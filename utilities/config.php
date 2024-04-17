@@ -51,6 +51,21 @@ $texts = [
         'rooms' => 'Stanze',
         // Amministrazione Stanza
         // Area Utente
+        'in_as' => 'Attualmente loggati come: ',
+        'next_bookings' => 'Prossime Prenotazioni:',
+        'past_bookings' => 'Prenotazioni Passate:',
+        'write_reviews' => 'Scrivi una recensione:',
+        'written_reviews' => 'Recensioni scritte:',
+        'no_next_bookings' => 'Non hai prenotazioni future.',
+        'no_past_bookings' => 'Non hai prenotazioni passate.',
+        'no_available_review' => 'Non hai stanze da recensire',
+        'no_written_review' => 'Non hai recensioni scritte.',
+        'room' => 'Stanza',
+        'edit_booking' => 'Modifica',
+        'create_review_for' => 'Crea recensione per Stanza',
+        'score' => 'Valutazione',
+        'text' => 'Testo',
+        'edit_review' => 'Modifica recensione',
         // Crea Recensione
         // Index
         'difficulty' => 'Difficoltà',
@@ -92,6 +107,21 @@ $texts = [
         'rooms' => 'Rooms',
         // Amministrazione Stanza
         // Area Utente
+        'in_as' => 'Currently logged in as: ',
+        'next_bookings' => 'Next Bookings:',
+        'past_bookings' => 'Past Bookings:',
+        'write_reviews' => 'Write a review:',
+        'written_reviews' => 'Written Reviews:',
+        'no_next_bookings' => "You don't have any next booking.",
+        'no_past_bookings' => "You don't have any past booking.",
+        'no_available_review' => "You don't have any room to review.",
+        'no_written_review' => "You don't have any review.",
+        'room' => 'Room',
+        'edit_booking' => 'Edit',
+        'create_review_for' => 'Create a review for Room',
+        'score' => 'Score',
+        'text' => 'Text',
+        'edit_review' => 'Edit review',
         // Crea Recensione
         // Index
         'difficulty' => 'Difficulty',
