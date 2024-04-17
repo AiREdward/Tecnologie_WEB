@@ -1,0 +1,15 @@
+<h2>~edit_review~ #<span id="review-id">{review_id}</span></h2>
+
+<form id="form" action="crea_recensione.php" method="post">
+    <label for="review-box">~edit_the_review~</label>
+    <input id="review-box" name="review-box" type="text" maxlength="1024" value="{review_text}"/>
+
+    <label for="rating">~score~:</label>
+    <input id="rating" name="rating" type="number" min="1" max="5" step="1" value="3"/>
+
+    <button id="submit-button" name="modifica_recensione" type="submit"> ~edit~ </button>
+</form>
+
+<button id="delete-button" name="delete" type="submit"> ~delete~ </button>
+
+<script type="text/javascript" src="js/deleteReview.js"></script>

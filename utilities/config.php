@@ -67,7 +67,7 @@ $texts = [
         'text' => 'Testo',
         'edit_review' => 'Modifica recensione',
         // Crea Recensione
-        'create_review_for' => 'Crea Recensione per stanza n',
+        'create_review_for_num' => 'Crea Recensione per stanza n',
         'write_review' => 'Scrivi la recensione',
         'create_review_button' => 'Crea',
         // Index
@@ -94,6 +94,7 @@ $texts = [
         'day_select' => 'Selezione del giorno',
         'slot_select' => 'Selezione dello slot',
         // Modifica Recensione
+        'edit_the_review' => 'Modifica la recensione',
         // Prenota
         // Signup
     ],
@@ -134,7 +135,7 @@ $texts = [
         'text' => 'Text',
         'edit_review' => 'Edit review',
         // Crea Recensione
-        'create_review_for' => 'Write review for room n',
+        'create_review_for_num' => 'Write review for room n',
         'write_review' => 'Write the review',
         'create_review_button' => 'Create',
         // Index

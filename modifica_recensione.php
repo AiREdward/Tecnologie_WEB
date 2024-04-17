@@ -1,6 +1,5 @@
 <?php
-require_once "utilities/HeadPagina.php";
-require_once "utilities/HeaderPagina.php";
+require_once 'utilities/global.php';
 require_once "utilities/ManagerLocalizzazione.php";
 require_once "utilities/utilitiesReview.php";
 
@@ -31,31 +30,15 @@ if(isset($_POST["modifica_recensione"])) {
     header("Location: area_utente.php");
 }
 
-$mod_rev_texts = getTexts("modifica_recensione");
-?>
+$page = initPage(__FILE__);
 
-<!DOCTYPE html>
-<html lang="<?php echo $_SESSION["lang"] ?>">
-<head>
-    <?php echo get_head(); ?>
-</head>
-<body>
-    <?php echo genera_header("modifica_recensione"); ?>
+$edit_review_component = file_get_contents('templates/modifica_recensione.html');
 
-    <h2>Modifica recensione #<span id="review-id"><?php echo $review_id ?></span></h2>
+$content = str_replace('{review_id}', $review_id, $edit_review_component);
+$content = str_replace('{review_text}', $review['Testo'], $content);
 
-    <form id="form" action="crea_recensione.php" method="post">
-        <label for="review-box">Modifica la recensione</label>
-        <input id="review-box" name="review-box" type="text" maxlength="1024" value="<?php echo $review['Testo']; ?>"/>
+$page = str_replace('{content}', $content, $page);
 
-        <label for="rating">Voto:</label>
-        <input id="rating" name="rating" type="number" min="1" max="5" step="1" value="3"/>
+$page = insertText($page);
 
-        <button id="submit-button" name="modifica_recensione" type="submit"><?php //echo $mod_rev_text["pulsante_modifica_recensione"] ?> Modifica </button>
-    </form>
-
-    <button id="delete-button" name="delete" type="submit"><?php //echo $mod_rev_text["pulsante_elimina_recensione"] ?> Elimina </button>
-
-    <script type="text/javascript" src="js/deleteReview.js"></script>
-</body>
-</html>
+echo $page;
