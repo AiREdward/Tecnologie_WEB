@@ -1,51 +1,46 @@
 <?php
-    require_once "utilities/HeadPagina.php";
-    require_once "utilities/HeaderPagina.php";
-    require_once "utilities/UserFunctions.php";
-    require_once "utilities/UtilitiesRooms.php";
+require_once 'utilities/global.php';
+require_once "utilities/UserFunctions.php";
+require_once "utilities/UtilitiesRooms.php";
 
-    $user = getLoggedUser();
+// TODO: the require_once
 
-    if($user == null){
-        $_SESSION["next_page"] = "admin.php";
-        header("Location: login.php");
-        exit();
-    } else $_SESSION["next_page"] = null;
+$user = getLoggedUser();
 
-    if(!checkIfUserIsAdmin($user)){
-        header("Location: area_utente.php");
-        exit();
+if($user == null){
+    $_SESSION["next_page"] = "admin.php";
+    header("Location: login.php");
+    exit();
+} else $_SESSION["next_page"] = null;
+
+if(!checkIfUserIsAdmin($user)){
+    header("Location: area_utente.php");
+    exit();
+}
+
+$page = initPage(__FILE__);
+
+$admin_component = file_get_contents('templates/admin.html');
+
+$rooms = getRoomInfo();
+$rooms_info_english = getRoomInfoEnglish();
+
+$rooms_to_show = '';
+
+if (getLanguage() == 'it') {
+    foreach ($rooms as $room) {
+        $rooms_to_show .= '<p><a href="amministrazione_stanza.php?room_id=' . $room["ID"] . '">' . $room["Nome"] . '</a></p>';
     }
+} else {
+    foreach ($rooms as $room) {
+        $rooms_to_show .= '<p><a href="amministrazione_stanza.php?room_id=' . $room["ID"] . '"> ' . $rooms_info_english[$room["ID"] - 1]["Nome"] . '</a></p>';
+    }
+}
 
-    $rooms = getRoomInfo();
-    $rooms_info_english = getRoomInfoEnglish();
-?>
+$content = str_replace('{rooms}', $rooms_to_show, $admin_component);
 
-<!DOCTYPE html>
-<html lang="<?php echo $_SESSION["lang"] ?>">
-<head>
-    <?php echo get_head(); ?>
-</head>
-<body>
-    <?php echo genera_header("admin"); ?>
+$page = str_replace('{content}', $content, $page);
 
-    <h2>Rooms:</h2>
-    <ul>
-        <?php
-        if ($_SESSION["lang"] == "it") {
-            // Italian Version
-            foreach ($rooms as $room) {
-                echo '<p><a href="amministrazione_stanza.php?room_id=' . $room["ID"] . '">' . $room["Nome"] . '</a></p>';
-            }
-        } else {
-            // English Version
-            foreach ($rooms as $room) {
-                echo '<p><a href="amministrazione_stanza.php?room_id=' . $room["ID"] . '"> ' . $rooms_info_english[$room["ID"] - 1]["Nome"] . '</a></p>';
-            }
-        }
-        ?>
-    </ul>
+$page = insertText($page);
 
-    <a href="logout.php">logout</a>
-</body>
-</html>
+echo $page;
