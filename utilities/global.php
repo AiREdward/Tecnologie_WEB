@@ -1,5 +1,8 @@
 <?php
-require_once 'config.php';
+require_once 'config/regex_config.php';
+require_once 'config/pages_config.php';
+require_once 'config/text_config.php';
+require_once 'message_util.php';
 
 global $navbar_pages, $access_keys, $page_hierarchy, $texts, $regex_username, $regex_username;
 
@@ -8,7 +11,7 @@ function initialSetup(): void {
 
     if (session_status() == PHP_SESSION_NONE) session_start();
 
-    if (!isset($_SESSION["lang"])) {
+    if (!isset($_SESSION['lang'])) {
         $_SESSION['lang'] = 'it';
     }
 
@@ -103,6 +106,12 @@ function insertText($page) {
 
 function insertScript(string $page, string $script_name): string {
     return str_replace('default.js', $script_name, $page);
+}
+
+function finalizePage(string $page): string {
+    $page = showErrorIfSet($page);
+    $page = showInfoIfSet($page);
+    return insertText($page);
 }
 
 initialSetup();

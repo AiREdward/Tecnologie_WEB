@@ -1,22 +1,10 @@
 <?php
 require_once 'utilities/global.php';
-require_once "utilities/UserFunctions.php";
-require_once "utilities/UtilitiesRooms.php";
+require_once 'utilities/access_util.php';
+require_once 'utilities/room_util.php';
 
-// TODO: the require_once
-
-$user = getLoggedUser();
-
-if($user == null){
-    $_SESSION["next_page"] = "admin.php";
-    header("Location: login.php");
-    exit();
-} else $_SESSION["next_page"] = null;
-
-if(!checkIfUserIsAdmin($user)){
-    header("Location: area_utente.php");
-    exit();
-}
+redirectIfUserNotLoggedIn(__FILE__);
+redirectUserIfNotAdmin();
 
 $page = initPage(__FILE__);
 
@@ -41,6 +29,6 @@ $content = str_replace('{rooms}', $rooms_to_show, $admin_component);
 
 $page = str_replace('{content}', $content, $page);
 
-$page = insertText($page);
+$page = finalizePage($page);
 
 echo $page;

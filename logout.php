@@ -1,8 +1,6 @@
 <?php
 require_once 'utilities/global.php';
-require_once "utilities/UserFunctions.php";
-
-// TODO: change the require_once of UserFunctions.php
+require_once 'utilities/access_util.php';
 
 logout();
 
@@ -12,6 +10,6 @@ $logout_component = file_get_contents('templates/logout.html');
 
 $page = str_replace('{content}', $logout_component, $page);
 
-$page = insertText($page);
+$page = finalizePage($page);
 
 echo $page;

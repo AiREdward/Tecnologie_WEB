@@ -24,7 +24,7 @@ function getXMLHttp() {
 delete_button.addEventListener('click', function() {
     console.log(review_id);
 
-    let url = 'utilities/deleteReviewRequest.php?id=' + review_id;
+    let url = 'utilities/requests/deleteReviewRequest.php?id=' + review_id;
     let xmlHttp = getXMLHttp();
 
     xmlHttp.onreadystatechange = function() {

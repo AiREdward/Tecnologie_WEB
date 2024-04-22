@@ -83,7 +83,7 @@ class Connection
 
         $preparedQuery->closeCursor();
 
-        if (password_verify($password, $pass_res)) return true;
+        if(password_verify($password, $pass_res)) return true;
         else return false;
     }
 

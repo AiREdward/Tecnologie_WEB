@@ -1,28 +1,15 @@
 <?php
 require_once 'utilities/global.php';
-require_once "utilities/config.php";
-require_once "utilities/UserFunctions.php";
-require_once "utilities/InputCleaner.php";
-require_once "utilities/UtilitiesPrenotazione.php";
+require_once 'utilities/access_util.php';
+require_once 'utilities/user_util.php';
+require_once 'utilities/booking_util.php';
 
-global $regex_username, $regex_password;
-
-$user = getLoggedUser();
-
-if($user == null){
-    $_SESSION["next_page"] = "area_utente.php";
-    header("Location: login.php");
-    exit();
-} else {
-    $_SESSION["next_page"] = null;
-}
-
-if(checkIfUserIsAdmin($user)){
-    header("Location: admin.php");
-    exit();
-}
+redirectIfUserNotLoggedIn(__FILE__);
+redirectUserIfAdmin();
 
 $page = initPage(__FILE__);
+
+$user = getLoggedUser();
 
 $user_area_component = file_get_contents('templates/area_utente.html');
 
@@ -84,6 +71,6 @@ $content = str_replace('{written_reviews}', $written_reviews_to_show, $content);
 
 $page = str_replace('{content}', $content, $page);
 
-$page = insertText($page);
+$page = finalizePage($page);
 
 echo $page;

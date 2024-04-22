@@ -1,6 +1,6 @@
 <?php
 require_once 'utilities/global.php';
-require_once 'utilities/UtilitiesRooms.php';
+require_once 'utilities/room_util.php';
 
 $page = initPage(__FILE__);
 
@@ -32,6 +32,6 @@ foreach($rooms as $room) {
 
 $page = str_replace('{content}', $content, $page);
 
-$page = insertText($page);
+$page = finalizePage($page);
 
 echo $page;

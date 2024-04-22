@@ -1,34 +1,4 @@
 <?php
-$regex_password = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\W_]).{8,128}$/';
-$regex_username = '/^\w{1,32}$/';
-$regex_phone_number = '/^[0-9]{10}$/';
-
-// Page contained in the navbar
-$navbar_pages = [
-    'index',
-    'area_utente'
-];
-
-$access_keys = [
-    'index' => 'h',
-    'area_utente' => 'u'
-];
-
-// TODO: change file names into english
-$page_hierarchy = [
-    'index' => 'index',
-    'area_utente' => 'index',
-    'admin' => 'index',
-    'login' => 'area_utente',
-    'signup' => 'area_utente',
-    'logout' => 'area_utente',
-    'prenota' => 'index',
-    'modifica_prenotazione' => 'area_utente',
-    'crea_recensione' => 'area_utente',
-    'modifica_recensione' => 'area_utente',
-    'amministrazione_stanza' => 'admin'
-];
-
 $texts = [
     'it' => [
         // base_layout & page names
@@ -111,6 +81,16 @@ $texts = [
         'account_legend' => 'Info <span lang="en">Login</span>',
         'confirm_label' => 'Conferma <span lang="en">Password</span>',
         'signup_button' => "Registra",
+        // Errors
+        'connection_error' => 'Errore di Connessione.',
+        'nonexistent_user' => 'Questo utente non esiste.',
+        'incorrect_password' => 'La <span lang="en">password</span> è errata.',
+        'username_not_valid' => 'Il nome utente non è valido.',
+        'password_not_valid' => 'La <span lang="en">password</span> non è valida.',
+        'email_not_valid' => 'La <span lang="en">email</span> non è valida.',
+        'phone_number_not_valid' => 'Il numero di telefono non è valido.',
+        'username_already_present' => 'Questo nome utente è già in uso.',
+        'signup_error' => "C'è stato un problema durante la registrazione.",
     ],
     'en' => [
         // base_layout & page names
@@ -193,5 +173,15 @@ $texts = [
         'account_legend' => 'Login Info',
         'confirm_label' => 'Confirm Password',
         'signup_button' => 'Sign Up',
+        // Errors
+        'connection_error' => 'Connection Error.',
+        'nonexistent_user' => "This user doesn't exists.",
+        'incorrect_password' => 'Incorrect Password.',
+        'username_not_valid' => 'The username is not valid.',
+        'password_not_valid' => 'The password is not valid',
+        'email_not_valid' => 'The email is not valid.',
+        'phone_number_not_valid' => 'The phone number is not valid.',
+        'username_already_present' => 'The username is already in use.',
+        'signup_error' => 'There was a problem during the sign up.',
     ]
 ];

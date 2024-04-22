@@ -1,6 +1,6 @@
 <?php
 require_once 'utilities/global.php';
-require_once "utilities/utilitiesReview.php";
+require_once 'utilities/review_util.php';
 
 // TODO: add a check to see if the user logged in is the same user that made the review
 
@@ -38,7 +38,7 @@ $content = str_replace('{review_text}', $review['Testo'], $content);
 
 $page = str_replace('{content}', $content, $page);
 
-$page = insertText($page);
+$page = finalizePage($page);
 $page = insertScript($page, 'deleteReview.js');
 
 echo $page;

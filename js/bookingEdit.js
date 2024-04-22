@@ -67,7 +67,7 @@ function insertBookingSlot() {
 
 function getSlotsForTheDay() {
     let day = day_selector.value;
-    let url = 'utilities/getSlots.php?day=' + day + '&id_room=' + booking_room;
+    let url = 'utilities/requests/getSlotsRequest.php?day=' + day + '&id_room=' + booking_room;
     let xmlHttp = getXMLHttp();
 
     xmlHttp.onreadystatechange = function () {
@@ -99,7 +99,7 @@ function getSlotsForTheDay() {
 day_selector.addEventListener('change', getSlotsForTheDay);
 
 delete_button.addEventListener('click', function() {
-    let url = 'utilities/deleteBookingRequest.php?day=' + booking_date + '&slot=' + booking_time + '&user=' + booking_user + '&room=' + booking_room;
+    let url = 'utilities/requests/deleteBookingRequest.php?day=' + booking_date + '&slot=' + booking_time + '&user=' + booking_user + '&room=' + booking_room;
     let xmlHttp = getXMLHttp();
 
     xmlHttp.onreadystatechange = function() {

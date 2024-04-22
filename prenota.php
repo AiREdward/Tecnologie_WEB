@@ -1,18 +1,12 @@
 <?php
 require_once 'utilities/global.php';
-require_once "utilities/UtilitiesRooms.php";
-require_once "utilities/UserFunctions.php";
+require_once 'utilities/access_util.php';
+require_once 'utilities/room_util.php';
 
 if(isset($_GET["room"])) $_SESSION["id_room"] = $_GET["room"];
 
-$user = getLoggedUser();
-
 // TODO: send a message to login page that explains the user has to login to book a room
-if($user == null) {
-    $_SESSION["next_page"] = "prenota.php";
-    header("Location: login.php");
-    exit();
-} else $_SESSION["next_page"] = null;
+redirectIfUserNotLoggedIn(__FILE__);
 
 $id_room = $_SESSION["id_room"];
 
@@ -20,7 +14,7 @@ if(isset($_POST["prenota"])) {
     $day = $_POST["day"];
     $slot = $_POST["rooms"];
 
-    bookRoom($day, $slot, $user, $id_room);
+    bookRoom($day, $slot, getLoggedUser(), $id_room);
 
     // TODO: send a message to the user that the room has been booked
 }
@@ -35,7 +29,7 @@ $content = str_replace('{max_date}', date('Y-m-d', strtotime("+1 month")), $cont
 
 $page = str_replace('{content}', $content, $page);
 
-$page = insertText($page);
+$page = finalizePage($page);
 $page = insertScript($page, 'slotSelector.js');
 
 echo $page;
