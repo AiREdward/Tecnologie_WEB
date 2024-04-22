@@ -25,9 +25,13 @@
         </nav>
         {lang_switch}
         <div class="breadcrumbs">
-            <p>~breadcrumb~<span id="percorso">{breadcrumb}</span></p> <!-- TODO: change these generic tags -->
+            <p>~breadcrumb~<span id="percorso">{breadcrumb}</span></p>
         </div>
     </header>
+
+    <div class="hidden-error">
+        {error_message}
+    </div>
 
     <main id="content">
         {content}
