@@ -101,4 +101,8 @@ function insertText($page) {
     return $page;
 }
 
+function insertScript(string $page, string $script_name): string {
+    return str_replace('default.js', $script_name, $page);
+}
+
 initialSetup();

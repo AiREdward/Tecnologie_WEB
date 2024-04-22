@@ -19,6 +19,7 @@ class Connection
         $this->connect();
     }
 
+    // Deploy connect function
     /*
     public function connect(): bool {
         $dsn = "mysql:host=". self::HOST . ";dbname=" . self::DATABASE . ";charset=" . self::CHARSET;
@@ -41,7 +42,7 @@ class Connection
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             return true;
-        } catch(PDOException $e) {
+        } catch(PDOException) {
             return false;
         }
     }

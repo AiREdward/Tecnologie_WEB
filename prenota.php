@@ -1,6 +1,5 @@
 <?php
 require_once 'utilities/global.php';
-require_once "utilities/ManagerLocalizzazione.php";
 require_once "utilities/UtilitiesRooms.php";
 require_once "utilities/UserFunctions.php";
 
@@ -37,5 +36,6 @@ $content = str_replace('{max_date}', date('Y-m-d', strtotime("+1 month")), $cont
 $page = str_replace('{content}', $content, $page);
 
 $page = insertText($page);
+$page = insertScript($page, 'slotSelector.js');
 
 echo $page;

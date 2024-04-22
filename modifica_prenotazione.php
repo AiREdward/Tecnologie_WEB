@@ -1,6 +1,5 @@
 <?php
 require_once 'utilities/global.php';
-require_once "utilities/ManagerLocalizzazione.php";
 require_once "utilities/UtilitiesPrenotazione.php";
 
 if(isset($_GET["id"])) {
@@ -45,5 +44,6 @@ $content = str_replace('{max_date}', date('Y-m-d', strtotime("+1 month")), $cont
 $page = str_replace('{content}', $content, $page);
 
 $page = insertText($page);
+$page = insertScript($page, 'bookingEdit.js');
 
 echo $page;

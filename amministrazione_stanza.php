@@ -1,6 +1,5 @@
 <?php
 require_once 'utilities/global.php';
-require_once "utilities/ManagerLocalizzazione.php";
 require_once "utilities/UserFunctions.php";
 require_once "utilities/UtilitiesPrenotazione.php";
 
