@@ -230,6 +230,14 @@ label{
     float: right;
 }
 
+.hidden-error {
+    display: none;
+}
+
+.hidden-info {
+    display: none;
+}
+
 @media screen and (min-width: 30rem) {
     
     /*modifiche css per tablet*/

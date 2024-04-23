@@ -67,7 +67,7 @@ function insertBookingSlot() {
 
 function getSlotsForTheDay() {
     let day = day_selector.value;
-    let url = 'utilities/getSlots.php?day=' + day + '&id_room=' + booking_room;
+    let url = 'utilities/requests/getSlotsRequest.php?day=' + day + '&id_room=' + booking_room;
     let xmlHttp = getXMLHttp();
 
     xmlHttp.onreadystatechange = function () {
@@ -99,13 +99,12 @@ function getSlotsForTheDay() {
 day_selector.addEventListener('change', getSlotsForTheDay);
 
 delete_button.addEventListener('click', function() {
-    let url = 'utilities/deleteBookingRequest.php?day=' + booking_date + '&slot=' + booking_time + '&user=' + booking_user + '&room=' + booking_room;
+    let url = 'utilities/requests/deleteBookingRequest.php?day=' + booking_date + '&slot=' + booking_time + '&user=' + booking_user + '&room=' + booking_room;
     let xmlHttp = getXMLHttp();
 
     xmlHttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            // TODO: add error handling
-            window.location.href = 'area_utente.php';
+            window.location.href = 'user_area.php';
         }
     }
 

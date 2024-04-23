@@ -1,59 +1,39 @@
 <?php
-    require_once "utilities/HeadPagina.php";
-	require_once "utilities/HeaderPagina.php";
-    require_once "utilities/UtilitiesRooms.php";
+require_once 'utilities/global.php';
+require_once 'utilities/room_util.php';
 
-    $rooms = getRoomInfo();
-    $rooms_info_english = getRoomInfoEnglish();
+$page = initPage(__FILE__);
 
-    $rooms_text = getTexts("rooms");
-?>
+$index_component = file_get_contents('templates/index.html');
 
-<!DOCTYPE html>
-<html lang="<?php echo $_SESSION["lang"] ?>">
-<head>
-    <?php echo get_head(); ?>
-</head>
-<body>
+$content = '';
+$rooms = getRoomInfo();
+$rooms_info_english = getRoomInfoEnglish();
 
-    <?php echo genera_header("home"); ?>
+foreach($rooms as $room) {
+    $room_component = $index_component;
 
-    <div id="content">
-        <?php
-            if ($_SESSION["lang"] == "it") {
-                // Italian Version
-                foreach ($rooms as $room) {
-                    echo '<section id="stanza' . $room["ID"] . '" class="home_room">
-                    <h2 class="titolostanza">' . $room["Nome"] . '</h2>
-                    <dl class="recap">
-                        <dt>' . $rooms_text["difficolta"] . '</dt><dd>' . $room["Difficolta"] . '</dd>
-                        <dt>' . $rooms_text["partecipanti"] . '</dt><dd>' . $room["Numero_Partecipanti_Minimo"] . '-' . $room["Numero_Partecipanti_Massimo"] . '</dd>
-                        <dt>' . $rooms_text["durata"] . '</dt><dd>' . $room["Durata"] . ' min' . '</dd>
-                    </dl>
-                    <img class="room_photo" src="./images/room' . $room["ID"] . '.webp" alt="' . $rooms_text["room" . $room["ID"] . "_img_alt"] . '">
-                    <p class="ambientazione">' . $room["Descrizione"] . '</p>
-                    <a class="prenotazione_rapida" href="prenota.php?room=' . $room["ID"] . '">' . $rooms_text["pulsante_prenota"] . '</a>
-                </section>
-                ';
-                }
-            } else {
-                // English Version
-                foreach ($rooms as $room) {
-                    echo '<section id="stanza' . $room["ID"] . '" class="home_room">
-                    <h2 class="titolostanza">' . $rooms_info_english[$room["ID"] - 1]["Nome"] . '</h2>
-                    <dl class="recap">
-                        <dt>' . $rooms_text["difficolta"] . '</dt><dd>' . $room["Difficolta"] . '</dd>
-                        <dt>' . $rooms_text["partecipanti"] . '</dt><dd>' . $room["Numero_Partecipanti_Minimo"] . '-' . $room["Numero_Partecipanti_Massimo"] . '</dd>
-                        <dt>' . $rooms_text["durata"] . '</dt><dd>' . $room["Durata"] . ' min' . '</dd>
-                    </dl>
-                    <img class="room_photo" src="./images/room' . $room["ID"] . '.webp" alt="' . $rooms_text["room" . $room["ID"] . "_img_alt"] . '">
-                    <p class="ambientazione">' . $rooms_info_english[$room["ID"] - 1]["Descrizione"] . '</p>
-                    <a class="prenotazione_rapida" href="prenota.php?room=' . $room["ID"] . '">' . $rooms_text["pulsante_prenota"] . '</a>
-                </section>
-                ';
-                }
-            }
-        ?>
-    </div>
-</body>
-</html>
+    $room_component = str_replace('{room_id}', $room['ID'], $room_component);
+    $room_component = str_replace('{room_difficulty}', $room['Difficolta'], $room_component);
+    $room_component = str_replace('{room_minimum_players}', $room['Numero_Partecipanti_Minimo'], $room_component);
+    $room_component = str_replace('{room_maximum_players}', $room['Numero_Partecipanti_Massimo'], $room_component);
+    $room_component = str_replace('{room_duration}', $room['Durata'], $room_component);
+
+    if(getLanguage() == 'it') {
+        $room_component = str_replace('{room_name}', $room['Nome'], $room_component);
+        $room_component = str_replace('{room_description}', $room['Descrizione'], $room_component);
+        $room_component = str_replace('{room_alt}', getRoomImageAlt($room['ID'], 'it'), $room_component);
+    } else {
+        $room_component = str_replace('{room_name}', $rooms_info_english[$room['ID'] - 1]['Nome'], $room_component);
+        $room_component = str_replace('{room_description}', $rooms_info_english[$room["ID"] - 1]['Descrizione'], $room_component);
+        $room_component = str_replace('{room_alt}', getRoomImageAlt($room['ID'], 'en'), $room_component);
+    }
+
+    $content .= $room_component;
+}
+
+$page = str_replace('{content}', $content, $page);
+
+$page = finalizePage($page);
+
+echo $page;

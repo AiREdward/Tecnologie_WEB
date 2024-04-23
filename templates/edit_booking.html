@@ -1,0 +1,21 @@
+<h2>~edit_booking~ #{booking_id}</h2>
+<h3>~the_booking~:</h3>
+<div>
+    <span id="booking-date">{booking_info_date}</span><span> - </span>
+    <span id="booking-time">{booking_info_hour}</span><span> ~by~ </span>
+    <span id="booking-user">{booking_info_username}</span><span> ~where~ </span>
+    <span id="booking-room">{booking_info_room_id}</span>
+</div>
+<form id="form" action="edit_booking.php" method="post">
+    <h4>~edit~:</h4>
+
+    <label for="day-selector">~day_select~</label>
+    <input id="day-selector" name="day" type="date" min="{today_date}" max="{max_date}"/>
+
+    <label for="slot-selector">~slot_select~</label>
+    <select name="slot" id="slot-selector"></select>
+
+    <button id="submit-button" name="prenota" type="submit"> ~edit~ </button>
+</form>
+
+<button id="delete-button" name="delete" type="submit"> ~delete~ </button>

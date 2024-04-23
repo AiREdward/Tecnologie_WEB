@@ -1,31 +1,15 @@
 <?php
-    require_once "utilities/HeadPagina.php";
-    require_once "utilities/HeaderPagina.php";
-    require_once "utilities/UserFunctions.php";
+require_once 'utilities/global.php';
+require_once 'utilities/access_util.php';
 
-    $login_redirect = $_GET["l"] ?? null;
+logout();
 
-    if($login_redirect == "y") {
-        $_SESSION["next_page"] = "area_utente.php";
-        header("Location: login.php");
-        exit();
-    }
+$page = initPage(__FILE__);
 
-    logout();
+$logout_component = file_get_contents('templates/logout.html');
 
-?>
+$page = str_replace('{content}', $logout_component, $page);
 
-<!DOCTYPE html>
-<html lang="<?php echo $_SESSION["lang"] ?>">
-<head>
-    <?php echo get_head(); ?>
-</head>
-<body>
-    <?php echo genera_header("logout"); ?>
+$page = finalizePage($page);
 
-    <div id="content">
-        <p><?php echo getTexts("logout")["logout_success"] ?></p>
-        <a href="logout.php?l=y"><?php echo getTexts("logout")["login_link"] ?></a>
-    </div>
-</body>
-</html>
+echo $page;

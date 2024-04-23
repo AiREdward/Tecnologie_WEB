@@ -24,13 +24,12 @@ function getXMLHttp() {
 delete_button.addEventListener('click', function() {
     console.log(review_id);
 
-    let url = 'utilities/deleteReviewRequest.php?id=' + review_id;
+    let url = 'utilities/requests/deleteReviewRequest.php?id=' + review_id;
     let xmlHttp = getXMLHttp();
 
     xmlHttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            // TODO: add error handling
-            window.location.href = 'area_utente.php';
+            window.location.href = 'user_area.php';
         }
     }
 
