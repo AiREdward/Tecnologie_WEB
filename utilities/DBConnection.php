@@ -331,24 +331,6 @@ class Connection
         return $res;
     }
 
-    // TODO: check why this function is not being used (it should be)
-    public function deleteBookingWithInfo($date, $time_slot, $room_id, $username) {
-        $conn = $this->conn;
-
-        $query = 'DELETE FROM Prenota WHERE Data_Prenotazione=? AND Ora_Prenotazione=? AND ID_Room=? AND Username=?';
-
-        $preparedQuery = $conn->prepare($query);
-        $preparedQuery->bindValue(1, $date);
-        $preparedQuery->bindValue(2, $time_slot);
-        $preparedQuery->bindValue(3, $room_id);
-        $preparedQuery->bindValue(4, $username);
-        $res = $preparedQuery->execute();
-
-        $preparedQuery->closeCursor();
-
-        return $res;
-    }
-
     public function getPossibleRoomsForReview($username) {
         $conn = $this->conn;
 

@@ -1,26 +1,25 @@
 <?php
-// Page contained in the navbar
+// Pages contained in the navbar
 $navbar_pages = [
     'index',
-    'area_utente'
+    'user_area'
 ];
 
 $access_keys = [
     'index' => 'h',
-    'area_utente' => 'u'
+    'user_area' => 'u'
 ];
 
-// TODO: change file names into english
 $page_hierarchy = [
     'index' => 'index',
-    'area_utente' => 'index',
+    'user_area' => 'index',
     'admin' => 'index',
-    'login' => 'area_utente',
-    'signup' => 'area_utente',
-    'logout' => 'area_utente',
-    'prenota' => 'index',
-    'modifica_prenotazione' => 'area_utente',
-    'crea_recensione' => 'area_utente',
-    'modifica_recensione' => 'area_utente',
-    'amministrazione_stanza' => 'admin'
+    'login' => 'user_area',
+    'signup' => 'user_area',
+    'logout' => 'user_area',
+    'booking' => 'index',
+    'edit_booking' => 'user_area',
+    'create_review' => 'user_area',
+    'edit_review' => 'user_area',
+    'room_administration' => 'admin'
 ];

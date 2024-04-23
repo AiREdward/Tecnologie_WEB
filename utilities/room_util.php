@@ -1,6 +1,9 @@
 <?php
 require_once 'DBConnection.php';
 require_once 'message_util.php';
+require_once 'config/room_img_alt_config.php';
+
+global $room_img_alt;
 
 function getRoomInfo() {
     $conn = new Connection();
@@ -21,7 +24,12 @@ function getRoomInfoEnglish() {
     else return $conn->getRoomsEnglish();
 }
 
-// TODO: check if there is a need for error signaling
+function getRoomImageAlt($room_id, $lang): string {
+    global $room_img_alt;
+
+    return $room_img_alt[$room_id][$lang];
+}
+
 function bookRoom($date, $time_slot, $username, $id_room): void {
     $conn = new Connection();
     if(!$conn->connect()) setErrorMessage('~connection_error~');

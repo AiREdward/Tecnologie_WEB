@@ -3,7 +3,6 @@ require_once 'utilities/global.php';
 require_once 'utilities/access_util.php';
 require_once 'utilities/booking_util.php';
 
-// TODO: send a message to login page that explains the user has to login to view a room ad admin
 redirectIfUserNotLoggedIn(__FILE__);
 redirectUserIfNotAdmin();
 
@@ -19,7 +18,7 @@ if(isset($_GET["room_id"])) {
 
 $page = initPage(__FILE__);
 
-$admin_room_component = file_get_contents('templates/amministrazione_stanza.html');
+$admin_room_component = file_get_contents('templates/room_administration.html');
 
 $bookings = getNextRoomBookings($room_id);
 

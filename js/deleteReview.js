@@ -29,8 +29,7 @@ delete_button.addEventListener('click', function() {
 
     xmlHttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            // TODO: add error handling
-            window.location.href = 'area_utente.php';
+            window.location.href = 'user_area.php';
         }
     }
 

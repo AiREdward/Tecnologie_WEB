@@ -44,13 +44,14 @@ function getLoggedUser() {
 function redirectIfUserAlreadyLoggedIn(): void {
     if(getLoggedUser()) {
         if(isset($_SESSION['next_page'])) header('Location: ' . $_SESSION['next_page']);
-        else header('Location: area_utente.php');
+        else header('Location: user_area.php');
         exit();
     }
 }
 
 function redirectIfUserNotLoggedIn(string $page_name): void {
     if(getLoggedUser() == null) {
+        setInfoMessage('~needed_login~');
         $_SESSION['next_page'] = basename($page_name);
         header('Location: login.php');
         exit();
@@ -66,7 +67,7 @@ function redirectUserIfAdmin(): void {
 
 function redirectUserIfNotAdmin(): void {
     if(!checkIfUserIsAdmin(getLoggedUser())) {
-        header('Location: area_utente.php');
+        header('Location: user_area.php');
         exit();
     }
 }

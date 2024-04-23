@@ -7,20 +7,20 @@ $texts = [
         'breadcrumb' => 'Ti trovi in:',
         'lang_switch' => 'Vai alla versione inglese',
         'index' => '<span lang=en>Home</span>',
-        'area_utente' => 'Area Utente',
+        'user_area' => 'Area Utente',
         'login' => '<span lang=en>Login</span>',
         'signup' => 'Registra Account',
         'logout' => '<span lang=en>Logout</span>',
         'admin' => 'Amministrazione',
-        'prenota' => 'Prenota',
-        'modifica_prenotazione' => 'Modifica Prenotazione',
-        'crea_recensione' => 'Crea Recensione',
-        'modifica_recensione' => 'Modifica Recensione',
-        'amministrazione_stanza' => 'Amministrazione Stanza',
+        'booking' => 'Prenota',
+        'edit_booking' => 'Modifica Prenotazione',
+        'create_review' => 'Crea Recensione',
+        'edit_review' => 'Modifica Recensione',
+        'room_administration' => 'Amministrazione Stanza',
         // Admin
         'rooms' => 'Stanze',
-        // Amministrazione Stanza
-        // Area Utente
+        // Room Administration
+        // User Area
         'in_as' => 'Attualmente loggati come: ',
         'next_bookings' => 'Prossime Prenotazioni:',
         'past_bookings' => 'Prenotazioni Passate:',
@@ -31,12 +31,12 @@ $texts = [
         'no_available_review' => 'Non hai stanze da recensire',
         'no_written_review' => 'Non hai recensioni scritte.',
         'room' => 'Stanza',
-        'edit_booking' => 'Modifica',
+        'edit' => 'Modifica',
         'create_review_for' => 'Crea recensione per Stanza',
         'score' => 'Valutazione',
         'text' => 'Testo',
-        'edit_review' => 'Modifica recensione',
-        // Crea Recensione
+        'edit_a_review' => 'Modifica recensione',
+        // Create Review
         'create_review_for_num' => 'Crea Recensione per stanza n',
         'write_review' => 'Scrivi la recensione',
         'create_review_button' => 'Crea',
@@ -54,18 +54,17 @@ $texts = [
         // Logout
         'logout_success' => 'Logout effettuato con successo',
         'login_link' => 'Clicca qui per effettuare il login',
-        // Modifica Prenotazione
+        // Edit Booking
         'edit_booking_ID' => 'Modifica prenotazione ID',
-        'booking' => 'Prenotazione',
+        'the_booking' => 'Prenotazione',
         'by' => 'da',
         'where' => 'alla stanza',
-        'edit' => 'Modifica',
         'delete' => 'Elimina',
         'day_select' => 'Selezione del giorno',
         'slot_select' => 'Selezione dello slot',
-        // Modifica Recensione
+        // Edit Review
         'edit_the_review' => 'Modifica la recensione',
-        // Prenota
+        // Booking
         'room_booking' => 'Prenotazione Stanza',
         'book' => 'Prenota',
         // Signup
@@ -91,6 +90,20 @@ $texts = [
         'phone_number_not_valid' => 'Il numero di telefono non è valido.',
         'username_already_present' => 'Questo nome utente è già in uso.',
         'signup_error' => "C'è stato un problema durante la registrazione.",
+        // Info
+        'room_booked' => 'La stanza è stata prenotata.',
+        'needed_login' => 'Devi prima aver fatto il <span lang="en">login</span>.',
+        // Titles
+        'User_Area' => 'Area Utente',
+        'Admin' => 'Amministrazione',
+        'Login' => 'Accedi',
+        'Signup' => 'Registrazione',
+        'Logout' => 'Logout',
+        'Booking' => 'Prenotazione',
+        'Edit_Booking' => 'Modifica Prenotazione',
+        'Create_Review' => 'Creazione Recensione',
+        'Edit_Review' => 'Modifica Recensione',
+        'Room_Administration' => 'Amministrazione Stanza',
     ],
     'en' => [
         // base_layout & page names
@@ -99,20 +112,20 @@ $texts = [
         'breadcrumb' => 'You are in:',
         'lang_switch' => 'Go to Italian version',
         'index' => 'Home',
-        'area_utente' => 'User Area',
+        'user_area' => 'User Area',
         'login' => 'Login',
         'signup' => 'Sign Up',
         'logout' => 'Logout',
         'admin' => 'Administration',
-        'prenota' => 'Book',
-        'modifica_prenotazione' => 'Edit Booking',
-        'crea_recensione' => 'Create Review',
-        'modifica_recensione' => 'Modify Review',
-        'amministrazione_stanza' => 'Room Administration',
+        'booking' => 'Book',
+        'edit_booking' => 'Edit Booking',
+        'create_review' => 'Create Review',
+        'edit_review' => 'Edit Review',
+        'room_administration' => 'Room Administration',
         // Admin
         'rooms' => 'Rooms',
-        // Amministrazione Stanza
-        // Area Utente
+        // Room Administration
+        // User Area
         'in_as' => 'Currently logged in as: ',
         'next_bookings' => 'Next Bookings:',
         'past_bookings' => 'Past Bookings:',
@@ -123,12 +136,12 @@ $texts = [
         'no_available_review' => "You don't have any room to review.",
         'no_written_review' => "You don't have any review.",
         'room' => 'Room',
-        'edit_booking' => 'Edit',
+        'edit' => 'Edit',
         'create_review_for' => 'Create a review for Room',
         'score' => 'Score',
         'text' => 'Text',
-        'edit_review' => 'Edit review',
-        // Crea Recensione
+        'edit_a_review' => 'Edit review',
+        // Create Review
         'create_review_for_num' => 'Write review for room n',
         'write_review' => 'Write the review',
         'create_review_button' => 'Create',
@@ -146,18 +159,17 @@ $texts = [
         // Logout
         'logout_success' => 'Logged out successfully',
         'login_link' => 'Click here to login',
-        // Modifica Prenotazione
+        // Edit Booking
         'edit_booking_ID' => 'Edit booking ID',
-        'booking' => 'Booking',
+        'the_booking' => 'Booking',
         'by' => 'by',
         'where' => 'at Room',
-        'edit' => 'Edit',
         'delete' => 'Delete',
         'day_select' => 'Select day',
         'slot_select' => 'Select slot',
-        // Modifica Recensione
+        // Edit Review
         'edit_the_review' => 'Edit the review',
-        // Prenota
+        // Booking
         'room_booking' => 'Room Booking',
         'book' => 'Book',
         // Signup
@@ -183,5 +195,19 @@ $texts = [
         'phone_number_not_valid' => 'The phone number is not valid.',
         'username_already_present' => 'The username is already in use.',
         'signup_error' => 'There was a problem during the sign up.',
+        // Info
+        'room_booked' => 'The room has been booked.',
+        'needed_login' => 'You first need to login.',
+        // Titles
+        'User_Area' => 'User Area',
+        'Admin' => 'Administration',
+        'Login' => 'Login',
+        'Signup' => 'Signup',
+        'Logout' => 'Logout',
+        'Booking' => 'Room Booking',
+        'Edit_Booking' => 'Edit Booking',
+        'Create_Review' => 'Create Review',
+        'Edit_Review' => 'Edit Review',
+        'Room_Administration' => 'Room Administration',
     ]
 ];

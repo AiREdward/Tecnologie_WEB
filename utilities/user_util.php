@@ -4,7 +4,7 @@ require_once 'message_util.php';
 
 function checkIfUserIsAdmin($username): bool {
     $conn = new Connection();
-    if(!$conn->connect()) setErrorMessage('~connection_error~'); // TODO: change to the message or page 500
+    if(!$conn->connect()) setErrorMessage('~connection_error~');
 
     $isAdmin = $conn->isUserAdmin($username);
     $conn->closeConnection();

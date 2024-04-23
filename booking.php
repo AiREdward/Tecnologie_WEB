@@ -2,10 +2,10 @@
 require_once 'utilities/global.php';
 require_once 'utilities/access_util.php';
 require_once 'utilities/room_util.php';
+require_once 'utilities/message_util.php';
 
 if(isset($_GET["room"])) $_SESSION["id_room"] = $_GET["room"];
 
-// TODO: send a message to login page that explains the user has to login to book a room
 redirectIfUserNotLoggedIn(__FILE__);
 
 $id_room = $_SESSION["id_room"];
@@ -16,12 +16,12 @@ if(isset($_POST["prenota"])) {
 
     bookRoom($day, $slot, getLoggedUser(), $id_room);
 
-    // TODO: send a message to the user that the room has been booked
+    setInfoMessage('~room_booked~');
 }
 
 $page = initPage(__FILE__);
 
-$book_component = file_get_contents('templates/prenota.html');
+$book_component = file_get_contents('templates/booking.html');
 
 $content = str_replace('{room_id}', $id_room, $book_component);
 $content = str_replace('{today_date}', date('Y-m-d'), $content);

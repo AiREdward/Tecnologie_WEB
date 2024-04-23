@@ -22,9 +22,11 @@ foreach($rooms as $room) {
     if(getLanguage() == 'it') {
         $room_component = str_replace('{room_name}', $room['Nome'], $room_component);
         $room_component = str_replace('{room_description}', $room['Descrizione'], $room_component);
+        $room_component = str_replace('{room_alt}', getRoomImageAlt($room['ID'], 'it'), $room_component);
     } else {
         $room_component = str_replace('{room_name}', $rooms_info_english[$room['ID'] - 1]['Nome'], $room_component);
         $room_component = str_replace('{room_description}', $rooms_info_english[$room["ID"] - 1]['Descrizione'], $room_component);
+        $room_component = str_replace('{room_alt}', getRoomImageAlt($room['ID'], 'en'), $room_component);
     }
 
     $content .= $room_component;

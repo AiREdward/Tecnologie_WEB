@@ -22,7 +22,7 @@ if(all_set()) {
 
     if(!isErrorSet()) {
         loginUser($username,$password);
-        header("Location: area_utente.php");
+        header("Location: user_area.php");
         exit();
     }
 }

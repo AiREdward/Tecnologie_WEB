@@ -11,7 +11,7 @@ $page = initPage(__FILE__);
 
 $user = getLoggedUser();
 
-$user_area_component = file_get_contents('templates/area_utente.html');
+$user_area_component = file_get_contents('templates/user_area.html');
 
 $content = '';
 
@@ -24,7 +24,7 @@ if ($next_bookings == null) $next_bookings_to_show = '<p>~no_next_bookings~</p>'
 else {
     foreach ($next_bookings as $booking) {
         $next_bookings_to_show .= "<li class='singola_prenotazione'>" . $booking["Data_Prenotazione"] . "  " . $booking["Ora_Prenotazione"] . " [~room~: " . $booking["ID_Room"] . "] ";
-        $next_bookings_to_show .= "<a class='link_modifica' href='modifica_prenotazione.php?id=" . getBookingId($booking["Data_Prenotazione"], $booking["Ora_Prenotazione"], $user, $booking["ID_Room"]) . "' >~edit_booking~</a>";
+        $next_bookings_to_show .= "<a class='link_modifica' href='edit_booking.php?id=" . getBookingId($booking["Data_Prenotazione"], $booking["Ora_Prenotazione"], $user, $booking["ID_Room"]) . "' >~edit~</a>";
         $next_bookings_to_show .= "</li>";
     }
 }
@@ -45,7 +45,7 @@ if($rooms_for_review == null) $available_reviews_to_show = '<p>~no_available_rev
 else {
     foreach ($rooms_for_review as $re) {
         $available_reviews_to_show .= "<li>";
-        $available_reviews_to_show .= "<a class='link_modifica' href='crea_recensione.php?room_id=" . $re . "' >~create_review_for~ " . $re . "</a>";
+        $available_reviews_to_show .= "<a class='link_modifica' href='create_review.php?room_id=" . $re . "' >~create_review_for~ " . $re . "</a>";
         $available_reviews_to_show .= "</li>";
     }
 }
@@ -59,7 +59,7 @@ else {
         $written_reviews_to_show .= "<li>";
         $written_reviews_to_show .= "~room~ " . $re["ID_Room"] . " - ~score~: " . $re["Voto"] . " - ~text~: " . $re["Testo"];
         $written_reviews_to_show .= "<br>";
-        $written_reviews_to_show .= " <a class='link_modifica' href='modifica_recensione.php?review_id=" . $re["ID"] . "' >~edit_review~</a> ";
+        $written_reviews_to_show .= " <a class='link_modifica' href='edit_review.php?review_id=" . $re["ID"] . "' >~edit_a_review~</a> ";
         $written_reviews_to_show .= "</li>";
     }
 }

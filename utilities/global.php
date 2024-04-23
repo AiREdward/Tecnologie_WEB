@@ -2,9 +2,10 @@
 require_once 'config/regex_config.php';
 require_once 'config/pages_config.php';
 require_once 'config/text_config.php';
+require_once 'config/title_config.php';
 require_once 'message_util.php';
 
-global $navbar_pages, $access_keys, $page_hierarchy, $texts, $regex_username, $regex_username;
+global $navbar_pages, $access_keys, $page_hierarchy, $texts, $regex_username, $regex_username, $titles;
 
 function initialSetup(): void {
     $languages = ['it', 'en'];
@@ -47,7 +48,9 @@ function getNameOfTheFile(string $file_path): string {
 }
 
 function getTitle(string $page_name): string {
-    if ($page_name != 'index') return $page_name . ' | En?gma';
+    global $titles;
+
+    if ($page_name != 'index') return $titles[$page_name] . ' | En?gma';
     else return 'En?gma';
 }
 
@@ -76,7 +79,7 @@ function getBreadcrumb(string $page_name): string {
     $breadcrumb = '<span id="current_page"> ~' . $page_name . '~</span>';
     $father = $page_hierarchy[$page_name];
 
-    if($father == $page_hierarchy[$father]) $index_to_add = false;
+    if($page_name == $page_hierarchy[$page_name]) $index_to_add = false;
     else $index_to_add = true;
 
     while(($father != $page_hierarchy[$father]) || $index_to_add) {

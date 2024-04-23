@@ -24,12 +24,12 @@ if(isset($_POST["prenota"])) {
 
     $_SESSION["booking_id_editing"] = null;
 
-    header("Location: area_utente.php");
+    header("Location: user_area.php");
 }
 
 $page = initPage(__FILE__);
 
-$edit_booking_component = file_get_contents('templates/modifica_prenotazione.html');
+$edit_booking_component = file_get_contents('templates/edit_booking.html');
 
 $content = str_replace('{booking_id}', $booking_id, $edit_booking_component);
 
