@@ -1,5 +1,6 @@
 <?php
 require_once 'utilities/global.php';
+require_once 'utilities/access_util.php';
 require_once 'utilities/review_util.php';
 
 if(isset($_GET['review_id'])) {
