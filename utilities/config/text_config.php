@@ -88,8 +88,11 @@ $texts = [
         'password_not_valid' => 'La <span lang="en">password</span> non è valida.',
         'email_not_valid' => 'La <span lang="en">email</span> non è valida.',
         'phone_number_not_valid' => 'Il numero di telefono non è valido.',
+        'review_not_valid' => 'La recensione non è valida.',
+        'name_not_valid' => 'Nome e Cognome devono contenere solo lettere.',
         'username_already_present' => 'Questo nome utente è già in uso.',
         'signup_error' => "C'è stato un problema durante la registrazione.",
+        'passwords_not_the_same' => 'Le due passwords devono essere uguali.',
         // Info
         'room_booked' => 'La stanza è stata prenotata.',
         'needed_login' => 'Devi prima aver fatto il <span lang="en">login</span>.',
@@ -193,8 +196,11 @@ $texts = [
         'password_not_valid' => 'The password is not valid',
         'email_not_valid' => 'The email is not valid.',
         'phone_number_not_valid' => 'The phone number is not valid.',
+        'review_not_valid' => 'The review is not valid.',
+        'name_not_valid' => 'Name and Surname have to contain only letters.',
         'username_already_present' => 'The username is already in use.',
         'signup_error' => 'There was a problem during the sign up.',
+        'passwords_not_the_same' => 'The passwords must be the same.',
         // Info
         'room_booked' => 'The room has been booked.',
         'needed_login' => 'You first need to login.',
