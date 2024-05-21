@@ -92,7 +92,7 @@ function getBreadcrumb(string $page_name): string {
 }
 
 function getLangSwitch($page_name): string {
-    return '<a href="' . $page_name . '.php?lang=' . getOppositeLanguage() . '" class="langswitch">~lang_switch~</a>';
+    return '<a href="' . $page_name . '.php?lang=' . getOppositeLanguage() . '" id="lang-switch">~lang_switch~</a>';
 }
 
 function insertText($page) {

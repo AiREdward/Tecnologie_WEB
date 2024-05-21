@@ -1,0 +1,76 @@
+header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#logo {
+    margin-bottom: 0.2em;
+}
+
+header nav {
+    width: 100%;
+}
+
+#toggle-nav{
+    display: inline-flex;
+    text-indent: -9999px;
+    white-space: nowrap;
+    flex-grow: 1;
+    border: none;
+    background-color: transparent;
+    background-image: url(/images/hamburger-menu.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+}
+
+#lang-switch {
+    width: 100%;
+}
+
+#breadcrumb {
+    width: 100%;
+}
+
+.hidden-nav{
+    display: none;
+}
+
+.room-photo {
+    width: 100%;
+    display: block;
+}
+
+/*
+.home_room{
+    display: grid;
+    grid-template-columns:auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "title title title"
+                            "recap setting setting"
+                            "img  img img"
+                            "prenota prenota prenota";
+    gap: 0.5rem;
+}
+
+.titolostanza{
+    grid-area: title;
+}
+
+.recap{
+    grid-area: recap;
+}
+
+.room_photo{
+    grid-area: img;
+}
+
+.ambientazione{
+    grid-area: setting;
+}
+
+.prenotazione_rapida{
+    grid-area: prenota;
+}
+*/
+

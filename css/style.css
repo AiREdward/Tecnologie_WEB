@@ -1,24 +1,105 @@
 :root {
 
-    /*tema generale sito placeholder da sostituire*/
-	--background-color: #121212;
-    --theme-color: #8b1c1c;
-	--higligt-color: #c72d2d;
-    --text-color: #f1f1f1d4;
-    --link-color: #c9c9c9;
-    --link-visited-color: #ffd9b0;
+    /* tema generale sito placeholder da sostituire */
+
+	--background-color: #000;
+    --text-color: #FFF;
+    --primary-color: #B30000;
+    --secondary-color: #153131;
+    --link-color: #9DC7C8;
+    --link-visited-color: #748386;
+
+	--highlight-color: #c72d2d;
     --link-hover-color: #FFF;
     --button-color: #B30000;
     --button-hover-color: #B30000;
     --border-color: var(--text-color);
 
-    /*temi stanze?*/
+    /* temi stanze */
     --stanza1: #320035;
     --stanza2: #6c1400;
     --stanza3: #005e67;
 }
 
-/*css base/ mobile*/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 100%;
+    line-height: 1.5em;
+    margin: auto;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+body {
+    min-height: 100vh;
+}
+
+#screen-reader-skip {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 1em 2em;
+}
+
+#logo {
+    display: inline-block;
+}
+
+#toggle-nav {
+    display: none;
+}
+
+section {
+    background-color: var(--secondary-color);
+    margin-top: 2em;
+    margin-right: 2em;
+    margin-left: 2em;
+    padding: 1em;
+}
+
+/* TODO: check the levels of contrast on the links */
+
+a{
+    color: var(--link-color);
+}
+
+a:visited{
+    color: var(--link-visited-color);
+}
+
+.hidden-error {
+    display: none;
+}
+
+.hidden-info {
+    display: none;
+}
+
+#room-title {
+    margin-bottom: 0.67em;
+}
+
+.room-photo {
+    display: inline-block;
+    width: 50%;
+}
+
+.ambientazione {
+    display: inline-block;
+}
+
+/*
+
 html {
 	font-size: 100%;
 	font-family: "Arial", sans-serif;
@@ -31,24 +112,12 @@ body{
     max-width: 95%;
 }
 
-a{
-    color: var(--link-color);
-}
-
-a:visited{
-    color: var(--link-visited-color);
-}
-
 a:hover{
     color: var(--link-hover-color);
 }
 
 .SRskip {
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
+
 }
 
 header{
@@ -60,7 +129,6 @@ header{
                          "navmenu navmenu navmenu"
                          "langswitch langswitch langswitch"
                          "breadcrumbs breadcrumbs breadcrumbs";
-    background-color: var(--theme-color);
     border-style:outset;
     border-width: 1px;
     padding: 0.5rem;
@@ -69,24 +137,12 @@ header{
 
 header h1{
     grid-area: title;
-    /*grid-row: 1;*/
-}
-
-#togglenav{
-    grid-area: togglenav;
-    text-indent: -9999px; /* sends the text off-screen */
-    white-space: nowrap; /* because only the first line is indented */
-    min-width: 1rem;
-    max-height: 3rem;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    background-image: url(/images/hamburgermenuicon.png);
-    background-size: contain;
+    // grid-row: 1;
 }
 
 .breadcrumbs{
     grid-area: breadcrumbs;
-    /*grid-row: 4;*/
+    // grid-row: 4;
     background-color: var(--higligt-color);
     border-style: outset;
     border-width: 1px;
@@ -97,7 +153,7 @@ header h1{
 
 .langswitch{
     grid-area: langswitch;
-    /*grid-row: 3;*/
+    // grid-row: 3;
     background-color: var(--higligt-color);
     border-style: outset;
     border-width: 1px;
@@ -107,8 +163,8 @@ header h1{
 }
 
 nav{
-    /*grid-area:"navmenu";*/
-    /*grid-row: 2;*/
+    // grid-area:"nav-menu";
+    // grid-row: 2;
 }
 
 nav ul{
@@ -117,10 +173,6 @@ nav ul{
     flex-direction: column;
     width: 100%;
     list-style: none;
-}
-
-.closednav{
-    display: none;
 }
 
 nav ul li{
@@ -230,52 +282,8 @@ label{
     float: right;
 }
 
-.hidden-error {
-    display: none;
-}
-
-.hidden-info {
-    display: none;
-}
-
-@media screen and (min-width: 30rem) {
-    
-    /*modifiche css per tablet*/
-    .home_room{
-        display: grid;
-        grid-template-columns:auto auto auto;
-        grid-template-rows: auto auto auto auto;
-        grid-template-areas: "title title title"
-                            "recap setting setting"
-                            "img  img img"
-                            "prenota prenota prenota";
-        gap: 0.5rem;
-    }
-
-    .titolostanza{
-        grid-area: title;
-    }
-
-    .recap{
-        grid-area: recap;
-    }
-
-    .room_photo{
-        grid-area: img;
-    }
-
-    .ambientazione{
-        grid-area: setting;
-    }
-
-    .prenotazione_rapida{
-        grid-area: prenota;
-    }
-}
-
 @media screen and (min-width: 65em) {
 
-    /*modifiche css per desktop*/
     body{
         max-width: 60em;
         margin: 0 auto;
@@ -298,23 +306,23 @@ label{
 
     header h1{
         grid-area: title;
-        /*grid-row: 1;*/
+        /*grid-row: 1;
     }
 
     .breadcrumbs{
         grid-area: breadcrumbs;
-        /*grid-row: 3;*/
+        /*grid-row: 3;
     }
 
     .langswitch{
         grid-area: langswitch;
-        /*grid-row: 2;*/
+        /*grid-row: 2;
     }
 
     nav{
         grid-area: navmenu;
         /*grid-row: 1;
-        grid-column: 3;*/
+        /*grid-column: 3;
     }
 
     .largeform{
@@ -359,3 +367,5 @@ label{
         display: flex;
     }
 }
+*/
+
