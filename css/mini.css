@@ -1,14 +1,10 @@
-header {
+nav {
     display: flex;
     flex-wrap: wrap;
 }
 
 #logo {
     margin-bottom: 0.2em;
-}
-
-header nav {
-    width: 100%;
 }
 
 #toggle-nav{
@@ -22,14 +18,50 @@ header nav {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right;
+    filter: invert(1);
 }
 
-#lang-switch {
+#nav-menu {
+    width: 100%;
+}
+
+.mobile-menu-separator {
+    display: block;
+    width: 90%;
+    margin: 0.5em auto;
+}
+
+nav ul {
+    margin: unset;
+}
+
+nav ul li {
+    display: inline-block;
+    width: 100%;
+    border: none;
+    margin: unset;
+    background-color: transparent;
+}
+
+nav ul li:hover {
+    background-color: transparent;
+}
+
+hr {
+    width: 100%;
+}
+
+#bottom-nav {
+    display: block;
     width: 100%;
 }
 
 #breadcrumb {
     width: 100%;
+}
+
+#lang-switch {
+    display: none;
 }
 
 .hidden-nav{

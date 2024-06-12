@@ -29,6 +29,7 @@
 html {
     font-size: 100%;
     line-height: 1.5em;
+    font-family: "Verdana", sans-serif;
     margin: auto;
     background-color: var(--background-color);
     color: var(--text-color);
@@ -47,23 +48,72 @@ body {
 }
 
 header {
+    width: 100%;
+}
+
+nav {
     background-color: var(--primary-color);
     padding: 1em 2em;
+    margin-bottom: 2em;
 }
 
 #logo {
-    display: inline-block;
+    display: inline;
 }
 
 #toggle-nav {
     display: none;
 }
 
+.hidden-line {
+    display: none;
+}
+
+.mobile-menu-separator {
+    display: none;
+}
+
+nav ul {
+    display: inline;
+    margin-left: 0.75em;
+}
+
+nav ul li {
+    width: 30%;
+    list-style-type: none;
+    margin: 0 0.25em;
+    padding: 0.2em;
+    border: 1px solid var(--highlight-color);
+    border-radius: 0.2em;
+    background-color: var(--highlight-color);
+    text-align: center;
+    display: inline;
+}
+
+nav ul li:hover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+}
+
+nav hr {
+    margin: 0.5em 0;
+    border: 1px solid white;
+}
+
+#bottom-nav {
+    display: flex;
+}
+
+#lang-switch {
+    flex-grow: 1;
+    text-align: right;
+}
+
 section {
     background-color: var(--secondary-color);
-    margin-top: 2em;
     margin-right: 2em;
     margin-left: 2em;
+    margin-bottom: 2em;
     padding: 1em;
 }
 
@@ -100,24 +150,8 @@ a:visited{
 
 /*
 
-html {
-	font-size: 100%;
-	font-family: "Arial", sans-serif;
-	background-color: var(--background-color);
-    color: var(--text-color);
-}
-
-body{
-    width: 95%;
-    max-width: 95%;
-}
-
 a:hover{
     color: var(--link-hover-color);
-}
-
-.SRskip {
-
 }
 
 header{
@@ -138,17 +172,6 @@ header{
 header h1{
     grid-area: title;
     // grid-row: 1;
-}
-
-.breadcrumbs{
-    grid-area: breadcrumbs;
-    // grid-row: 4;
-    background-color: var(--higligt-color);
-    border-style: outset;
-    border-width: 1px;
-    border-radius: 1rem;
-    padding: 0 0.5rem;
-    width: 80%;
 }
 
 .langswitch{
@@ -173,12 +196,6 @@ nav ul{
     flex-direction: column;
     width: 100%;
     list-style: none;
-}
-
-nav ul li{
-    font-size: 1.5rem;
-    padding: 0;
-    text-decoration: none;
 }
 
 header a{
@@ -307,11 +324,6 @@ label{
     header h1{
         grid-area: title;
         /*grid-row: 1;
-    }
-
-    .breadcrumbs{
-        grid-area: breadcrumbs;
-        /*grid-row: 3;
     }
 
     .langswitch{

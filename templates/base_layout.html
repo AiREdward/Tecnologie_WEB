@@ -17,17 +17,21 @@
     <a href="#content" id="screen-reader-skip" title="~skip~" aria-label="~skip~">~skip~</a>
 
     <header>
-        <h1 id="logo">En?gma</h1>
-        <button type="button" id="toggle-nav">~nav_toggle~</button>
         <nav>
+            <h1 id="logo">En?gma</h1>
+            <button type="button" id="toggle-nav">~nav_toggle~</button>
+            <hr class="hidden-line" id="nav-line">
             <ul class="hidden-nav" id="nav-menu">
                 {menu}
             </ul>
+            <hr>
+            <div id="bottom-nav">
+                <div id="breadcrumb">
+                    <p>~breadcrumb~<span id="path">{breadcrumb}</span></p>
+                </div>
+                {lang_switch}
+            </div>
         </nav>
-        {lang_switch}
-        <div id="breadcrumb">
-            <p>~breadcrumb~<span id="path">{breadcrumb}</span></p>
-        </div>
     </header>
 
     <div class="hidden-error">
