@@ -73,6 +73,18 @@ hr {
     display: block;
 }
 
+footer {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--primary-color);
+    padding: 0.25em 0;
+}
+
+footer #lang-switch {
+    display: unset;
+}
+
 /*
 .home_room{
     display: grid;

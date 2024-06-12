@@ -148,6 +148,10 @@ a:visited{
     display: inline-block;
 }
 
+footer {
+    display: none;
+}
+
 /*
 
 a:hover{
