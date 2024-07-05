@@ -17,11 +17,11 @@ $rooms_to_show = '';
 
 if (getLanguage() == 'it') {
     foreach ($rooms as $room) {
-        $rooms_to_show .= '<p><a href="room_administration.php?room_id=' . $room["ID"] . '">' . $room["Nome"] . '</a></p>';
+        $rooms_to_show .= '<li><a href="room_administration.php?room_id=' . $room["ID"] . '">' . $room["Nome"] . '</a></li>';
     }
 } else {
     foreach ($rooms as $room) {
-        $rooms_to_show .= '<p><a href="room_administration.php?room_id=' . $room["ID"] . '"> ' . $rooms_info_english[$room["ID"] - 1]["Nome"] . '</a></p>';
+        $rooms_to_show .= '<li><a href="room_administration.php?room_id=' . $room["ID"] . '"> ' . $rooms_info_english[$room["ID"] - 1]["Nome"] . '</a></li>';
     }
 }
 

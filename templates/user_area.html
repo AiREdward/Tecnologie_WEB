@@ -1,23 +1,38 @@
-<p>~in_as~ {logged_user}</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Utente</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="user-info">
+            <p>~in_as~ {logged_user}</p>
+            <a href="logout.php">~logout~</a>
+        </div>
 
-<h2>~next_bookings~</h2>
-<ul class="prenotazioni_utente">
-    {next_bookings}
-</ul>
+        <section class="bookings-section">
+            <h2>~next_bookings~</h2>
+            <ul class="prenotazioni_utente">
+                {next_bookings}
+            </ul>
 
-<h2>~past_bookings~</h2>
-<ul class="prenotazioni_utente">
-    {past_bookings}
-</ul>
+            <h2>~past_bookings~</h2>
+            <ul class="prenotazioni_utente">
+                {past_bookings}
+            </ul>
+        </section>
 
-<h2>~write_reviews~</h2>
-<ul class="">
-    {available_reviews}
-</ul>
+        <section class="reviews-section">
+            <h2>~write_reviews~</h2>
+            <ul class="available-reviews">
+                {available_reviews}
+            </ul>
 
-<h2>~written_reviews~</h2>
-<ul class="">
-    {written_reviews}
-</ul>
-
-<a href="logout.php">~logout~</a>
+            <h2>~written_reviews~</h2>
+            <ul class="written-reviews">
+                {written_reviews}
+            </ul>
+        </section>
+    </div>
+</body>

@@ -1,14 +1,30 @@
-<h2>~room_booking~: </h2>
-<h2 id="room-id">{room_id}</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="booking-wrapper">
+        <div class="booking-container">
+            <h2>~room_booking~: </h2>
+            <h2 id="room-id">{room_id}</h2>
 
-<form id="form" action="booking.php" method="post">
-    <label for="day-selector">~day_select~</label>
-    <input id="day-selector" name="day" type="date" min="{today_date}" max="{max_date}"/>
+            <form id="booking-form" action="booking.php" method="post">
+                <div class="form-group">
+                    <label for="day-selector">~day_select~</label>
+                    <input id="day-selector" name="day" type="date" min="{today_date}" max="{max_date}">
+                </div>
 
-    <label for="slot-selector">~day_select~</label>
-    <select name="rooms" id="slot-selector">
-        <option value="">~day_select~</option>
-    </select>
+                <div class="form-group">
+                    <label for="slot-selector">~day_select~</label>
+                    <select name="rooms" id="slot-selector">
+                        <option value="">~day_select~</option>
+                    </select>
+                </div>
 
-    <button id="submit-button" name="prenota" type="submit"> ~book~ </button>
-</form>
+                <button id="submit-button" name="prenota" type="submit"> ~book~ </button>
+            </form>
+        </div>
+    </div>
+</body>

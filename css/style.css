@@ -1,234 +1,502 @@
 :root {
-
-    /*tema generale sito placeholder da sostituire*/
-	--background-color: #121212;
-    --theme-color: #8b1c1c;
-	--higligt-color: #c72d2d;
-    --text-color: #f1f1f1d4;
-    --link-color: #c9c9c9;
-    --link-visited-color: #ffd9b0;
-    --link-hover-color: #FFF;
-    --button-color: #B30000;
-    --button-hover-color: #B30000;
-    --border-color: var(--text-color);
-
-    /*temi stanze?*/
-    --stanza1: #320035;
-    --stanza2: #6c1400;
-    --stanza3: #005e67;
+    --background-color: #003049; 
+    --text-color: #E0E0E0; 
+    --primary-color: #333333; 
+    --secondary-color: #444444;
+    --link-color: #FF9800;
+    --link-visited-color: #FFD700; 
+    --highlight-color: #FFC107; 
+    --link-hover-color: #FFFFFF; 
+    --button-color: #28A745; 
+    --button-hover-color: #1F6B34;
+    --border-color: var(--text-color); 
+    --stanza1: #1E272E; 
+    --stanza2: #2C3A47; 
+    --stanza3: #3B3B98; 
 }
 
-/*css base/ mobile*/
-html {
-	font-size: 100%;
-	font-family: "Arial", sans-serif;
-	background-color: var(--background-color);
-    color: var(--text-color);
-}
-
-body{
-    width: 95%;
-    max-width: 95%;
-}
-
-a{
-    color: var(--link-color);
-}
-
-a:visited{
-    color: var(--link-visited-color);
-}
-
-a:hover{
-    color: var(--link-hover-color);
-}
-
-.SRskip {
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
-}
-
-header{
-    display: grid;
-    width: 100%;
-    grid-template-columns: 3rem auto auto;
-    grid-template-rows: auto auto auto auto;
-    grid-template-areas: "togglenav title title"
-                         "navmenu navmenu navmenu"
-                         "langswitch langswitch langswitch"
-                         "breadcrumbs breadcrumbs breadcrumbs";
-    background-color: var(--theme-color);
-    border-style:outset;
-    border-width: 1px;
-    padding: 0.5rem;
-    border-radius: 1rem;
-}
-
-header h1{
-    grid-area: title;
-    /*grid-row: 1;*/
-}
-
-#togglenav{
-    grid-area: togglenav;
-    text-indent: -9999px; /* sends the text off-screen */
-    white-space: nowrap; /* because only the first line is indented */
-    min-width: 1rem;
-    max-height: 3rem;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    background-image: url(/images/hamburgermenuicon.png);
-    background-size: contain;
-}
-
-.breadcrumbs{
-    grid-area: breadcrumbs;
-    /*grid-row: 4;*/
-    background-color: var(--higligt-color);
-    border-style: outset;
-    border-width: 1px;
-    border-radius: 1rem;
-    padding: 0 0.5rem;
-    width: 80%;
-}
-
-.langswitch{
-    grid-area: langswitch;
-    /*grid-row: 3;*/
-    background-color: var(--higligt-color);
-    border-style: outset;
-    border-width: 1px;
-    border-radius: 1rem;
-    padding: 0.5rem;
-    width: fit-content;
-}
-
-nav{
-    /*grid-area:"navmenu";*/
-    /*grid-row: 2;*/
-}
-
-nav ul{
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-    width: 100%;
-    list-style: none;
-}
-
-.closednav{
-    display: none;
-}
-
-nav ul li{
-    font-size: 1.5rem;
+* {
     padding: 0;
-    text-decoration: none;
-}
-
-header a{
-    text-decoration: none;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
-    width: min-content;
-    border: solid 1px;
-    border-color: var(--border-color);
-    border-radius: 1rem;
-    padding: 1rem;
-}
-
-fieldset{
-    display: flex;
-    flex-direction: column;
-    width: min-content;
-    border-radius: 1rem;
-}
-
-input{
-    border-radius: 1rem;
-    font-size: 1.25rem;
-    padding: 0.5rem 0.75rem;
-}
-
-label{
-    font-size: 1.25rem;
-}
-
-.home_room{
-    display: flex;
-    flex-direction: column;
-    padding: 0rem;
-    border-radius: 1rem;
     margin: 0;
 }
 
-#stanza1{
-    background-color: var(--stanza1);
+html {
+    font-size: 100%;
+    line-height: 1.5em;
+    font-family: "Verdana", sans-serif;
+    margin: auto;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
-#stanza2{
-    background-color: var(--stanza2);
+body {
+    min-height: 100vh;
 }
 
-#stanza3{
-    background-color: var(--stanza3);
+#screen-reader-skip {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
 }
 
-.recap{
-    background-color: var(--theme-color);
-    border-radius: 0.5rem;
-    padding: 1rem;
+header {
+    width: 100%;
+}
+
+nav {
+    background-color: var(--primary-color);
+    padding: 1em 2em;
+    margin-bottom: 2em;
+}
+
+#logo {
+    display: inline;
+}
+
+#toggle-nav {
+    display: none;
+}
+
+.hidden-line {
+    display: none;
+}
+
+.mobile-menu-separator {
+    display: none;
+}
+
+nav ul {
+    display: inline;
+    margin-left: 0.75em;
+}
+
+    nav ul li {
+        width: 30%;
+        list-style-type: none;
+        margin: 0 0.25em;
+        padding: 0.2em;
+        border: 1px solid var(--highlight-color);
+        border-radius: 0.2em;
+        background-color: var(--highlight-color);
+        text-align: center;
+        display: inline;
+    }
+
+        nav ul li:hover {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+        }
+
+nav hr {
+    margin: 0.5em 0;
+    border: 1px solid white;
+}
+
+#bottom-nav {
+    display: flex;
+}
+
+#lang-switch {
+    flex-grow: 1;
+    text-align: right;
+}
+
+section {
+    background-color: var(--secondary-color);
+    margin-right: 2em;
+    margin-left: 2em;
+    margin-bottom: 2em;
+    padding: 1em;
+}
+
+.prenotazione_rapida {
+    display: inline-block;
+    margin-top: 0em;
+    padding: 0.5em 1em;
+    background-color: var(--button-color);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+    .prenotazione_rapida:hover {
+        background-color: var(--button-hover-color);
+    }
+
+.home_room {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "img title"
+        "img recap"
+        "img prenota";
+    gap: 1rem;
+    padding: 1em;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+    .home_room img {
+        grid-area: img;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    
+    .home_room #room-title {
+        grid-area: title;
+        align-self: center;
+        font-size: 1.8em;
+        margin-bottom: 0.5em;
+    }
+
+    .home_room .recap {
+        grid-area: recap;
+        display: flex;
+        flex-direction: column;
+        gap: 0rem;
+        margin-top: 7em;
+    }
+    
+        .home_room .recap dt {
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+
+        .home_room .recap dd {
+            margin: 0 0 1em 0;
+        }
+
+    .home_room .ambientazione {
+        grid-area: recap;
+        margin-top: 0em;
+    }
+
+    .home_room .prenotazione_rapida {
+        grid-area: prenota;
+        align-self: start;
+    }
+
+    @media screen and (max-width: 768px) {
+        .home_room {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "img"
+                "title"
+                "recap"
+                "prenota";
+        }
+    }
+
+a {
+    color: var(--link-color);
+}
+
+    a:visited {
+        color: var(--link-visited-color);
+    }
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
     width: min-content;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.recap dt{
-    grid-column: 1;
-    padding: 0.5rem;
+    form input {
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+    }
+
+        form input:focus {
+            border-color: var(--link-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+        }
+
+        form input[type="submit"] {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: var(--button-color);
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+            form input[type="submit"]:hover {
+                background-color: var(--button-hover-color);
+            }
+
+            form input[type="submit"]:active {
+                background-color: #A62323; 
+            }
+
+    form label {
+        margin-bottom: 0.5rem;
+        color: var(--highlight-color);
+    }
+
+.largeform {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 1rem auto;
+    max-width: 600px;
+    width: 100%;
 }
 
-.recap dd{
-    grid-column: 2;
-    padding: 0.5rem;
+    .largeform fieldset {
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: var(--secondary-color);
+    }
+
+    .largeform legend {
+        padding: 0 0.5rem;
+        color: var(--highlight-color);
+    }
+
+    .largeform label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--highlight-color);
+    }
+
+    .largeform input {
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        background-color: var(--background-color);
+        color: var(--text-color);
+    }
+
+        .largeform input:focus {
+            border-color: var(--link-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+        }
+
+        .largeform input[type="submit"] {
+            width: auto;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: var(--button-color);
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+            .largeform input[type="submit"]:hover {
+                background-color: var(--button-hover-color);
+            }
+
+            .largeform input[type="submit"]:active {
+                background-color: #A62323; 
+            }
+
+.booking-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
-.prenotazione_rapida{
-    background-color: var(--higligt-color);
+.booking-container {
+    width: 100%;
+    max-width: 700px;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.booking-container h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+#booking-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--highlight-color);
+}
+
+input[type="date"],
+select {
+    width: calc(100% - 1.5rem);
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
     border-radius: 0.5rem;
-    padding: 1rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1rem;
 }
 
-.room_photo{
-    width: 100%;
-    border-radius: 1rem;
-    margin-top: 0.25rem;
+input[type="date"]:focus,
+select:focus {
+    border-color: var(--link-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
 }
 
-.ambientazione{
-    padding: 1rem;
-    width: auto;
+button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--button-color);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
 }
 
-.prenotazioni_utente{
-    list-style: none;
-    width: 100%;
+button:hover {
+    background-color: var(--button-hover-color);
 }
-.singola_prenotazione{
-    border-radius: 1rem;
-    padding: 1rem;
-    font-size: 1.5rem;
-    background-color: var(--theme-color);
+
+button:active {
+    background-color: #A62323;
 }
-.link_modifica{
-    float: right;
+
+.dashboard-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.user-info {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+    .user-info p {
+        margin: 0;
+        color: var(--highlight-color);
+    }
+
+    .user-info a {
+        color: var(--link-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .user-info a:hover {
+            color: var(--link-hover-color);
+        }
+
+.bookings-section,
+.reviews-section {
+    margin-bottom: 20px;
+}
+
+    .bookings-section h2,
+    .reviews-section h2 {
+        margin-top: 0;
+        color: var(--highlight-color);
+    }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.prenotazioni_utente li {
+    margin-bottom: 10px;
+}
+
+.available-reviews li,
+.written-reviews li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+}
+
+.available-reviews li {
+    color: var(--highlight-color);
+}
+
+.written-reviews li {
+    color: var(--text-color);
+}
+
+.logout-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    margin: 0 0 20px; 
+    color: var(--highlight-color); 
+}
+
+.login-link {
+    color: var(--link-color); 
+    text-decoration: none; 
+    transition: color 0.3s ease;
+}
+
+    .login-link:hover {
+        color: var(--link-hover-color);
+    }
 
 .hidden-error {
     display: none;
@@ -238,124 +506,24 @@ label{
     display: none;
 }
 
-@media screen and (min-width: 30rem) {
-    
-    /*modifiche css per tablet*/
-    .home_room{
-        display: grid;
-        grid-template-columns:auto auto auto;
-        grid-template-rows: auto auto auto auto;
-        grid-template-areas: "title title title"
-                            "recap setting setting"
-                            "img  img img"
-                            "prenota prenota prenota";
-        gap: 0.5rem;
-    }
-
-    .titolostanza{
-        grid-area: title;
-    }
-
-    .recap{
-        grid-area: recap;
-    }
-
-    .room_photo{
-        grid-area: img;
-    }
-
-    .ambientazione{
-        grid-area: setting;
-    }
-
-    .prenotazione_rapida{
-        grid-area: prenota;
-    }
+#room-title {
+    margin-bottom: 0.67em;
 }
 
-@media screen and (min-width: 65em) {
+.room-photo {
+    display: inline-block;
+    width: 50%;
+    border-radius: 8px;
+}
 
-    /*modifiche css per desktop*/
-    body{
-        max-width: 60em;
-        margin: 0 auto;
-    }
+.ambientazione {
+    display: inline-block;
+}
 
-    header{
-        display: grid;
-        width: 100%;
-        grid-template-columns: auto auto auto;
-        grid-template-rows: auto auto auto auto;
-        grid-template-areas: "title togglenav navmenu"
-                             "langswitch . ."
-                             "breadcrumbs breadcrumbs breadcrumbs"
-                             ". . .";
-    }
+footer {
+    display: none;
+}
 
-    #togglenav{
-        display: none;
-    }
-
-    header h1{
-        grid-area: title;
-        /*grid-row: 1;*/
-    }
-
-    .breadcrumbs{
-        grid-area: breadcrumbs;
-        /*grid-row: 3;*/
-    }
-
-    .langswitch{
-        grid-area: langswitch;
-        /*grid-row: 2;*/
-    }
-
-    nav{
-        grid-area: navmenu;
-        /*grid-row: 1;
-        grid-column: 3;*/
-    }
-
-    .largeform{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: fit-content;
-        padding: 0;
-    }
-
-    .home_room{
-        display: grid;
-        grid-template-columns: 50% auto 30%;
-        grid-template-rows: auto auto auto auto;
-        grid-template-areas: "img title   setting"
-                             "img recap   setting"
-                             "img prenota setting";
-        gap: 0.5rem;
-    }
-
-    .titolostanza{
-        grid-area: title;
-    }
-
-    .recap{
-        grid-area: recap;
-    }
-
-    .room_photo{
-        grid-area: img;
-    }
-
-    .ambientazione{
-        grid-area: setting;
-    }
-
-    .prenotazione_rapida{
-        grid-area: prenota;
-    }
-
-    .closednav{
-        display: flex;
-    }
+a:hover{
+    color: var(--link-hover-color);
 }

@@ -6,11 +6,11 @@
 
 class Connection
 {
-    //const HOST = "localhost";
-    //const USERNAME = "";
-    //const PASS = "Shop7iengoochoo3";
-    //const DATABASE = "";
-    //const CHARSET = 'utf8mb4';
+    const HOST = "localhost";
+    const USERNAME = "root";
+    const PASS = ""; //Shop7iengoochoo3
+    const DATABASE = "enigmaDB";
+    const CHARSET = 'utf8mb4_general_ci';
 
     public $conn = null;
 
@@ -20,20 +20,20 @@ class Connection
     }
 
     // Deploy connect function
-    /*
-    public function connect(): bool {
+    
+    /*public function connect(): bool {
         $dsn = "mysql:host=". self::HOST . ";dbname=" . self::DATABASE . ";charset=" . self::CHARSET;
 
         try {
             $this->conn = new PDO($dsn, self::USERNAME, self::PASS);
-            // $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             return true;
         } catch(PDOException $e) {
             return false;
         }
-    }
-    */
+    }*/
+    
 
     public function connect(): bool {
         try {

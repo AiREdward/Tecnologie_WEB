@@ -10,6 +10,30 @@ function getRoomInfo() {
 
     if (!$conn->connect()) {
         setErrorMessage('~connection_error~');
+        return []; // Ritorna un array vuoto o gestisci diversamente il caso di errore
+    } else {
+        $rooms = $conn->getRooms();
+        return $rooms ? $rooms : [];
+    }
+}
+
+function getRoomInfoEnglish() {
+    $conn = new Connection();
+
+    if (!$conn->connect()) {
+        setErrorMessage('~connection_error~');
+        return []; // Ritorna un array vuoto o gestisci diversamente il caso di errore
+    } else {
+        $rooms = $conn->getRoomsEnglish();
+        return $rooms ? $rooms : [];
+    }
+}
+/*
+function getRoomInfo() {
+    $conn = new Connection();
+
+    if (!$conn->connect()) {
+        setErrorMessage('~connection_error~');
         return null;
     } else return $conn->getRooms();
 }
@@ -22,7 +46,7 @@ function getRoomInfoEnglish() {
         return null;
     }
     else return $conn->getRoomsEnglish();
-}
+}*/
 
 function getRoomImageAlt($room_id, $lang): string {
     global $room_img_alt;

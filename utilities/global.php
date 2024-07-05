@@ -59,7 +59,13 @@ function getMenu(string $page_name): string {
 
     $menu = '';
 
+    $counter = 0;
+
     foreach($navbar_pages as $menu_entry) {
+        if($counter > 0) {
+            $menu .= '<hr class="mobile-menu-separator">';
+        }
+
         if ($menu_entry != $page_name) {
             $page_path = $menu_entry . '.php';
             $key = $access_keys[$menu_entry];
@@ -68,6 +74,7 @@ function getMenu(string $page_name): string {
         } else {
             $menu = $menu . '<li class="currentpage">~' . $menu_entry . '~</li>';
         }
+        $counter++;
     }
 
     return $menu;
@@ -76,7 +83,7 @@ function getMenu(string $page_name): string {
 function getBreadcrumb(string $page_name): string {
     global $page_hierarchy;
 
-    $breadcrumb = '<span id="current_page"> ~' . $page_name . '~</span>';
+    $breadcrumb = '<span id="current-page"> ~' . $page_name . '~</span>';
     $father = $page_hierarchy[$page_name];
 
     if($page_name == $page_hierarchy[$page_name]) $index_to_add = false;
@@ -92,7 +99,7 @@ function getBreadcrumb(string $page_name): string {
 }
 
 function getLangSwitch($page_name): string {
-    return '<a href="' . $page_name . '.php?lang=' . getOppositeLanguage() . '" class="langswitch">~lang_switch~</a>';
+    return '<a href="' . $page_name . '.php?lang=' . getOppositeLanguage() . '" id="lang-switch">~lang_switch~</a>';
 }
 
 function insertText($page) {

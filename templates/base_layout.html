@@ -7,27 +7,31 @@
     <meta name="description" content="{description}">
     <meta name="author" content="En?gma">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" media="screen">
+    <link rel="stylesheet" href="css/mini.css" media="screen and (max-width: 600px)">
     <link rel="stylesheet" href="css/print.css" media="print">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <script type="text/javascript" src="js/navtoggle.js"></script>
-    <script type="text/javascript" src="utilities/config/regex_js_config.js"></script>
+    <script src="js/navtoggle.js"></script>
 </head>
 <body>
-    <a href="#content" class="SRskip" title="~skip~" aria-label="~skip~">~skip~</a>
+    <a href="#content" id="screen-reader-skip" title="~skip~" aria-label="~skip~">~skip~</a>
 
     <header>
-        <h1 class="logo">En?gma</h1>
-        <button type="button" id="togglenav">~nav_toggle~</button>
         <nav>
-            <ul class="navmenu closednav" id="navmenu">
+            <h1 id="logo">En?gma</h1>
+            <button type="button" id="toggle-nav">~nav_toggle~</button>
+            <hr class="hidden-line" id="nav-line">
+            <ul class="hidden-nav" id="nav-menu">
                 {menu}
             </ul>
+            <hr>
+            <div id="bottom-nav">
+                <div id="breadcrumb">
+                    <p>~breadcrumb~<span id="path">{breadcrumb}</span></p>
+                </div>
+                {lang_switch}
+            </div>
         </nav>
-        {lang_switch}
-        <div class="breadcrumbs">
-            <p>~breadcrumb~<span id="percorso">{breadcrumb}</span></p>
-        </div>
     </header>
 
     <div class="hidden-error">
@@ -42,6 +46,10 @@
         {content}
     </main>
 
-    <script type="text/javascript" src="js/default.js"></script>
+    <footer>
+        {lang_switch}
+    </footer>
+
+    <script src="js/default.js"></script>
 </body>
 </html>
