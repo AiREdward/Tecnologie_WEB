@@ -107,6 +107,17 @@ $texts = [
         'Create_Review' => 'Creazione Recensione',
         'Edit_Review' => 'Modifica Recensione',
         'Room_Administration' => 'Amministrazione Stanza',
+        // Footer
+        'contacts_title' => 'Contatti',
+        'phone_label' => 'Telefono',
+        'phone_number' => '123-456-7890',
+        'email_label' => 'Email',
+        'email_address' => 'enigma@gmail.com',
+        'find_us_title' => 'Dove trovarci',
+        'address' => 'Via dalì 13, 01210 Padova PD, Italia',
+        'follow_us_title' => 'Seguici su',
+        'instagram_link' => 'https://www.instagram.com',
+        'facebook_link' => 'https://www.facebook.com',
     ],
     'en' => [
         // base_layout & page names
@@ -215,5 +226,16 @@ $texts = [
         'Create_Review' => 'Create Review',
         'Edit_Review' => 'Edit Review',
         'Room_Administration' => 'Room Administration',
+        // Footer
+        'contacts_title' => 'Contacts',
+        'phone_label' => 'Phone',
+        'phone_number' => '123-456-7890',
+        'email_label' => 'Email',
+        'email_address' => 'info@example.com',
+        'find_us_title' => 'Where to find us',
+        'address' => '13 dalì, Padova, Italy',
+        'follow_us_title' => 'Follow us on',
+        'instagram_link' => 'https://www.instagram.com',
+        'facebook_link' => 'https://www.facebook.com',
     ]
 ];
