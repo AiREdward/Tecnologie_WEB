@@ -18,6 +18,14 @@
     --stanza3: #005e67;
 }
 
+    footer {
+    background-color: #2a2a2a; /* grigio scuro */
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
 /*css base/ mobile*/
 html {
 	font-size: 100%;
@@ -358,4 +366,34 @@ label{
     .closednav{
         display: flex;
     }
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+footer dl {
+    margin: 0;
+}
+
+footer dt {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+footer dd {
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+}
+
+footer a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--link-hover-color);
 }

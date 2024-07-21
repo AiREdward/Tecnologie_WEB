@@ -1,11 +1,13 @@
-<section id="stanza{room_id}" class="home_room">
+<section id="stanza{room_id}" class="home_room" aria-labelledby="{room_name}">
     <h2 class="titolostanza">{room_name}</h2>
-    <dl class="recap">
+    <img class="room_photo" src="./images/room{room_id}.webp" alt="{room_alt}">
+    <p class="ambientazione">{room_description}</p>
+    <dl class="recap" role="presentation">
+
         <dt>~difficulty~</dt><dd>{room_difficulty}</dd>
         <dt>~players~</dt><dd>{room_minimum_players}-{room_maximum_players}</dd>
         <dt>~time~</dt><dd>{room_duration} min</dd>
+    
     </dl>
-    <img class="room_photo" src="./images/room{room_id}.webp" alt="{room_alt}">
-    <p class="ambientazione">{room_description}</p>
-    <a class="prenotazione_rapida" href="booking.php?room={room_id}">~booking_button~</a>
+    <a class="prenotazione_rapida" href="booking.php?room={room_id}" aria-label="{room_name} ~booking_button~">~booking_button~</a>
 </section>

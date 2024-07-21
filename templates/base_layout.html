@@ -14,10 +14,10 @@
     <script type="text/javascript" src="utilities/config/regex_js_config.js"></script>
 </head>
 <body>
-    <a href="#content" class="SRskip" title="~skip~" aria-label="~skip~">~skip~</a>
+    <a href="#content" class="SRskip" title="~skip~" aria-label="~skip~"  tabindex="0">~skip~</a>
 
-    <header>
-        <h1 class="logo">En?gma</h1>
+    <header>   
+        <h1 class="logo" aria-label="enigma">En?gma</h1>
         <button type="button" id="togglenav">~nav_toggle~</button>
         <nav>
             <ul class="navmenu closednav" id="navmenu">
@@ -42,6 +42,16 @@
         {content}
     </main>
 
+    <footer>
+        {footer}
+    </footer>
+    
     <script type="text/javascript" src="js/default.js"></script>
+
 </body>
 </html>
+
+
+
+
+
