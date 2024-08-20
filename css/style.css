@@ -397,3 +397,9 @@ footer a {
 footer a:hover {
     color: var(--link-hover-color);
 }
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+    visibility: hidden;
+}

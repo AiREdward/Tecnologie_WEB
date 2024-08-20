@@ -1,30 +1,43 @@
 <p>~prompt_login~<a href='login.php'>~login_button_alt~</a>
 
-<form id="form" class="largeform" action="signup.php" method="post">
-    <fieldset>
-        <legend>~legend_anagrafica~</legend>
-        <label for="nome">~name_label~</label>
-        <input id="nome" name="nome" type="text" required/>
-        <label for="cognome">~surname_label~</label>
-        <input id="cognome" name="cognome" type="text" required/>
-        <label for="nascita">~birth_label~</label>
-        <input id="nascita" name="nascita" type="date" min="1900-01-01" max="{today_date}" required/>
-    </fieldset>
-    <fieldset>
-        <legend>~contacts_legend~</legend>
-        <label for="telefono">~phone_label~</label>
-        <input id="telefono" name="telefono" type="text"/>
-        <label for="email" lang="en">~email_label~</label>
-        <input id="email" name="email" type="email" required/>
-    </fieldset>
-    <fieldset>
-        <legend>~account_legend~</legend>
-        <label for="username" lang="en">~label_username~</label>
-        <input id="username" name="username" type="text" required/>
-        <label for="password" lang="en">~label_password~</label>
-        <input id="password" name="password" type="password" required/>
-        <label for="conferma">~confirm_label~</label>
-        <input id="conferma" name="conferma" type="password" />
-        <input id="signup-button" type="submit" value="~signup_button~" required/>
-    </fieldset>
-</form>
+    <form id="form" class="largeform" action="signup.php" method="post">
+        <fieldset>
+            <legend>~legend_anagrafica~</legend>
+            <label for="nome">~name_label~</label>
+            <input id="nome" name="nome" type="text" required/>
+            <small id="nome-error" class="error-message"></small>
+    
+            <label for="cognome">~surname_label~</label>
+            <input id="cognome" name="cognome" type="text" required/>
+            <small id="cognome-error" class="error-message"></small>
+    
+            <label for="nascita">~birth_label~</label>
+            <input id="nascita" name="nascita" type="date" min="1900-01-01" max="{today_date}" required/>
+        </fieldset>
+        <fieldset>
+            <legend>~contacts_legend~</legend>
+            <label for="telefono">~phone_label~</label>
+            <input id="telefono" name="telefono" type="text"/>
+            <small id="telefono-error" class="error-message"></small>
+    
+            <label for="email" lang="en">~email_label~</label>
+            <input id="email" name="email" type="email" required/>
+            <small id="email-error" class="error-message"></small>
+        </fieldset>
+        <fieldset>
+            <legend>~account_legend~</legend>
+            <label for="username" lang="en">~label_username~</label>
+            <input id="username" name="username" type="text" required/>
+            <small id="username-error" class="error-message"></small>
+    
+            <label for="password" lang="en">~label_password~</label>
+            <input id="password" name="password" type="password" required/>
+            <small id="password-error" class="error-message"></small>
+    
+            <label for="conferma">~confirm_label~</label>
+            <input id="conferma" name="conferma" type="password" />
+            <small id="conferma-error" class="error-message"></small>
+    
+            <input id="signup-button" type="submit" value="~signup_button~" required/>
+        </fieldset>
+    </form>
