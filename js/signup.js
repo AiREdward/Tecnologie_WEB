@@ -16,6 +16,7 @@ function showErrorMessageForField(field, errorId, message) {
     otherErrorElements.forEach(el => {
         if (el !== errorElement) {
             el.style.visibility = 'hidden';
+            el.textContent = ''; 
         }
     });
 
@@ -24,8 +25,10 @@ function showErrorMessageForField(field, errorId, message) {
         errorElement.style.visibility = 'visible';
     } else {
         errorElement.style.visibility = 'hidden';
+        errorElement.textContent = ''; 
     }
 }
+
 
 
 function checkIfNameIsValid() {
@@ -127,28 +130,28 @@ function checkIfFieldsAreValid() {
 
 name_field.addEventListener('input', checkIfFieldsAreValid);
 name_field.addEventListener('focus', checkIfNameIsValid);
-name_field.addEventListener('blur', checkIfFieldsAreValid);
+//name_field.addEventListener('blur', checkIfFieldsAreValid);
 
 surname_field.addEventListener('input', checkIfFieldsAreValid);
 surname_field.addEventListener('focus', checkIfSurnameIsValid);
-surname_field.addEventListener('blur', checkIfFieldsAreValid);
+//surname_field.addEventListener('blur', checkIfFieldsAreValid);
 
 phone_number_field.addEventListener('input', checkIfFieldsAreValid);
 phone_number_field.addEventListener('focus', checkIfPhoneNumberIsValid);
-phone_number_field.addEventListener('blur', checkIfFieldsAreValid);
+//phone_number_field.addEventListener('blur', checkIfFieldsAreValid);
 
 email_field.addEventListener('input', checkIfFieldsAreValid);
 email_field.addEventListener('focus', checkIfEmailIsValid);
-email_field.addEventListener('blur', checkIfFieldsAreValid);
+//email_field.addEventListener('blur', checkIfFieldsAreValid);
 
 username_field.addEventListener('input', checkIfFieldsAreValid);
 username_field.addEventListener('focus', checkIfUsernameIsValid);
-username_field.addEventListener('blur', checkIfFieldsAreValid);
+//username_field.addEventListener('blur', checkIfFieldsAreValid);
 
 password_field.addEventListener('input', checkIfFieldsAreValid);
 password_field.addEventListener('focus', checkIfPasswordIsValid);
-password_field.addEventListener('blur', checkIfFieldsAreValid);
+//password_field.addEventListener('blur', checkIfFieldsAreValid);
 
 confirm_password_field.addEventListener('input', checkIfFieldsAreValid);
 confirm_password_field.addEventListener('focus', checkIfConfirmPasswordIsTheSame);
-confirm_password_field.addEventListener('blur', checkIfFieldsAreValid);
+//confirm_password_field.addEventListener('blur', checkIfFieldsAreValid);

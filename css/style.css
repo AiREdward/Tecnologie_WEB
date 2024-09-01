@@ -400,6 +400,6 @@ footer a:hover {
 
 .error-message {
     color: red;
-    font-size: 0.8em;
+    font-size: 1em;
     visibility: hidden;
 }
