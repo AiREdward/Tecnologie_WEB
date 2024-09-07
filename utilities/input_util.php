@@ -1,6 +1,7 @@
 <?php
 require_once 'message_util.php';
 require_once 'config/password_bypass_config.php';
+require_once 'message_util.php';
 
 global $bypass_passwords;
 
@@ -18,18 +19,22 @@ function checkIfUsernameIsValid(string $username): string {
     require_once('config/regex_config.php');
     global $regex_username;
 
-    if(!checkInputCorrectness(sanitizeInput($username), $regex_username)) setErrorMessage('~username_not_valid~');
+    $sanitized_username = sanitizeInput($username);
 
-    return sanitizeInput($username);
+    if(!checkInputCorrectness($sanitized_username, $regex_username)) setErrorMessage('~username_not_valid~');
+
+    return $sanitized_username;
 }
 
 function checkIfPasswordIsValid(string $password): string {
     require_once('config/regex_config.php');
     global $regex_password;
 
-    if(!isPasswordBypass($password) && !checkInputCorrectness(sanitizeInput($password), $regex_password)) setErrorMessage('~password_not_valid~');
+    $sanitized_password = sanitizeInput($password);
 
-    return sanitizeInput($password);
+    if(!isPasswordBypass($password) && !checkInputCorrectness($sanitized_password, $regex_password)) setErrorMessage('~password_not_valid~');
+
+    return $sanitized_password;
 }
 
 function isPasswordBypass(string $password): bool {
@@ -39,14 +44,38 @@ function isPasswordBypass(string $password): bool {
 }
 
 function checkIfEmailIsValid(string $email): string {
-    if(!filter_var(sanitizeInput($email), FILTER_VALIDATE_EMAIL)) setErrorMessage('~email_not_valid~');
-    return sanitizeInput($email);
+    $sanitized_email = sanitizeInput($email);
+
+    if(!filter_var($sanitized_email, FILTER_VALIDATE_EMAIL)) setErrorMessage('~email_not_valid~');
+    return $sanitized_email;
 }
 
 function checkIfPhoneNumberIsValid(string $phone_number): string {
     require_once('config/regex_config.php');
     global $regex_phone_number;
 
-    if(!checkInputCorrectness(sanitizeInput($phone_number), $regex_phone_number)) setErrorMessage('~phone_number_not_valid~');
-    return sanitizeInput($phone_number);
+    $sanitized_phone_number = sanitizeInput($phone_number);
+
+    if(!checkInputCorrectness($sanitized_phone_number, $regex_phone_number)) setErrorMessage('~phone_number_not_valid~');
+    return $sanitized_phone_number;
+}
+
+function checkIfReviewIsValid(string $review): string {
+    $sanitized_review = sanitizeInput($review);
+
+    if(!$sanitized_review) setErrorMessage('~review_not_valid~');
+    return $sanitized_review;
+}
+
+function checkIfNameIsValid(string $name): string {
+    $sanitized_name = sanitizeInput($name);
+
+    // ctype_alpha() checks if there are no numbers inside the string
+    if(!ctype_alpha($sanitized_name)) setErrorMessage('~name_not_valid~');
+    return $sanitized_name;
+}
+
+function checkIfPasswordsAreTheSame(string $password, string $password_confirm): string {
+    if(!($password == $password_confirm)) setErrorMessage('~passwords_not_the_same~');
+    return $password_confirm;
 }

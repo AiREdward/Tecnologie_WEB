@@ -10,11 +10,13 @@ $content = '';
 $rooms = getRoomInfo();
 $rooms_info_english = getRoomInfoEnglish();
 
+$difficulty_tr = ['~diff_easy~', '~diff_medium~', '~diff_hard~'];
+
 foreach($rooms as $room) {
     $room_component = $index_component;
 
     $room_component = str_replace('{room_id}', $room['ID'], $room_component);
-    $room_component = str_replace('{room_difficulty}', $room['Difficolta'], $room_component);
+    $room_component = str_replace('{room_difficulty}', $difficulty_tr[$room['Difficolta'] - 1], $room_component);
     $room_component = str_replace('{room_minimum_players}', $room['Numero_Partecipanti_Minimo'], $room_component);
     $room_component = str_replace('{room_maximum_players}', $room['Numero_Partecipanti_Massimo'], $room_component);
     $room_component = str_replace('{room_duration}', $room['Durata'], $room_component);

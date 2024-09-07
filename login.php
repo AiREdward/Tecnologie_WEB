@@ -21,5 +21,6 @@ $login_component = file_get_contents("templates/login.html");
 $page = str_replace('{content}', $login_component, $page);
 
 $page = finalizePage($page);
+$page = insertScript($page, 'login.js');
 
 echo $page;

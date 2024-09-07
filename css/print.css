@@ -1,0 +1,52 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 12pt;
+    font-family: "Times New Roman", serif;
+    line-height: 1.5em;
+    margin: auto;
+}
+
+a#screen-reader-skip {
+    display: none;
+}
+
+header {
+    margin: 1em 0;
+}
+
+h1#logo {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+button#toggle-nav {
+    display: none;
+}
+
+ul#nav-menu {
+    display: none;
+}
+
+div#error-message-box {
+    display: none;
+}
+
+div#info-message-box {
+    display: none;
+}
+
+a.lang-switch {
+    display: none;
+}
+
+img.room-photo {
+    width: 100%;
+}
+
+ul li span::after, ul li time::after {
+    content: " | ";
+}

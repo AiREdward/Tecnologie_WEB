@@ -3,9 +3,11 @@ require_once 'config/regex_config.php';
 require_once 'config/pages_config.php';
 require_once 'config/text_config.php';
 require_once 'config/title_config.php';
+require_once 'config/description_config.php';
+require_once 'config/keywords_config.php';
 require_once 'message_util.php';
 
-global $navbar_pages, $access_keys, $page_hierarchy, $texts, $regex_username, $regex_username, $titles;
+global $navbar_pages, $access_keys, $page_hierarchy, $texts, $regex_username, $regex_username, $titles, $descriptions, $keywords;
 
 function initialSetup(): void {
     $languages = ['it', 'en'];
@@ -29,6 +31,8 @@ function initPage(string $file_path): string {
 
     $page = str_replace('{language}', getLanguage(), $layout);
     $page = str_replace('{title}', getTitle(getNameOfTheFile($file_path)), $page);
+    $page = str_replace('{description}', getDescription(getNameOfTheFile($file_path)), $page);
+    $page = str_replace('{keywords}', getKeywords(getNameOfTheFile($file_path)), $page);
     $page = str_replace('{menu}', getMenu(getNameOfTheFile($file_path)), $page);
     $page = str_replace('{breadcrumb}', getBreadcrumb(getNameOfTheFile($file_path)), $page);
     return str_replace('{lang_switch}', getLangSwitch(getNameOfTheFile($file_path)), $page);
@@ -54,18 +58,24 @@ function getTitle(string $page_name): string {
     else return 'En?gma';
 }
 
+function getDescription(string $page_name): string {
+    global $descriptions;
+
+    return $descriptions[$page_name];
+}
+
+function getKeywords(string $page_name): string {
+    global $keywords;
+
+    return $keywords[$page_name];
+}
+
 function getMenu(string $page_name): string {
     global $navbar_pages, $access_keys;
 
     $menu = '';
 
-    $counter = 0;
-
     foreach($navbar_pages as $menu_entry) {
-        if($counter > 0) {
-            $menu .= '<hr class="mobile-menu-separator">';
-        }
-
         if ($menu_entry != $page_name) {
             $page_path = $menu_entry . '.php';
             $key = $access_keys[$menu_entry];
@@ -74,7 +84,6 @@ function getMenu(string $page_name): string {
         } else {
             $menu = $menu . '<li class="currentpage">~' . $menu_entry . '~</li>';
         }
-        $counter++;
     }
 
     return $menu;
@@ -90,7 +99,7 @@ function getBreadcrumb(string $page_name): string {
     else $index_to_add = true;
 
     while(($father != $page_hierarchy[$father]) || $index_to_add) {
-        $breadcrumb = '<a href="' . $father . '.php"> ~' . $father . '~</a> <span aria-hidden=true></span>' . ' &gt;' . $breadcrumb;
+        $breadcrumb = ' <a href="' . $father . '.php">~' . $father . '~</a> <span aria-hidden=true></span>' . ' &gt;' . $breadcrumb;
         if($father == $page_hierarchy[$father]) $index_to_add = false;
         $father = $page_hierarchy[$father];
     }
@@ -99,7 +108,7 @@ function getBreadcrumb(string $page_name): string {
 }
 
 function getLangSwitch($page_name): string {
-    return '<a href="' . $page_name . '.php?lang=' . getOppositeLanguage() . '" id="lang-switch">~lang_switch~</a>';
+    return '<a href="' . $page_name . '.php?lang=' . getOppositeLanguage() . '" class="lang-switch">~lang_switch~</a>';
 }
 
 function insertText($page) {

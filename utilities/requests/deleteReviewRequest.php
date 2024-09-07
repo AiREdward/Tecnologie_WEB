@@ -1,7 +1,7 @@
 <?php
 require_once '../review_util.php';
 
-// File used by deleteReview.js for deleting a review
+// File used by editReview.js for deleting a review
 
 $review_id = $_REQUEST['id'];
 

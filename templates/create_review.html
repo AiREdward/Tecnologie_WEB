@@ -1,11 +1,13 @@
-<h2>~create_review_for_num~{room_id}</h2>
+<form id="create-review-form" action="create_review.php" method="post">
+    <h2>~create_review_for_num~{room_id}</h2>
 
-<form id="form" action="create_review.php" method="post">
-    <label for="review-box">~write_review~</label>
-    <input id="review-box" name="review-box" type="text" maxlength="1024">
+    <label for="review-box">~write_review~:</label>
+    <textarea id="review-box" name="review-box" maxlength="1024"></textarea>
 
-    <label for="rating">~score~:</label>
-    <input id="rating" name="rating" type="number" min="1" max="5" step="1" value="3">
+    <div id="rating-container">
+        <label for="rating">~score~:</label>
+        <input id="rating" name="rating" type="number" min="1" max="5" step="1" value="3">
+    </div>
 
     <button id="submit-button" name="crea_recensione" type="submit">~create_review_button~</button>
 </form>

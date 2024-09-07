@@ -18,18 +18,27 @@ function loginUser($email, $password): void {
     $conn->closeConnection();
 }
 
-function registerUser($username, $email, $password, $name, $surname, $phone_number, $birth_date): void {
+
+function registerUser($username, $email, $password, $name, $surname, $phone_number, $birth_date): bool {
     $conn = new Connection();
-    if(!$conn->connect()) setErrorMessage('~connection_error~');
-    else {
-        if($conn->checkIfUserExists($username)) setErrorMessage('~username_already_present~');
-        else {
+    if(!$conn->connect()) {
+        setErrorMessage('~connection_error~');
+        return false;
+    } else {
+        if($conn->checkIfUserExists($username)) {
+            setErrorMessage('~username_already_present~');
+            return false;
+        } else {
             $password = password_hash($password, PASSWORD_DEFAULT);
 
-            if(!$conn->registerNewUser($username, $email, $password, $name, $surname, $phone_number, $birth_date)) setErrorMessage('~signup_error~');
+            if(!$conn->registerNewUser($username, $email, $password, $name, $surname, $phone_number, $birth_date)) {
+                setErrorMessage('~signup_error~');
+                return false;
+            }
         }
 
         $conn->closeConnection();
+        return true;
     }
 }
 

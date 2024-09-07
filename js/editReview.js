@@ -1,3 +1,5 @@
+const edit_review_box = document.getElementById('review-box');
+const submit_edit_button = document.getElementById('submit-button');
 const delete_button = document.getElementById('delete-button');
 
 const review_id = document.getElementById('review-id').innerHTML;
@@ -21,9 +23,15 @@ function getXMLHttp() {
     return xmlHttp;
 }
 
-delete_button.addEventListener('click', function() {
-    console.log(review_id);
+function checkIfEditReviewIsNotEmpty() {
+    return edit_review_box.value.trim().length !== 0;
+}
 
+edit_review_box.addEventListener('input', function () {
+    submit_edit_button.disabled = !checkIfEditReviewIsNotEmpty();
+});
+
+delete_button.addEventListener('click', function() {
     let url = 'utilities/requests/deleteReviewRequest.php?id=' + review_id;
     let xmlHttp = getXMLHttp();
 
