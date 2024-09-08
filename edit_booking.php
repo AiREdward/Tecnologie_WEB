@@ -34,7 +34,7 @@ $edit_booking_component = file_get_contents('templates/edit_booking.html');
 $content = str_replace('{booking_id}', $booking_id, $edit_booking_component);
 
 $content = str_replace('{booking_info_date}', $booking_info["Data_Prenotazione"], $content);
-$content = str_replace('{booking_info_hour}', $booking_info["Ora_Prenotazione"], $content);
+$content = str_replace('{booking_info_time}', substr($booking_info["Ora_Prenotazione"], 0, 5), $content);
 $content = str_replace('{booking_info_username}', $booking_info["Username"], $content);
 $content = str_replace('{booking_info_room_id}', $booking_info["ID_Room"], $content);
 

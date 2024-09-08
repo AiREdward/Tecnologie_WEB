@@ -3,9 +3,11 @@ require_once 'config/regex_config.php';
 require_once 'config/pages_config.php';
 require_once 'config/text_config.php';
 require_once 'config/title_config.php';
+require_once 'config/description_config.php';
+require_once 'config/keywords_config.php';
 require_once 'message_util.php';
 
-global $navbar_pages, $access_keys, $page_hierarchy, $texts, $regex_username, $regex_username, $titles;
+global $navbar_pages, $access_keys, $page_hierarchy, $texts, $regex_username, $regex_username, $titles, $descriptions, $keywords;
 
 function initialSetup(): void {
     $languages = ['it', 'en'];
@@ -29,6 +31,8 @@ function initPage(string $file_path): string {
 
     $page = str_replace('{language}', getLanguage(), $layout);
     $page = str_replace('{title}', getTitle(getNameOfTheFile($file_path)), $page);
+    $page = str_replace('{description}', getDescription(getNameOfTheFile($file_path)), $page);
+    $page = str_replace('{keywords}', getKeywords(getNameOfTheFile($file_path)), $page);
     $page = str_replace('{menu}', getMenu(getNameOfTheFile($file_path)), $page);
     $page = str_replace('{breadcrumb}', getBreadcrumb(getNameOfTheFile($file_path)), $page);
     $page = str_replace('{lang_switch}', getLangSwitch(getNameOfTheFile($file_path)), $page);
@@ -57,6 +61,18 @@ function getTitle(string $page_name): string {
     else return 'En?gma';
 }
 
+function getDescription(string $page_name): string {
+    global $descriptions;
+
+    return $descriptions[$page_name];
+}
+
+function getKeywords(string $page_name): string {
+    global $keywords;
+
+    return $keywords[$page_name];
+}
+
 function getMenu(string $page_name): string {
     global $navbar_pages, $access_keys;
 
@@ -78,14 +94,14 @@ function getMenu(string $page_name): string {
 function getBreadcrumb(string $page_name): string {
     global $page_hierarchy;
 
-    $breadcrumb = '<span id="current_page"> ~' . $page_name . '~</span>';
+    $breadcrumb = '<span id="current-page"> ~' . $page_name . '~</span>';
     $father = $page_hierarchy[$page_name];
 
     if($page_name == $page_hierarchy[$page_name]) $index_to_add = false;
     else $index_to_add = true;
 
     while(($father != $page_hierarchy[$father]) || $index_to_add) {
-        $breadcrumb = '<a href="' . $father . '.php"> ~' . $father . '~</a> <span aria-hidden=true></span>' . ' &gt;' . $breadcrumb;
+        $breadcrumb = ' <a href="' . $father . '.php">~' . $father . '~</a> <span aria-hidden=true></span>' . ' &gt;' . $breadcrumb;
         if($father == $page_hierarchy[$father]) $index_to_add = false;
         $father = $page_hierarchy[$father];
     }
@@ -99,7 +115,7 @@ function getFooter(): string {
 }
 
 function getLangSwitch($page_name): string {
-    return '<a href="' . $page_name . '.php?lang=' . getOppositeLanguage() . '" class="langswitch">~lang_switch~</a>';
+    return '<a href="' . $page_name . '.php?lang=' . getOppositeLanguage() . '" class="lang-switch">~lang_switch~</a>';
 }
 
 function insertText($page) {

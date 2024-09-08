@@ -27,7 +27,12 @@ $content = str_replace('{room_number}', $room_id, $admin_room_component);
 $bookings_to_show = '';
 
 foreach ($bookings as $booking) {
-    $bookings_to_show .= "<li> Prenotazione numero: " . $booking["ID"] . " | Data: " . $booking["Data_Prenotazione"] . " | Orario: " . $booking["Ora_Prenotazione"] . " | Utente: " . $booking["Username"] . "</li>";
+    $bookings_to_show .= "<li class='future-booking'>";
+    $bookings_to_show .= "<span>" . "Prenotazione numero: " . $booking["ID"] . "</span>";
+    $bookings_to_show .= "<time datetime='" . $booking["Data_Prenotazione"] . "'>" . "Data: " . $booking["Data_Prenotazione"] . "</time>";
+    $bookings_to_show .= "<time datetime='" . substr($booking["Ora_Prenotazione"], 0, 5) . "'>" . "Orario: " . substr($booking["Ora_Prenotazione"], 0, 5) . "</time>";
+    $bookings_to_show .= "<span>" . "Utente: " . $booking["Username"] . "</span>";
+    $bookings_to_show .= "</li>";
 }
 
 $content = str_replace('{booking_list}', $bookings_to_show, $content);

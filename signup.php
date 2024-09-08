@@ -13,10 +13,10 @@ if(all_set()) {
     $surname = checkIfNameIsValid($_POST['cognome']);
     $date_of_birth = sanitizeInput($_POST['nascita']);
 
-    $username = checkIfUsernameIsValid($_POST["username"]);
-    $password = checkIfPasswordIsValid($_POST["password"]);
-    $email = checkIfEmailIsValid($_POST["email"]);
-    $phone_number = checkIfPhoneNumberIsValid($_POST["telefono"]);
+    $username = checkIfUsernameIsValid($_POST['username']);
+    $password = checkIfPasswordIsValid($_POST['password']);
+    $email = checkIfEmailIsValid($_POST['email']);
+    $phone_number = checkIfPhoneNumberIsValid($_POST['telefono']);
 
     $password_confirmation = checkIfPasswordsAreTheSame($password, $_POST['conferma']);
 

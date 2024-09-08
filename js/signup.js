@@ -29,8 +29,6 @@ function showErrorMessageForField(field, errorId, message) {
     }
 }
 
-
-
 function checkIfNameIsValid() {
     let name = name_field.value.trim();
     if (/[0-9]/.test(name) || name.length == 0) {
@@ -44,6 +42,7 @@ function checkIfNameIsValid() {
 
 function checkIfSurnameIsValid() {
     let surname = surname_field.value.trim();
+
     if (/[0-9]/.test(surname) || surname.length == 0) {
         showErrorMessageForField(surname_field, 'cognome-error', 'Il cognome non può contenere numeri e non può essere vuoto.');
         return false;
@@ -126,7 +125,6 @@ function checkIfFieldsAreValid() {
 
     return isValid;
 }
-
 
 name_field.addEventListener('input', checkIfFieldsAreValid);
 name_field.addEventListener('focus', checkIfNameIsValid);

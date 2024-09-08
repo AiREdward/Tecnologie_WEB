@@ -1,0 +1,319 @@
+/* General */
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main#content {
+    margin-bottom: 2em;
+}
+
+/* Navbar */
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#logo {
+    margin-bottom: 0.2em;
+}
+
+#toggle-nav{
+    display: inline-flex;
+    text-indent: -9999px;
+    white-space: nowrap;
+    flex-grow: 1;
+    border: none;
+    background-color: transparent;
+    background-image: url(/images/hamburger-menu.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    filter: invert(1);
+}
+
+#nav-menu {
+    width: 100%;
+}
+
+nav ul {
+    margin: unset;
+}
+
+nav ul li {
+    display: block;
+    width: 90%;
+    border: none;
+    border-bottom: 2px solid var(--text-color);
+    border-radius: 0;
+    margin: 0 auto;
+    padding: 0.5em 0;
+    background-color: transparent;
+}
+
+nav ul li:first-child {
+    padding-top: 0;
+}
+
+nav ul li:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+nav ul li:hover {
+    background-color: transparent;
+    border-bottom: 2px solid var(--text-color);
+}
+
+nav ul li:last-child:hover {
+    border-bottom: none;
+}
+
+nav hr {
+    width: 100%;
+}
+
+#bottom-nav {
+    display: block;
+    width: 100%;
+}
+
+#breadcrumb {
+    width: 100%;
+}
+
+.lang-switch {
+    display: none;
+}
+
+.hidden-nav{
+    display: none;
+}
+
+/* Error */
+
+div#error-message-box {
+    width: 80%;
+}
+
+/* Information */
+
+div#info-message-box {
+    width: 80%;
+}
+
+/* Room Cards in Home */
+
+section.home-room {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    padding: 0.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+section.home-room h2 {
+    padding: 0.5em 0;
+}
+
+section.home-room img {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+}
+
+section.home-room dl {
+    grid-row: 3;
+}
+
+section.home-room p {
+    grid-row: 4;
+}
+
+section.home-room a {
+    grid-row: 5;
+}
+
+/* Login Page */
+
+form#login-form {
+    width: 80%;
+}
+
+/* Signup Page */
+
+form#signup-form {
+    width: 80%;
+}
+
+/* User Page */
+
+p#currently-logged-as {
+    margin-left: 5%;
+}
+
+h2.user-area-section-title {
+    margin-left: 5%;
+}
+
+ul.user-area-element-list {
+    width: 90%;
+}
+
+ul.user-area-element-list li {
+    margin-bottom: 0.4em;
+}
+
+ul.user-area-element-list li.next-booking-element {
+    flex-direction: column;
+}
+
+li.next-booking-element time.next-booking-date {
+    text-align: start;
+    padding-left: 0.5em;
+}
+
+li.next-booking-element time.next-booking-time {
+    text-align: start;
+    padding-left: 0.5em;
+    border-left: none;
+    border-top: 1px solid var(--element-border-color);
+}
+
+li.next-booking-element span.next-booking-room-id {
+    text-align: start;
+    padding-left: 0.5em;
+    border-left: none;
+    border-top: 1px solid var(--element-border-color);
+}
+
+li.next-booking-element a.next-booking-edit-button {
+
+    border-left: none;
+    border-top: 1px solid var(--element-border-color);
+}
+
+ul.user-area-element-list li.past-booking-element {
+    flex-direction: column;
+}
+
+li.past-booking-element time.past-booking-date {
+    text-align: start;
+    padding-left: 0.5em;
+}
+
+li.past-booking-element time.past-booking-time {
+    text-align: start;
+    padding-left: 0.5em;
+    border-left: none;
+    border-top: 1px solid var(--element-border-color);
+}
+
+li.past-booking-element span.past-booking-room-id {
+    text-align: start;
+    padding-left: 0.5em;
+    border-left: none;
+    border-top: 1px solid var(--element-border-color);
+}
+
+ul#create-review-list {
+    margin: 0 auto 2em;
+    width: 90%;
+}
+
+ul#written-review-list {
+    margin: 0 auto;
+}
+
+/* Room Booking Page */
+
+form#booking-form {
+    width: 80%;
+}
+
+/* Create Review Page */
+
+form#create-review-form {
+    width: 80%;
+}
+
+/* Modify Review Page */
+
+form#edit-review-form {
+    width: 80%;
+}
+
+form#edit-review-form button#delete-button {
+    width: 25%;
+}
+
+/* Logout Page */
+
+/* Edit Booking Page */
+
+form#edit-booking-form {
+    width: 80%;
+}
+
+/* Admin Page */
+
+h2#admin-page-title {
+    margin-left: 1em;
+}
+
+ul#admin-room-list {
+    margin-left: 2em;
+}
+
+a#admin-logout {
+    margin-left: 2em;
+}
+
+/* Room Administration Page */
+
+h2#room-administration-title {
+    margin-left: 0.5em;
+}
+
+h3#future-booking-list-title {
+    margin-left: 0.8em;
+}
+
+ul#future-booking-list {
+    width: 90%;
+    margin: 0 auto;
+}
+
+ul#future-booking-list li.future-booking {
+    flex-direction: column;
+    margin-bottom: 0.4em;
+}
+
+li.future-booking span, li.future-booking time {
+    text-align: start;
+    padding-left: 0.5em;
+}
+
+li.future-booking time, li.future-booking span:last-child {
+    border-left: none;
+    border-top: 1px solid var(--future-booking-border-color);
+}
+
+/* Footer */
+
+footer {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+    background-color: var(--primary-color);
+    padding: 0.25em 0;
+}
+
+footer .lang-switch {
+    display: unset;
+}
