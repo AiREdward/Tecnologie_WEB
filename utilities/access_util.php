@@ -18,7 +18,6 @@ function loginUser($email, $password): void {
     $conn->closeConnection();
 }
 
-
 function registerUser($username, $email, $password, $name, $surname, $phone_number, $birth_date): bool {
     $conn = new Connection();
     if(!$conn->connect()) {

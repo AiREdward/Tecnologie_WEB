@@ -35,7 +35,10 @@ function initPage(string $file_path): string {
     $page = str_replace('{keywords}', getKeywords(getNameOfTheFile($file_path)), $page);
     $page = str_replace('{menu}', getMenu(getNameOfTheFile($file_path)), $page);
     $page = str_replace('{breadcrumb}', getBreadcrumb(getNameOfTheFile($file_path)), $page);
-    return str_replace('{lang_switch}', getLangSwitch(getNameOfTheFile($file_path)), $page);
+    $page = str_replace('{lang_switch}', getLangSwitch(getNameOfTheFile($file_path)), $page);
+    $page = str_replace('{footer}', getFooter(), $page); 
+
+    return $page;
 }
 
 function getLanguage(): string {
@@ -75,14 +78,13 @@ function getMenu(string $page_name): string {
 
     $menu = '';
 
-    foreach($navbar_pages as $menu_entry) {
+    foreach ($navbar_pages as $menu_entry) {
         if ($menu_entry != $page_name) {
             $page_path = $menu_entry . '.php';
             $key = $access_keys[$menu_entry];
-            $menu = $menu . '<li><a href="' . $page_path . '" accesskey="' . $key . '">~' . $menu_entry . '~</a></li>';
-
+            $menu .= '<li><a href="' . $page_path . '" accesskey="' . $key . '">~' . $menu_entry . '~</a></li>';
         } else {
-            $menu = $menu . '<li class="currentpage">~' . $menu_entry . '~</li>';
+            $menu .= '<li class="currentpage"><span aria-current="page">~' . $menu_entry . '~</span></li>';
         }
     }
 
@@ -105,6 +107,11 @@ function getBreadcrumb(string $page_name): string {
     }
 
     return $breadcrumb;
+}
+
+function getFooter(): string {
+    $footer_template = file_get_contents('templates/footer.html');
+    return insertText($footer_template); 
 }
 
 function getLangSwitch($page_name): string {

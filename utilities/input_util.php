@@ -1,5 +1,4 @@
 <?php
-require_once 'message_util.php';
 require_once 'config/password_bypass_config.php';
 require_once 'message_util.php';
 
