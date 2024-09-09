@@ -370,7 +370,10 @@ form#signup-form input {
     border-radius: 0.5em;
 }
 
-form#signup-form input[type=text], form#signup-form input[type=email], form#signup-form input[type=password] {
+form#signup-form input[type=text],
+form#signup-form input[type=email],
+form#signup-form input[type=password],
+form#signup-form input[type=date] {
     padding-left: 0.5em;
 }
 
@@ -588,7 +591,8 @@ form#create-review-form h2 {
     margin: 0 auto;
 }
 
-form#create-review-form input, form#create-review-form textarea {
+form#create-review-form input,
+form#create-review-form textarea {
     border: none;
     border-radius: 0.5em;
     padding: 0.2em;
@@ -639,7 +643,8 @@ form#edit-review-form h2 {
     margin: 0 auto;
 }
 
-form#edit-review-form input, form#edit-review-form textarea {
+form#edit-review-form input,
+form#edit-review-form textarea {
     border: none;
     border-radius: 0.5em;
     padding: 0.2em;
@@ -713,7 +718,8 @@ form#edit-booking-form div {
     margin-bottom: 1em;
 }
 
-form#edit-booking-form div time, form#edit-booking-form div span {
+form#edit-booking-form div time,
+form#edit-booking-form div span {
     flex-grow: 1;
     padding: 0.5em 0;
     text-align: center;
@@ -821,13 +827,15 @@ ul#future-booking-list li:last-child {
     margin-bottom: 0;
 }
 
-li.future-booking span, li.future-booking time {
+li.future-booking span,
+li.future-booking time {
     flex-grow: 1;
     text-align: center;
     padding: 0.2em 0;
 }
 
-li.future-booking time, li.future-booking span:last-child {
+li.future-booking time,
+li.future-booking span:last-child {
     border-left: 2px solid var(--future-booking-border-color);
 }
 
