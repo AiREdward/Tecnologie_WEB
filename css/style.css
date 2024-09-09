@@ -28,11 +28,14 @@
     /* Login Page */
     --login-form-background-color: #1A2933;
     --login-button-color: #7DCBFF;
+    --login-button-disabled-color: #4C7C9C;
 
     /* Signup Page */
     --signup-form-background-color: #1A2933;
     --signup-button-color: #7DCBFF;
     --signup-button-text-color: #000;
+    --signup-button-disabled-color: #4C7C9C;
+    --error-text-color: #FF5443;
 
     /* User Page */
     --list-background-color: #153131;
@@ -43,10 +46,12 @@
     /* Room Booking Page */
     --booking-form-background-color: #1A2933;
     --booking-button-color: #7DCBFF;
+    --booking-button-disabled-color: #4C7C9C;
 
     /* Create Review Page */
     --create-review-form-background-color: #1A2933;
     --create-review-button-color: #7DCBFF;
+    --create-review-button-disabled-color: #4C7C9C;
 
     /* Modify Review Page */
     --edit-review-form-background-color: #1A2933;
@@ -92,12 +97,16 @@ body {
     min-height: 100vh;
 }
 
-a{
+a {
     color: var(--link-color);
 }
 
-a:visited{
+a:visited {
     color: var(--link-visited-color);
+}
+
+.hidden {
+    display: none;
 }
 
 /* Navbar */
@@ -316,6 +325,10 @@ form#login-form input[type=submit] {
     margin-top: 0.75em;
 }
 
+form#login-form input[type=submit]:disabled {
+    background-color: var(--login-button-disabled-color);
+}
+
 form#login-form p {
     font-size: 0.9em;
 }
@@ -373,8 +386,21 @@ form#signup-form input[type=submit] {
     margin-top: 0.75em;
 }
 
+form#signup-form input[type=submit]:disabled {
+    background-color: var(--signup-button-disabled-color);
+}
+
 form#signup-form p {
     font-size: 0.9em;
+}
+
+small {
+    display: block;
+}
+
+small.error-message {
+    color: var(--error-text-color);
+    font-weight: bold;
 }
 
 /* User Page */
@@ -541,6 +567,10 @@ form#booking-form button {
     background-color: var(--booking-button-color);
 }
 
+form#booking-form button:disabled {
+    background-color: var(--booking-button-disabled-color);
+}
+
 /* Create Review Page */
 
 form#create-review-form {
@@ -586,6 +616,10 @@ form#create-review-form button {
     border-radius: 0.5em;
     color: var(--opposite-text-color);
     background-color: var(--create-review-button-color);
+}
+
+form#create-review-form button:disabled {
+    background-color: var(--create-review-button-disabled-color);
 }
 
 /* Modify Review Page */

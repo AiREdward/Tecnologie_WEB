@@ -78,13 +78,13 @@ function getMenu(string $page_name): string {
 
     $menu = '';
 
-    foreach ($navbar_pages as $menu_entry) {
+    foreach($navbar_pages as $menu_entry) {
         if ($menu_entry != $page_name) {
             $page_path = $menu_entry . '.php';
             $key = $access_keys[$menu_entry];
-            $menu .= '<li><a href="' . $page_path . '" accesskey="' . $key . '">~' . $menu_entry . '~</a></li>';
+            $menu = $menu . '<li><a href="' . $page_path . '" accesskey="' . $key . '">~' . $menu_entry . '~</a></li>';
         } else {
-            $menu .= '<li class="currentpage"><span aria-current="page">~' . $menu_entry . '~</span></li>';
+            $menu = $menu . '<li class="currentpage">~' . $menu_entry . '~</li>';
         }
     }
 
