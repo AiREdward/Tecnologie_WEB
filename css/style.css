@@ -1,405 +1,838 @@
 :root {
+    /* General */
+    --background-color: #000;
+    --text-color: #FFF;
+    --opposite-text-color: #000;
+    --primary-color: #8F0000;
+    --secondary-color: #153131;
+    --link-color: #90FAFA;
+    --link-visited-color: #91D7FD;
 
-    /*tema generale sito placeholder da sostituire*/
-	--background-color: #121212;
-    --theme-color: #8b1c1c;
-	--higligt-color: #c72d2d;
-    --text-color: #f1f1f1d4;
-    --link-color: #c9c9c9;
-    --link-visited-color: #ffd9b0;
-    --link-hover-color: #FFF;
-    --button-color: #B30000;
-    --button-hover-color: #B30000;
-    --border-color: var(--text-color);
+    /* Navbar */
+    --highlight-color: #B30000;
 
-    /*temi stanze?*/
-    --stanza1: #320035;
-    --stanza2: #6c1400;
-    --stanza3: #005e67;
+    /* Error */
+    --error-box-border-color: #8F0C00;
+    --error-box-background-color: #DB1200;
+
+    /* Information */
+    --info-box-border-color: #006666;
+    --info-box-background-color: #00DBDB;
+
+    /* Room Cards in Home */
+    --room-statistics-background-color: #3A8787;
+    --room-statistics-border-color: #222;
+    --booking-button-border-color: #222;
+    --booking-button-background-color: #296060;
+
+    /* Login Page */
+    --login-form-background-color: #1A2933;
+    --login-button-color: #7DCBFF;
+    --login-button-disabled-color: #4C7C9C;
+
+    /* Signup Page */
+    --signup-form-background-color: #1A2933;
+    --signup-button-color: #7DCBFF;
+    --signup-button-text-color: #000;
+    --signup-button-disabled-color: #4C7C9C;
+    --error-text-color: #FF5443;
+
+    /* User Page */
+    --list-background-color: #153131;
+    --element-background-color: #295E5E;
+    --element-border-color: #222;
+    --edit-booking-button-background-color: #544E99;
+
+    /* Room Booking Page */
+    --booking-form-background-color: #1A2933;
+    --booking-button-color: #7DCBFF;
+    --booking-button-disabled-color: #4C7C9C;
+
+    /* Create Review Page */
+    --create-review-form-background-color: #1A2933;
+    --create-review-button-color: #7DCBFF;
+    --create-review-button-disabled-color: #4C7C9C;
+
+    /* Modify Review Page */
+    --edit-review-form-background-color: #1A2933;
+    --edit-review-button-color: #7DCBFF;
+    --edit-review-delete-button-color: #DB2617;
+
+    /* Logout Page */
+
+    /* Edit Booking Page */
+    --edit-booking-form-background-color: #1A2933;
+    --edit-booking-button-color: #7DCBFF;
+    --edit-booking-delete-button-color: #DB2617;
+    --booking-info-background-color: #005e67;
+    --booking-info-border-color: #222;
+
+    /* Admin Page */
+
+    /* Room Administration Page */
+    --future-booking-list-background-color: #153131;
+    --future-booking-background-color: #295E5E;
+    --future-booking-border-color: #222;
+
+    /* Footer */
 }
 
-    footer {
-    background-color: #2a2a2a; /* grigio scuro */
-    color: var(--text-color);
-    padding: 1rem;
-    border-radius: 1rem;
-    margin-top: 1rem;
-}
+/* General */
 
-/*css base/ mobile*/
-html {
-	font-size: 100%;
-	font-family: "Arial", sans-serif;
-	background-color: var(--background-color);
-    color: var(--text-color);
-}
-
-body{
-    width: 95%;
-    max-width: 95%;
-}
-
-a{
-    color: var(--link-color);
-}
-
-a:visited{
-    color: var(--link-visited-color);
-}
-
-a:hover{
-    color: var(--link-hover-color);
-}
-
-.SRskip {
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
-}
-
-header{
-    display: grid;
-    width: 100%;
-    grid-template-columns: 3rem auto auto;
-    grid-template-rows: auto auto auto auto;
-    grid-template-areas: "togglenav title title"
-                         "navmenu navmenu navmenu"
-                         "langswitch langswitch langswitch"
-                         "breadcrumbs breadcrumbs breadcrumbs";
-    background-color: var(--theme-color);
-    border-style:outset;
-    border-width: 1px;
-    padding: 0.5rem;
-    border-radius: 1rem;
-}
-
-header h1{
-    grid-area: title;
-    /*grid-row: 1;*/
-}
-
-#togglenav{
-    grid-area: togglenav;
-    text-indent: -9999px; /* sends the text off-screen */
-    white-space: nowrap; /* because only the first line is indented */
-    min-width: 1rem;
-    max-height: 3rem;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    background-image: url(/images/hamburgermenuicon.png);
-    background-size: contain;
-}
-
-.breadcrumbs{
-    grid-area: breadcrumbs;
-    /*grid-row: 4;*/
-    background-color: var(--higligt-color);
-    border-style: outset;
-    border-width: 1px;
-    border-radius: 1rem;
-    padding: 0 0.5rem;
-    width: 80%;
-}
-
-.langswitch{
-    grid-area: langswitch;
-    /*grid-row: 3;*/
-    background-color: var(--higligt-color);
-    border-style: outset;
-    border-width: 1px;
-    border-radius: 1rem;
-    padding: 0.5rem;
-    width: fit-content;
-}
-
-nav{
-    /*grid-area:"navmenu";*/
-    /*grid-row: 2;*/
-}
-
-nav ul{
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-    width: 100%;
-    list-style: none;
-}
-
-.closednav{
-    display: none;
-}
-
-nav ul li{
-    font-size: 1.5rem;
+* {
     padding: 0;
-    text-decoration: none;
-}
-
-header a{
-    text-decoration: none;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
-    width: min-content;
-    border: solid 1px;
-    border-color: var(--border-color);
-    border-radius: 1rem;
-    padding: 1rem;
-}
-
-fieldset{
-    display: flex;
-    flex-direction: column;
-    width: min-content;
-    border-radius: 1rem;
-}
-
-input{
-    border-radius: 1rem;
-    font-size: 1.25rem;
-    padding: 0.5rem 0.75rem;
-}
-
-label{
-    font-size: 1.25rem;
-}
-
-.home_room{
-    display: flex;
-    flex-direction: column;
-    padding: 0rem;
-    border-radius: 1rem;
     margin: 0;
 }
 
-#stanza1{
-    background-color: var(--stanza1);
+html {
+    font-size: 100%;
+    line-height: 1.5em;
+    font-family: "Verdana", sans-serif;
+    margin: auto;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
-#stanza2{
-    background-color: var(--stanza2);
+body {
+    min-height: 100vh;
 }
 
-#stanza3{
-    background-color: var(--stanza3);
+a {
+    color: var(--link-color);
 }
 
-.recap{
-    background-color: var(--theme-color);
-    border-radius: 0.5rem;
-    padding: 1rem;
-    display: grid;
-    grid-template-columns: auto auto;
-    width: min-content;
+a:visited {
+    color: var(--link-visited-color);
 }
 
-.recap dt{
-    grid-column: 1;
-    padding: 0.5rem;
+.hidden {
+    display: none;
 }
 
-.recap dd{
-    grid-column: 2;
-    padding: 0.5rem;
+/* Navbar */
+
+#screen-reader-skip {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
 }
 
-.prenotazione_rapida{
-    background-color: var(--higligt-color);
-    border-radius: 0.5rem;
-    padding: 1rem;
-}
-
-.room_photo{
-    width: 100%;
-    border-radius: 1rem;
-    margin-top: 0.25rem;
-}
-
-.ambientazione{
-    padding: 1rem;
-    width: auto;
-}
-
-.prenotazioni_utente{
-    list-style: none;
+header {
     width: 100%;
 }
-.singola_prenotazione{
-    border-radius: 1rem;
-    padding: 1rem;
-    font-size: 1.5rem;
-    background-color: var(--theme-color);
+
+nav {
+    background-color: var(--primary-color);
+    padding: 1em 2em;
+    margin-bottom: 2em;
 }
-.link_modifica{
-    float: right;
+
+#logo {
+    display: inline;
 }
+
+#toggle-nav {
+    display: none;
+}
+
+.hidden-line {
+    display: none;
+}
+
+nav ul {
+    display: inline;
+    margin-left: 0.75em;
+}
+
+nav ul li {
+    width: 30%;
+    list-style-type: none;
+    margin: 0 0.25em;
+    padding: 0.2em;
+    border: 1px solid var(--highlight-color);
+    border-radius: 0.2em;
+    background-color: var(--highlight-color);
+    text-align: center;
+    display: inline;
+}
+
+nav ul li:hover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+}
+
+nav hr {
+    margin: 0.5em 0;
+    border: 1px solid white;
+}
+
+#bottom-nav {
+    display: flex;
+}
+
+.lang-switch {
+    flex-grow: 1;
+    text-align: right;
+}
+
+/* Error */
 
 .hidden-error {
     display: none;
 }
 
+div#error-message-box {
+    border: 2px solid var(--error-box-border-color);
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    width: 40%;
+    margin: -0.75em auto 1em;
+    background-color: var(--error-box-background-color);
+}
+
+/* Information */
+
 .hidden-info {
     display: none;
 }
 
-@media screen and (min-width: 30rem) {
-    
-    /*modifiche css per tablet*/
-    .home_room{
-        display: grid;
-        grid-template-columns:auto auto auto;
-        grid-template-rows: auto auto auto auto;
-        grid-template-areas: "title title title"
-                            "recap setting setting"
-                            "img  img img"
-                            "prenota prenota prenota";
-        gap: 0.5rem;
-    }
-
-    .titolostanza{
-        grid-area: title;
-    }
-
-    .recap{
-        grid-area: recap;
-    }
-
-    .room_photo{
-        grid-area: img;
-    }
-
-    .ambientazione{
-        grid-area: setting;
-    }
-
-    .prenotazione_rapida{
-        grid-area: prenota;
-    }
+div#info-message-box {
+    border: 2px solid var(--info-box-border-color);
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    width: 40%;
+    margin: -0.75em auto 1em;
+    background-color: var(--info-box-background-color);
+    color: var(--opposite-text-color);
 }
 
-@media screen and (min-width: 65em) {
+/* Content Box */
 
-    /*modifiche css per desktop*/
-    body{
-        max-width: 60em;
-        margin: 0 auto;
-    }
-
-    header{
-        display: grid;
-        width: 100%;
-        grid-template-columns: auto auto auto;
-        grid-template-rows: auto auto auto auto;
-        grid-template-areas: "title togglenav navmenu"
-                             "langswitch . ."
-                             "breadcrumbs breadcrumbs breadcrumbs"
-                             ". . .";
-    }
-
-    #togglenav{
-        display: none;
-    }
-
-    header h1{
-        grid-area: title;
-        /*grid-row: 1;*/
-    }
-
-    .breadcrumbs{
-        grid-area: breadcrumbs;
-        /*grid-row: 3;*/
-    }
-
-    .langswitch{
-        grid-area: langswitch;
-        /*grid-row: 2;*/
-    }
-
-    nav{
-        grid-area: navmenu;
-        /*grid-row: 1;
-        grid-column: 3;*/
-    }
-
-    .largeform{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: fit-content;
-        padding: 0;
-    }
-
-    .home_room{
-        display: grid;
-        grid-template-columns: 50% auto 30%;
-        grid-template-rows: auto auto auto auto;
-        grid-template-areas: "img title   setting"
-                             "img recap   setting"
-                             "img prenota setting";
-        gap: 0.5rem;
-    }
-
-    .titolostanza{
-        grid-area: title;
-    }
-
-    .recap{
-        grid-area: recap;
-    }
-
-    .room_photo{
-        grid-area: img;
-    }
-
-    .ambientazione{
-        grid-area: setting;
-    }
-
-    .prenotazione_rapida{
-        grid-area: prenota;
-    }
-
-    .closednav{
-        display: flex;
-    }
+main #content {
+    width: 100%;
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 2rem;
+/* Room Cards in Home */
+
+section.home-room {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    background-color: var(--secondary-color);
+    margin-right: 2em;
+    margin-left: 2em;
+    margin-bottom: 2em;
+    padding: 1em 0 1em 1em;
+    border-radius: 0.5em;
 }
 
-footer dl {
-    margin: 0;
+section.home-room h2 {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
 }
 
-footer dt {
+section.home-room dl {
+    grid-column: 1;
+    grid-row: 2;
+    background-color: var(--room-statistics-background-color);
+    border: 2px solid var(--room-statistics-border-color);
+    border-radius: 0.5em;
+    margin: auto 0;
+
+}
+
+section.home-room dl dt {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    padding: 0.75em 0;
+    border-bottom: 1px solid var(--room-statistics-border-color);
+}
+
+section.home-room dl dt:last-of-type {
+    border-bottom: none;
+}
+
+section.home-room dl dd {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    padding: 0.75em 0;
+    border-bottom: 1px solid var(--room-statistics-border-color);
+}
+
+section.home-room dl dd:last-child {
+    border-bottom: none;
+}
+
+section.home-room p {
+    grid-column: 1;
+    grid-row: 3;
+    text-align: center;
+    font-style: italic;
+    margin: auto 0;
+}
+
+section.home-room a {
+    grid-column: 1;
+    grid-row: 4;
+    margin: auto 0 auto auto;
+    border: 2px solid var(--booking-button-border-color);
+    border-radius: 0.5em;
+    padding: 0.5em;
+    background-color: var(--booking-button-background-color);
+}
+
+section.home-room img {
+    grid-column: 2/3;
+    grid-row: 1/5;
+    max-width: 200%;
+    border-radius: 0.5em;
+}
+
+/* Login Page */
+
+form#login-form {
+    background-color: var(--login-form-background-color);
+    width: 25%;
+    padding: 1em;
+    margin: 0 auto;
+    border-radius: 0.5em;
+}
+
+form#login-form label {
+    display: block;
+}
+
+form#login-form input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0.25em 0;
+    padding-left: 0.5em;
+    height: 2em;
+    border: none;
+    border-radius: 0.5em;
+}
+
+form#login-form input[type=submit] {
+    color: var(--opposite-text-color);
+    border: none;
+    background-color: var(--login-button-color);
+    margin-top: 0.75em;
+}
+
+form#login-form input[type=submit]:disabled {
+    background-color: var(--login-button-disabled-color);
+}
+
+form#login-form p {
+    font-size: 0.9em;
+}
+
+/* Signup Page */
+
+form#signup-form {
+    background-color: var(--signup-form-background-color);
+    width: 35%;
+    padding: 1em;
+    margin: 0 auto;
+    border-radius: 0.5em;
+}
+
+form#signup-form fieldset {
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+form#signup-form fieldset legend {
+    margin-left: 0.4em;
+}
+
+form#signup-form label {
+    display: block;
+}
+
+form#signup-form label#bd-label {
+    display: inline;
+}
+
+form#signup-form input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0.25em 0;
+    height: 2em;
+    border: none;
+    border-radius: 0.5em;
+}
+
+form#signup-form input[type=text], form#signup-form input[type=email], form#signup-form input[type=password] {
+    padding-left: 0.5em;
+}
+
+form#signup-form input#nascita {
+    display: inline;
+    width: auto;
+}
+
+form#signup-form input[type=submit] {
+    color: var(--signup-button-text-color);
+    border: none;
+    background-color: var(--login-button-color);
+    margin-top: 0.75em;
+}
+
+form#signup-form input[type=submit]:disabled {
+    background-color: var(--signup-button-disabled-color);
+}
+
+form#signup-form p {
+    font-size: 0.9em;
+}
+
+small {
+    display: block;
+}
+
+small.error-message {
+    color: var(--error-text-color);
     font-weight: bold;
-    margin-bottom: 0.5rem;
 }
 
-footer dd {
+/* User Page */
+
+p#currently-logged-as {
+    margin-left: 10%;
+    margin-bottom: 1.5em;
+}
+
+h2.user-area-section-title {
+    margin-left: 18%;
+    margin-bottom: 0.75em;
+}
+
+ul.user-area-element-list {
+    background-color: var(--list-background-color);
+    margin: 0 auto 2em;
+    padding: 0.5em 0;
+    border-radius: 0.5em;
+    width: 60%;
+}
+
+ul.user-area-element-list li {
+    list-style-type: none;
+    margin-bottom: 0.2em;
+    text-align: center;
+    background-color: var(--element-background-color);
+}
+
+ul.user-area-element-list li:last-child {
+    margin-bottom: 0;
+}
+
+ul.user-area-element-list p {
+    margin-left: 0.5em;
+}
+
+ul.user-area-element-list li.next-booking-element {
+    display: flex;
+}
+
+li.next-booking-element time.next-booking-date {
+    flex-grow: 1;
+    padding: 0.5em 0;
+}
+
+li.next-booking-element time.next-booking-time {
+    flex-grow: 1;
+    padding: 0.5em 0;
+    border-left: 2px solid var(--element-border-color);
+}
+
+li.next-booking-element span.next-booking-room-id {
+    flex-grow: 1;
+    padding: 0.5em 0;
+    border-left: 2px solid var(--element-border-color);
+}
+
+li.next-booking-element a.next-booking-edit-button {
+    flex-grow: 1;
+    padding: 0.5em 0;
+    background-color: var(--edit-booking-button-background-color);
+    border-left: 2px solid var(--element-border-color);
+}
+
+ul.user-area-element-list li.past-booking-element {
+    display: flex;
+}
+
+li.past-booking-element time.past-booking-date {
+    flex-grow: 1;
+    padding: 0.5em 0;
+}
+
+li.past-booking-element time.past-booking-time {
+    flex-grow: 1;
+    padding: 0.5em 0;
+    border-left: 2px solid var(--element-border-color);
+}
+
+li.past-booking-element span.past-booking-room-id {
+    flex-grow: 1;
+    padding: 0.5em 0;
+    border-left: 2px solid var(--element-border-color);
+}
+
+ul#create-review-list {
+    width: 20%;
+    margin-left: 20%;
+}
+
+ul.user-area-element-list li.create-review-element {
+    padding: 0.5em 0;
+}
+
+ul.user-area-element-list li.written-review-element {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+li.written-review-element span.written-review-room-id {
+    flex-grow: 1;
+    padding: 0.5em 0;
+}
+
+li.written-review-element span.written-review-score {
+    flex-grow: 1;
+    padding: 0.5em 0;
+    border-left: 2px solid var(--element-border-color);
+}
+
+li.written-review-element a.written-review-edit-button {
+    flex-grow: 1;
+    padding: 0.5em 0;
+    background-color: var(--edit-booking-button-background-color);
+    border-left: 2px solid var(--element-border-color);
+}
+
+li.written-review-element p.written-review-text {
+    width: 100%;
     margin-left: 0;
-    margin-bottom: 0.5rem;
+    padding: 0.5em 0.2em;
+    border-top: 2px solid var(--element-border-color);
+    font-style: italic;
 }
 
-footer a {
-    color: var(--link-color);
-    text-decoration: none;
+/* Room Booking Page */
+
+form#booking-form {
+    width: 25%;
+    margin: 0 auto;
+    background-color: var(--booking-form-background-color);
+    border-radius: 0.5em;
+    padding: 1em;
 }
 
-footer a:hover {
-    color: var(--link-hover-color);
+form#booking-form h2 {
+    display: inline;
+    padding-bottom: 2em;
 }
 
-.error-message {
-    color: red;
-    font-size: 1em;
-    visibility: hidden;
+form#booking-form label {
+    display: block;
+    margin-top: 0.5em;
+}
+
+form#booking-form input {
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.2em;
+}
+
+form#booking-form select {
+    display: block;
+}
+
+form#booking-form button {
+    width: 100%;
+    height: 2em;
+    margin-top: 1em;
+    border: none;
+    border-radius: 0.5em;
+    color: var(--opposite-text-color);
+    background-color: var(--booking-button-color);
+}
+
+form#booking-form button:disabled {
+    background-color: var(--booking-button-disabled-color);
+}
+
+/* Create Review Page */
+
+form#create-review-form {
+    width: 40%;
+    margin: 0 auto;
+    background-color: var(--create-review-form-background-color);
+    border-radius: 0.5em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+form#create-review-form h2 {
+    padding-bottom: 1em;
+    margin: 0 auto;
+}
+
+form#create-review-form input, form#create-review-form textarea {
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.2em;
+}
+
+form#create-review-form textarea {
+    height: 6em;
+    box-sizing: border-box;
+    resize: none;
+}
+
+form#create-review-form div {
+    margin-top: 0.5em;
+}
+
+form#create-review-form div input {
+    width: 3em;
+}
+
+form#create-review-form button {
+    width: 100%;
+    height: 2em;
+    margin-top: 1em;
+    border: none;
+    border-radius: 0.5em;
+    color: var(--opposite-text-color);
+    background-color: var(--create-review-button-color);
+}
+
+form#create-review-form button:disabled {
+    background-color: var(--create-review-button-disabled-color);
+}
+
+/* Modify Review Page */
+
+form#edit-review-form {
+    width: 40%;
+    margin: 0 auto;
+    background-color: var(--edit-review-form-background-color);
+    border-radius: 0.5em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+form#edit-review-form h2 {
+    padding-bottom: 1em;
+    margin: 0 auto;
+}
+
+form#edit-review-form input, form#edit-review-form textarea {
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.2em;
+}
+
+form#edit-review-form textarea {
+    height: 6em;
+    box-sizing: border-box;
+    resize: none;
+}
+
+form#edit-review-form div {
+    margin-top: 0.5em;
+}
+
+form#edit-review-form div input {
+    width: 3em;
+}
+
+form#edit-review-form button {
+    width: 100%;
+    height: 2em;
+    margin-top: 1em;
+    border: none;
+    border-radius: 0.5em;
+    color: var(--opposite-text-color);
+    background-color: var(--edit-review-button-color);
+}
+
+form#edit-review-form button#delete-button {
+    color: var(--text-color);
+    background-color: var(--edit-review-delete-button-color);
+    align-self: end;
+    width: 15%;
+    margin-top: 1.5em;
+}
+
+/* Logout Page */
+
+p#successful-logout-text {
+    text-align: center;
+    font-size: 1.25em;
+}
+
+a#login-redirect {
+    display: block;
+    text-align: center;
+}
+
+/* Edit Booking Page */
+
+form#edit-booking-form {
+    width: 40%;
+    margin: 0 auto;
+    background-color: var(--edit-booking-form-background-color);
+    border-radius: 0.5em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+form#edit-booking-form h2 {
+    padding-bottom: 1em;
+    margin: 0 auto;
+}
+
+form#edit-booking-form div {
+    display: flex;
+    background-color: var(--booking-info-background-color);
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+}
+
+form#edit-booking-form div time, form#edit-booking-form div span {
+    flex-grow: 1;
+    padding: 0.5em 0;
+    text-align: center;
+}
+
+div time#booking-time {
+    border-left: 2px solid var(--booking-info-border-color);
+}
+
+div span#booking-room-text {
+    border-left: 2px solid var(--booking-info-border-color);
+}
+
+div span#booking-user {
+    display: none;
+}
+
+form#edit-booking-form label {
+    display: block;
+    margin-top: 0.5em;
+}
+
+form#edit-booking-form input {
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.2em;
+    width: 7em;
+}
+
+form#edit-booking-form select {
+    width: 7em;
+}
+
+form#edit-booking-form button {
+    width: 100%;
+    height: 2em;
+    margin-top: 1em;
+    border: none;
+    border-radius: 0.5em;
+    color: var(--opposite-text-color);
+    background-color: var(--edit-booking-button-color);
+}
+
+form#edit-booking-form button#delete-button {
+    color: var(--text-color);
+    background-color: var(--edit-booking-delete-button-color);
+    align-self: end;
+    width: 15%;
+    margin-top: 1.5em;
+}
+
+/* Admin Page */
+
+h2#admin-page-title {
+    margin-left: 2em;
+    margin-bottom: 0.5em;
+    font-size: 2em;
+}
+
+ul#admin-room-list {
+    font-size: 1.5em;
+    line-height: 1.25em;
+    margin-left: 4em;
+    list-style-type: none;
+}
+
+a#admin-logout {
+    display: block;
+    margin-top: 1.5em;
+    margin-left: 4em;
+}
+
+/* Room Administration Page */
+
+h2#room-administration-title {
+    margin-left: 2em;
+    margin-bottom: 1em;
+    font-size: 2em;
+}
+
+h3#future-booking-list-title {
+    margin-left: 3.2em;
+    margin-bottom: 0.5em;
+    font-size: 1.25em;
+}
+
+ul#future-booking-list {
+    font-size: 1.3em;
+    line-height: 1.25em;
+    margin-left: 3em;
+    padding: 0.5em 0;
+    width: 80%;
+    list-style-type: none;
+    background-color: var(--future-booking-list-background-color);
+    border-radius: 0.5em;
+}
+
+ul#future-booking-list li.future-booking {
+    display: flex;
+    margin-bottom: 0.2em;
+    background-color: var(--element-background-color);
+}
+
+ul#future-booking-list li:last-child {
+    margin-bottom: 0;
+}
+
+li.future-booking span, li.future-booking time {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0.2em 0;
+}
+
+li.future-booking time, li.future-booking span:last-child {
+    border-left: 2px solid var(--future-booking-border-color);
+}
+
+/* Footer */
+
+footer {
+    display: none;
 }

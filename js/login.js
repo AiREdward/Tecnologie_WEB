@@ -5,7 +5,7 @@ const submit_button = document.getElementById('login-button');
 submit_button.disabled = true;
 
 function checkIfFieldsAreValid() {
-    return window.regex.username.test(username_input.value);
+    return (window.regex.username.test(username_input.value) && password_input.value.length > 0);
 }
 
 username_input.addEventListener('input', function () {

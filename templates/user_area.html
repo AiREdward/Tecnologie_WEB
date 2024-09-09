@@ -1,23 +1,21 @@
-<p>~in_as~ {logged_user}</p>
+<p id="currently-logged-as">~in_as~ {logged_user} (<a id="user-logout" href="logout.php">~logout~</a>)</p>
 
-<h2>~next_bookings~</h2>
-<ul class="prenotazioni_utente">
+<h2 class="user-area-section-title">~next_bookings~</h2>
+<ul class="user-area-element-list">
     {next_bookings}
 </ul>
 
-<h2>~past_bookings~</h2>
-<ul class="prenotazioni_utente">
+<h2 class="user-area-section-title">~past_bookings~</h2>
+<ul class="user-area-element-list">
     {past_bookings}
 </ul>
 
-<h2>~write_reviews~</h2>
-<ul class="">
+<h2 class="user-area-section-title">~write_reviews~</h2>
+<ul class="user-area-element-list" id="create-review-list">
     {available_reviews}
 </ul>
 
-<h2>~written_reviews~</h2>
-<ul class="">
+<h2 class="user-area-section-title">~written_reviews~</h2>
+<ul class="user-area-element-list" id="written-review-list">
     {written_reviews}
 </ul>
-
-<a href="logout.php">~logout~</a>
