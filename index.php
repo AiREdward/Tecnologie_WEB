@@ -33,6 +33,7 @@ foreach($rooms as $room) {
 
     $content .= $room_component;
 }
+$content .="<p> siamo anche disponibili per attività di team building, per ulteriori informazioni contattateci via telefono o mail</p>"
 
 $page = str_replace('{content}', $content, $page);
 
