@@ -27,7 +27,7 @@ nav {
     flex-grow: 1;
     border: none;
     background-color: transparent;
-    background-image: url(/images/hamburger-menu.svg);
+    background-image: url(../images/hamburger-menu.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right;

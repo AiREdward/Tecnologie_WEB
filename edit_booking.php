@@ -8,6 +8,11 @@ if(isset($_GET["id"])) {
 } else {
     if(isset($_SESSION["booking_id_editing"])) {
         $booking_id = $_SESSION["booking_id_editing"];
+        $booking_info = getBookingInfo($booking_id);
+        if(!$booking_info) {
+            header("Location: user_area.php");
+            exit();
+        }
     } else {
         header("Location: 404.php");
         exit();

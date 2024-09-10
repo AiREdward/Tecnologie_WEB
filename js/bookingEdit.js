@@ -99,7 +99,7 @@ function getSlotsForTheDay() {
 day_selector.addEventListener('change', getSlotsForTheDay);
 
 delete_button.addEventListener('click', function() {
-    let url = 'utilities/requests/deleteBookingRequest.php?day=' + booking_date + '&slot=' + booking_time + '&user=' + booking_user + '&room=' + booking_room;
+    let url = 'utilities/requests/deleteBookingRequest.php?day=' + booking_date + '&slot=' + booking_time + ':00&user=' + booking_user + '&room=' + booking_room;
     let xmlHttp = getXMLHttp();
 
     xmlHttp.onreadystatechange = function() {

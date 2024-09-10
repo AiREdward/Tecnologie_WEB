@@ -57,7 +57,7 @@ create table Orari_Apertura (
 create table Recensione (
     ID integer primary key AUTO_INCREMENT,
     Testo varchar(1024) not null,
-    Voto decimal(1,1) not null,
+    Voto integer not null,
     Username varchar(32) not null,
     ID_Room integer not null,
     foreign key (Username) references Utente(Username),
