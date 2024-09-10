@@ -32,6 +32,7 @@ if(getLanguage() == 'it') {
     $content = str_replace('{room_name}', $rooms_info_english[$room_id - 1]["Nome"], $booking_component);
 }
 
+$content = str_replace('{room_id}', $room_id, $content);
 $content = str_replace('{today_date}', date('Y-m-d'), $content);
 $content = str_replace('{max_date}', date('Y-m-d', strtotime("+1 month")), $content);
 

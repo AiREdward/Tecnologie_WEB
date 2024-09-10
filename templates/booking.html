@@ -1,6 +1,6 @@
 <form id="booking-form" action="booking.php" method="post">
     <h2>~room_booking~: </h2>
-    <h2 id="room-id">{room_name}</h2>
+    <h2 id="room-name">{room_name}</h2>
 
     <label for="day-selector">~day_select~</label>
     <input id="day-selector" name="day" type="date" min="{today_date}" max="{max_date}">
@@ -12,3 +12,4 @@
 
     <button id="submit-button" name="prenota" type="submit"> ~book~ </button>
 </form>
+<span class="hidden" id="room-id">{room_id}</span>
