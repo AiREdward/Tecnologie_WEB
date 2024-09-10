@@ -36,7 +36,6 @@ function initPage(string $file_path): string {
     $page = str_replace('{menu}', getMenu(getNameOfTheFile($file_path)), $page);
     $page = str_replace('{breadcrumb}', getBreadcrumb(getNameOfTheFile($file_path)), $page);
     $page = str_replace('{lang_switch}', getLangSwitch(getNameOfTheFile($file_path)), $page);
-    $page = str_replace('{footer}', getFooter(), $page); 
 
     return $page;
 }
@@ -107,11 +106,6 @@ function getBreadcrumb(string $page_name): string {
     }
 
     return $breadcrumb;
-}
-
-function getFooter(): string {
-    $footer_template = file_get_contents('templates/footer.html');
-    return insertText($footer_template); 
 }
 
 function getLangSwitch($page_name): string {

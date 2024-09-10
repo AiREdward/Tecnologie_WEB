@@ -1,0 +1,99 @@
+/* General */
+
+/* Navbar */
+
+/* Error */
+
+/* Information */
+
+/* Room Cards in Home */
+
+section.home-room p {
+    grid-column: 1/3;
+}
+
+section.home-room a {
+    grid-column: 3;
+    grid-row: 3;
+    margin-right: 1em;
+}
+
+section.home-room img {
+    grid-row: 1/3;
+}
+
+/* Login Page */
+
+form#login-form {
+    width: 40%;
+}
+
+/* Signup Page */
+
+form#signup-form {
+    width: 50%;
+}
+
+/* User Page */
+
+p#currently-logged-as {
+    margin-left: 5%;
+}
+
+h2.user-area-section-title {
+    margin-left: 10%;
+}
+
+ul.user-area-element-list {
+    width: 75%;
+}
+
+ul#create-review-list {
+    width: 50%;
+    margin-left: 12%;
+}
+
+/* Room Booking Page */
+
+form#booking-form {
+    width: 40%;
+}
+
+/* Create Review Page */
+
+form#create-review-form {
+    width: 60%;
+}
+
+/* Modify Review Page */
+
+form#edit-review-form {
+    width: 60%;
+}
+
+/* Logout Page */
+
+/* Edit Booking Page */
+
+form#edit-booking-form {
+    width: 60%;
+}
+
+/* Admin Page */
+
+/* Room Administration Page */
+
+h2#room-administration-title {
+    margin-left: 5%;
+}
+
+h3#future-booking-list-title {
+    margin-left: 7%;
+}
+
+ul#future-booking-list {
+    margin: 0 auto;
+    width: 85%;
+}
+
+/* Footer */

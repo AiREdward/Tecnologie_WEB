@@ -3,6 +3,7 @@ require_once 'utilities/global.php';
 require_once 'utilities/access_util.php';
 require_once 'utilities/booking_util.php';
 require_once 'utilities/room_util.php';
+
 redirectIfUserNotLoggedIn(__FILE__);
 redirectUserIfNotAdmin();
 
@@ -24,17 +25,11 @@ $bookings = getNextRoomBookings($room_id);
 
 $rooms = getRoomInfo();
 $rooms_info_english = getRoomInfoEnglish();
-$room;
-foreach ($rooms as $r){
-    if($r["ID"]==$room_id){
-        $room=$r;
-    }
-}
-if (getLanguage() == 'it') {
-    $content = str_replace('{room_name}', $room["Nome"], $admin_room_component);
-}
-else{
-    $content = str_replace('{room_name}', $rooms_info_english[$room["ID"] - 1]["Nome"], $admin_room_component);
+
+if(getLanguage() == 'it') {
+    $content = str_replace('{room_name}', $rooms[$room_id -1]["Nome"], $admin_room_component);
+} else{
+    $content = str_replace('{room_name}', $rooms_info_english[$room_id - 1]["Nome"], $admin_room_component);
 }
 
 $bookings_to_show = '';

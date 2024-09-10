@@ -25,7 +25,7 @@ function checkIfNameIsValid() {
     let name = name_field.value.trim();
 
     if (/[0-9]/.test(name)) {
-        showErrorMessageForField('nome-error'); // 'Il nome non può contenere numeri e non può essere vuoto.'
+        showErrorMessageForField('nome-error');
         return false;
     } else {
         resetErrorMessageForField('nome-error');
@@ -37,7 +37,7 @@ function checkIfSurnameIsValid() {
     let surname = surname_field.value.trim();
 
     if (/[0-9]/.test(surname)) {
-        showErrorMessageForField('cognome-error'); // 'Il cognome non può contenere numeri e non può essere vuoto.'
+        showErrorMessageForField('cognome-error');
         return false;
     } else {
         resetErrorMessageForField('cognome-error');
@@ -47,7 +47,7 @@ function checkIfSurnameIsValid() {
 
 function checkIfPhoneNumberIsValid() {
     if (!window.regex.phone_number.test(phone_number_field.value)) {
-        showErrorMessageForField('telefono-error'); // 'Il numero di telefono non è valido.'
+        showErrorMessageForField('telefono-error');
         return false;
     } else {
         resetErrorMessageForField('telefono-error');
@@ -57,7 +57,7 @@ function checkIfPhoneNumberIsValid() {
 
 function checkIfEmailIsValid() {
     if (!window.regex.email.test(email_field.value)) {
-        showErrorMessageForField('email-error'); // 'L\'email non è valida.'
+        showErrorMessageForField('email-error');
         return false;
     } else {
         resetErrorMessageForField('email-error');
@@ -67,7 +67,7 @@ function checkIfEmailIsValid() {
 
 function checkIfUsernameIsValid() {
     if (!window.regex.username.test(username_field.value)) {
-        showErrorMessageForField('username-error'); // 'Il nome utente non è valido.'
+        showErrorMessageForField('username-error');
         return false;
     } else {
         resetErrorMessageForField('username-error');
@@ -77,7 +77,7 @@ function checkIfUsernameIsValid() {
 
 function checkIfPasswordIsValid() {
     if (!window.regex.password.test(password_field.value)) {
-        showErrorMessageForField('password-error'); // 'min 8 caratteri, 1 maiuscola, 1 minuscola, 1 carattere speciale'
+        showErrorMessageForField('password-error');
         return false;
     } else {
         resetErrorMessageForField('password-error');
@@ -88,7 +88,7 @@ function checkIfPasswordIsValid() {
 function checkIfConfirmPasswordIsTheSame() {
     if (confirm_password_field.value.length > 0) {
         if (password_field.value !== confirm_password_field.value) {
-            showErrorMessageForField('conferma-error'); // 'Le password non coincidono.'
+            showErrorMessageForField('conferma-error');
             return false;
         } else {
             resetErrorMessageForField('conferma-error');

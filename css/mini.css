@@ -277,6 +277,7 @@ a#admin-logout {
 
 h2#room-administration-title {
     margin-left: 0.5em;
+    line-height: 1em;
 }
 
 h3#future-booking-list-title {

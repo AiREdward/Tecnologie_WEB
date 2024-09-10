@@ -2,6 +2,7 @@
 require_once 'utilities/global.php';
 require_once 'utilities/access_util.php';
 require_once 'utilities/user_util.php';
+require_once 'utilities/room_util.php';
 require_once 'utilities/input_util.php';
 require_once 'utilities/message_util.php';
 
@@ -32,9 +33,16 @@ if(isset($_POST['crea_recensione'])) {
 
 $page = initPage(__FILE__);
 
+$rooms = getRoomInfo();
+$rooms_info_english = getRoomInfoEnglish();
+
 $create_review_component = file_get_contents('templates/create_review.html');
 
-$content = str_replace('{room_id}', $room_id, $create_review_component);
+if(getLanguage() == 'it') {
+    $content = str_replace('{room_name}', $rooms[$room_id -1]["Nome"], $create_review_component);
+} else{
+    $content = str_replace('{room_name}', $rooms_info_english[$room_id - 1]["Nome"], $create_review_component);
+}
 
 $page = str_replace('{content}', $content, $page);
 
